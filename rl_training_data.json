@@ -877,8 +877,8 @@
       "placeholder": "Type your message...",
       "outerHTML": "<textarea class=\"chat-textarea\" placeholder=\"Type your message...\" style=\"height: 64px;\"></textarea>"
     },
-    "log": "Action: Filled input index 8 (no-id) with '<script>alert('XSS2')</script>'",
-    "reward": 1.0,
-    "reason": "XSS payload injected into input field. Likely successful XSS vulnerability."
+    "log": "Action: Filled input index 8 (no-id) with '<script>alert('XSS in message')</script>'",
+    "reward": 0.0,
+    "reason": "Error parsing reward"
   }
 ]
