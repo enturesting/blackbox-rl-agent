@@ -55,7 +55,7 @@ async def initialize_browser(state: AgentState) -> dict:
         "page": page,
         "url": target_url,
         "steps": 0,
-        "maxSteps": 15, # Increased steps to allow for exploration
+        "maxSteps": 20, # Increased steps to allow for exploration
         "logs": ["Started RL Training Session."],
         "visitedUrls": [target_url],
         # Initialize RL State

