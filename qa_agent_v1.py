@@ -43,7 +43,8 @@ async def initialize_browser(state: AgentState) -> dict:
     browser = await playwright.chromium.launch(headless=False)
     page = await browser.new_page()
     
-    target_url = "https://strandschat.com" # CHANGE THIS TO YOUR TARGET
+    # CHANGE THIS TO YOUR TARGET URL
+    target_url = "https://strandschat.com" 
     try:
         await page.goto(target_url)
     except Exception as e:
@@ -82,7 +83,6 @@ async def analyze_and_decide(state: AgentState) -> dict:
             if await el.is_visible() and await el.is_enabled():
                 tag = await el.evaluate("e => e.tagName.toLowerCase()")
                 eid = await el.get_attribute('id') or f"el-{i}"
-                # Get placeholder or text to help the LLM identify the element
                 text = await el.inner_text()
                 placeholder = await el.get_attribute("placeholder")
                 info = text[:20] if text else (placeholder if placeholder else "")
@@ -175,22 +175,40 @@ async def execute_action(state: AgentState) -> dict:
     logs = []
     screenshot_refs = []
     
+    # NEW: Track details about the specific element we touched for the Exploiter Script
+    target_element_details = {} 
+
     try:
-        if action == "fill_input":
-            idx = payload.get("targetIndex")
+        elements = await page.query_selector_all('button, input, a[href], [role="button"], textarea, select')
+        idx = payload.get("targetIndex")
+        
+        # Validate Index and Capture Identity
+        target_el = None
+        if idx is not None and idx < len(elements):
+            target_el = elements[idx]
+            
+            # --- CAPTURE ELEMENT IDENTITY ---
+            try:
+                target_element_details = {
+                    "tagName": await target_el.evaluate("e => e.tagName.toLowerCase()"),
+                    "id": await target_el.get_attribute("id") or "no-id",
+                    "name": await target_el.get_attribute("name") or "no-name",
+                    "placeholder": await target_el.get_attribute("placeholder") or "",
+                    "outerHTML": await target_el.evaluate("e => e.outerHTML.substring(0, 150)") # First 150 chars
+                }
+            except:
+                target_element_details = {"error": "could_not_capture_details"}
+            # -------------------------------
+
+        if action == "fill_input" and target_el:
             val = payload.get("inputValue", "test")
-            elements = await page.query_selector_all('button, input, textarea, select')
-            if idx < len(elements):
-                await elements[idx].fill(val)
-                logs.append(f"Action: Filled index {idx} with '{val}'")
+            await target_el.fill(val)
+            logs.append(f"Action: Filled input index {idx} ({target_element_details.get('id')}) with '{val}'")
                 
-        elif action == "click_element":
-            idx = payload.get("targetIndex")
-            elements = await page.query_selector_all('button, input, a[href], [role="button"]')
-            if idx < len(elements):
-                await elements[idx].click()
-                logs.append(f"Action: Clicked index {idx}")
-                await page.wait_for_timeout(1000) # Wait for reaction
+        elif action == "click_element" and target_el:
+            await target_el.click()
+            logs.append(f"Action: Clicked element index {idx} ({target_element_details.get('id')})")
+            await page.wait_for_timeout(1000) # Wait for reaction
 
         elif action == "check_responsiveness":
             logs.append("Action: Checked Responsiveness")
@@ -206,10 +224,13 @@ async def execute_action(state: AgentState) -> dict:
     except Exception as e:
         logs.append(f"Error: {str(e)}")
     
+    # Pass these details to the next node (Reward Node)
     return {
         "steps": steps + 1,
         "logs": logs,
-        "screenshotRefs": screenshot_refs
+        "screenshotRefs": screenshot_refs,
+        # UPDATE PAYLOAD with target details so Reward Node can see them
+        "actionPayload": {**payload, "targetDetails": target_element_details} 
     }
 
 # --- 3. THE REWARD MODEL NODE (The "Stagnation Fix" Version) ---
@@ -222,6 +243,10 @@ async def evaluate_reward(state: AgentState) -> dict:
     last_action = state["lastAction"]
     step = state["steps"]
     
+    # Retrieve the target details captured in execute_action
+    last_payload = state.get("actionPayload", {})
+    target_details = last_payload.get("targetDetails", {})
+    
     # 1. Check for Repetition
     trajectory = state.get("trajectory", [])
     is_repeat = False
@@ -229,7 +254,6 @@ async def evaluate_reward(state: AgentState) -> dict:
         prev = trajectory[-1]
         # If agent repeats the exact same high-level action type
         if prev["action"] == last_action and "finish" not in last_action:
-            # We can also check if payload targetIndex is same for stricter checking
             is_repeat = True
 
     # 2. Use Gemini to Judge the Outcome
@@ -266,7 +290,6 @@ async def evaluate_reward(state: AgentState) -> dict:
         reason = reward_data.get("reason", "Unknown")
 
         # 3. Force Penalty Override
-        # Sometimes LLMs are too nice. We force the penalty if it's a repeat.
         if is_repeat and score >= 0:
             score = -0.5
             reason = "Forced Penalty: Action Stagnation (Repeated Action)"
@@ -277,10 +300,11 @@ async def evaluate_reward(state: AgentState) -> dict:
 
     print(f"💰 REWARD: {score} ({reason})")
     
-    # Save Experience Tuple (S, A, R)
+    # Save Experience Tuple (S, A, R) AND THE TARGET IDENTITY
     experience = {
         "step": step,
         "action": last_action,
+        "target": target_details,  # <--- SAVED FOR EXPLOITER SCRIPT
         "log": logs,
         "reward": score,
         "reason": reason
