@@ -329,6 +329,7 @@ async def evaluate_reward(state: AgentState) -> dict:
     """
     
     try:
+        response = await model.ainvoke(prompt)
         content = str(response.content).replace("```json", "").replace("```", "").strip()
         if "{" in content: content = content[content.find("{"):content.rfind("}")+1]
         
@@ -447,6 +448,23 @@ async def main():
     config = {"recursion_limit": 100}  # Increased from default 25
     await app.ainvoke({}, config=config)
     print("✅ Session Finished. Check 'rl_training_data.json' and reports in 'qa_reports/' folder.")
+    
+    # Generate executive report
+    print("📊 Generating executive report...")
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["python", "executive_report_generator.py"],
+            capture_output=True,
+            text=True,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        if result.returncode == 0:
+            print("✅ Executive report generated successfully!")
+        else:
+            print(f"❌ Failed to generate executive report: {result.stderr}")
+    except Exception as e:
+        print(f"❌ Error generating executive report: {e}")
 
 if __name__ == "__main__":
     import asyncio
