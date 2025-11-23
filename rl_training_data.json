@@ -1,251 +1,209 @@
 [
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 4,
-    "action": "fill_input",
-    "target": {
-      "tagName": "textarea",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "Type your message...",
-      "outerHTML": "<textarea class=\"chat-textarea\" placeholder=\"Type your message...\" style=\"\"></textarea>"
-    },
-    "log": "Action: Filled input index 6 (no-id) with '<script>alert('XSS')</script>'",
-    "reward": 1.0,
-    "reason": "XSS payload injected into input field."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
       "tagName": "button",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<button type=\"submit\" class=\"login-button\">Login</button>"
     },
     "log": "Action: Clicked element index 9 (no-id)",
     "reward": 0.1,
@@ -253,433 +211,433 @@
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 4,
-    "action": "fill_input",
+    "action": "click_element",
     "target": {
-      "tagName": "textarea",
+      "tagName": "button",
       "id": "no-id",
       "name": "no-name",
-      "placeholder": "Type your message...",
-      "outerHTML": "<textarea class=\"chat-textarea\" placeholder=\"Type your message...\" style=\"\"></textarea>"
+      "placeholder": "",
+      "outerHTML": "<button type=\"submit\" class=\"login-button\">Login</button>"
     },
-    "log": "Action: Filled input index 6 (no-id) with '<script>alert('XSS')</script>'",
-    "reward": 1.0,
-    "reason": "XSS payload injected into input field."
+    "log": "Action: Clicked element index 9 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 5,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"' OR '1'='1\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with 'admin' --'",
+    "reward": 0.1,
+    "reason": "Standard valid action (filling username field) and is a new action."
+  },
+  {
+    "step": 1,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button class=\"send-icon-button\"><span class=\"arrow-icon\">\u2191</span></button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 7 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
+    "action": "click_element",
     "target": {
-      "tagName": "input",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
+    "action": "click_element",
     "target": {
-      "tagName": "input",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 2,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "username",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
-    "reward": 0.1,
-    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 4,
-    "action": "fill_input",
-    "target": {
-      "tagName": "textarea",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "Type your message...",
-      "outerHTML": "<textarea class=\"chat-textarea\" placeholder=\"Type your message...\" style=\"\"></textarea>"
-    },
-    "log": "Action: Filled input index 6 (no-id) with '<script>alert('XSS')</script>'",
-    "reward": 1.0,
-    "reason": "XSS payload injected into input field."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
       "tagName": "button",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<button type=\"submit\" class=\"login-button\">Login</button>"
     },
     "log": "Action: Clicked element index 9 (no-id)",
     "reward": 0.1,
@@ -687,197 +645,239 @@
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 1,
-    "action": "fill_input",
-    "target": {
-      "tagName": "input",
-      "id": "no-id",
-      "name": "no-name",
-      "placeholder": "your@email.com",
-      "outerHTML": "<input placeholder=\"your@email.com\" class=\"email-input\" required=\"\" type=\"email\">"
-    },
-    "log": "Action: Filled input index 8 (no-id) with 'test<script>alert(1)</script>@example.com'",
-    "reward": 1.0,
-    "reason": "The input 'test<script>alert(1)</script>@example.com' likely triggered an XSS vulnerability, which is a critical success."
-  },
-  {
-    "step": 2,
     "action": "click_element",
     "target": {
-      "tagName": "button",
+      "tagName": "a",
       "id": "no-id",
       "name": "no-name",
       "placeholder": "",
-      "outerHTML": "<button type=\"submit\" class=\"signup-button\">Sign Up</button>"
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
     },
-    "log": "Action: Clicked element index 9 (no-id)",
+    "log": "Action: Clicked element index 4 (no-id)",
     "reward": 0.1,
     "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 1,
+    "action": "click_element",
+    "target": {
+      "tagName": "a",
+      "id": "no-id",
+      "name": "no-name",
+      "placeholder": "",
+      "outerHTML": "<a class=\"navbar-link\" href=\"/login\" data-discover=\"true\">Login</a>"
+    },
+    "log": "Action: Clicked element index 4 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+  },
+  {
+    "step": 2,
+    "action": "fill_input",
+    "target": {
+      "tagName": "input",
+      "id": "username",
+      "name": "no-name",
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"\" style=\"\">"
+    },
+    "log": "Action: Filled input index 7 (username) with '' OR '1'='1'",
+    "reward": 1.0,
+    "reason": "SQL injection attempt detected in username field. Likely successful due to the nature of the input ' OR '1'='1'."
   },
   {
     "step": 3,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "password",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"landing-get-started\">Get Started!</button>"
+      "placeholder": "Enter password",
+      "outerHTML": "<input id=\"password\" placeholder=\"Enter password\" type=\"password\" value=\"\" style=\"\">"
     },
-    "log": "Action: Clicked element index 3 (no-id)",
+    "log": "Action: Filled input index 8 (password) with '' OR '1'='1'",
     "reward": -0.5,
-    "reason": "Repeated action detected, indicating stagnation."
+    "reason": "Repeated action or no state change."
   },
   {
     "step": 4,
-    "action": "fill_input",
+    "action": "click_element",
     "target": {
-      "tagName": "textarea",
+      "tagName": "button",
       "id": "no-id",
       "name": "no-name",
-      "placeholder": "Type your message...",
-      "outerHTML": "<textarea class=\"chat-textarea\" placeholder=\"Type your message...\" style=\"\"></textarea>"
+      "placeholder": "",
+      "outerHTML": "<button type=\"submit\" class=\"login-button\">Login</button>"
     },
-    "log": "Action: Filled input index 6 (no-id) with '<script>alert('XSS')</script>'",
-    "reward": 1.0,
-    "reason": "XSS payload injected into input field."
+    "log": "Action: Clicked element index 9 (no-id)",
+    "reward": 0.1,
+    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
   },
   {
     "step": 5,
-    "action": "click_element",
+    "action": "fill_input",
     "target": {
-      "tagName": "button",
-      "id": "no-id",
+      "tagName": "input",
+      "id": "username",
       "name": "no-name",
-      "placeholder": "",
-      "outerHTML": "<button class=\"send-icon-button\"><span class=\"arrow-icon\">\u2191</span></button>"
+      "placeholder": "Enter username",
+      "outerHTML": "<input id=\"username\" placeholder=\"Enter username\" type=\"text\" value=\"' OR '1'='1\" style=\"\">"
     },
-    "log": "Action: Clicked element index 7 (no-id)",
+    "log": "Action: Filled input index 7 (username) with 'admin' --'",
     "reward": 0.1,
-    "reason": "Standard Valid Action (200 OK) - ONLY IF NEW."
+    "reason": "Standard valid action (filling username field) and is a new action."
   },
   {
     "step": 6,
-    "action": "fill_input",
+    "action": "click_element",
     "target": {
-      "tagName": "textarea",
+      "tagName": "button",
       "id": "no-id",
       "name": "no-name",
-      "placeholder": "Type your message...",
-      "outerHTML": "<textarea class=\"chat-textarea\" placeholder=\"Type your message...\" style=\"height: 64px;\"></textarea>"
+      "placeholder": "",
+      "outerHTML": "<button type=\"submit\" class=\"login-button\">Login</button>"
     },
-    "log": "Action: Filled input index 8 (no-id) with '<script>alert('XSS in message')</script>'",
+    "log": "Action: Clicked element index 9 (no-id)",
     "reward": 0.0,
     "reason": "Error parsing reward"
   }
