@@ -74,7 +74,7 @@ async def initialize_browser(state: AgentState) -> dict:
         "page": page,
         "url": target_url,
         "steps": 0,
-        "maxSteps": 20, # Increased steps to allow for exploration
+        "maxSteps": 50,  # Increased to allow reaching Users page # Increased steps to allow for exploration
         "logs": ["Started RL Training Session."],
         "visitedUrls": [target_url],
         # Initialize RL State
@@ -152,10 +152,19 @@ async def analyze_and_decide(state: AgentState) -> dict:
     {chr(10).join(logs[-3:])}
     
     YOUR GOAL: Maximize your Reward Score.
-    - +1.0: Cause Server Error (500), Crash, SQLi success, XSS Alert.
-    - +0.1: Valid, NEW interaction (200 OK).
-    - -0.5: STAGNATION (Repeating the same action).
-    - -1.0: Failed action (Element not found).
+    CRITICAL MISSION: Navigate to /users page and perform SQL injection to dump all users!
+    
+    Strategy:
+    1. If on login page: Fill username with ' OR '1'='1' --, click login button
+    2. After login: Click "Users" link in navigation
+    3. On Users page: Find search box and inject SQL to dump database
+    
+    Rewards:
+    - +2.0: Database dump on Users page (HIGHEST PRIORITY!)
+    - +1.0: SQL injection success, XSS alert
+    - +0.5: Reached Users page
+    - +0.1: Valid NEW action
+    - -0.5: Repeated action
     
     Choose your next action. Return ONLY JSON:
     {{
@@ -227,6 +236,12 @@ async def execute_action(state: AgentState) -> dict:
             val = payload.get("inputValue", "test")
             await target_el.fill(val)
             logs.append(f"Action: Filled input index {idx} ({target_element_details.get('id')}) with '{val}'")
+            
+            # If this is the search box on Users page, press Enter to submit
+            if "search" in target_element_details.get("placeholder", "").lower():
+                await target_el.press("Enter")
+                logs.append("Action: Pressed Enter to submit search")
+                await page.wait_for_timeout(1500)  # Wait for results
                 
         elif action == "click_element" and target_el:
             await target_el.click()
@@ -298,18 +313,22 @@ async def evaluate_reward(state: AgentState) -> dict:
     Log: {logs}
     Is Repeat Action: {is_repeat}
     
-    Assign a Reward Score (-1.0 to 1.0):
-    - 1.0: Critical Success (Found 500 Error, Crash, SQLi, XSS).
-    - 0.5: Robustness Warning (404, Broken UI, Lag).
-    - 0.1: Standard Valid Action (200 OK) - ONLY IF NEW.
-    - -0.5: STAGNATION (Repeated action or no state change).
-    - -1.0: Script Error / Failed Action.
+    Assign a Reward Score (-1.0 to 2.0):
+    - +2.0: Database dump achieved (multiple users with passwords shown on page)
+    - +1.5: Pressed Enter after SQL injection in search box on Users page
+    - +1.0: SQL injection payload entered in search box on Users page
+    - +0.5: Reached Users page successfully
+    - +0.2: Valid navigation action
+    - +0.1: Valid action (200 OK) - ONLY IF NEW
+    - -0.5: Repeated action or no state change
+    - 0: Invalid action or error
+    
+    PRIORITY: SQL injection in Users page search box is CRITICAL for demo!
     
     Return JSON: {{ "score": float, "reason": "brief explanation" }}
     """
     
     try:
-        response = await model.ainvoke(prompt)
         content = str(response.content).replace("```json", "").replace("```", "").strip()
         if "{" in content: content = content[content.find("{"):content.rfind("}")+1]
         
@@ -425,7 +444,8 @@ def create_workflow():
 async def main():
     print("🏎️ Starting SecGym Agent...")
     app = create_workflow()
-    await app.ainvoke({})
+    config = {"recursion_limit": 100}  # Increased from default 25
+    await app.ainvoke({}, config=config)
     print("✅ Session Finished. Check 'rl_training_data.json' and reports in 'qa_reports/' folder.")
 
 if __name__ == "__main__":
