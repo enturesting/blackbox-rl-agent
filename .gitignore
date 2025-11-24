@@ -4,8 +4,8 @@
 .env.*.local
 
 # Generated files and directories
-#qa_screenshots/
-#qa_reports/
+qa_screenshots/
+qa_reports/
 
 # Python
 __pycache__/

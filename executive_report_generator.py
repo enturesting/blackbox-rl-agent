@@ -48,6 +48,50 @@ def generate_executive_report(qa_report_path):
     with open(qa_report_path, 'r') as f:
         qa_report = f.read()
     
+    # Read RL training data for deeper analysis
+    rl_data_summary = ""
+    try:
+        import json
+        with open('rl_training_data.json', 'r') as f:
+            trajectory = json.load(f)  # It's a list of steps
+            # Analyze the trajectory
+            total_actions = len(trajectory)
+            successful_exploits = sum(1 for step in trajectory 
+                                    if step.get('reward', 0) >= 1.0)
+            final_reward = sum(step.get('reward', 0) for step in trajectory)
+            
+            # Find specific attack patterns
+            login_bypasses = [step for step in trajectory 
+                            if ('login' in step.get('log', '').lower() or 'username' in step.get('log', '').lower()) 
+                            and "' OR '1'='1'" in str(step.get('log', ''))
+                            and step.get('reward', 0) >= 0.5]
+            sql_injections = [step for step in trajectory 
+                            if "' OR '1'='1'" in str(step.get('log', '')) and step.get('reward', 0) >= 1.0]
+            
+            rl_data_summary = f"""
+            RL Training Analysis:
+            - Total actions taken: {total_actions}
+            - Successful exploit attempts: {successful_exploits}
+            - Final cumulative reward: {final_reward:.1f}
+            - Attack success rate: {(successful_exploits/total_actions*100) if total_actions > 0 else 0:.1f}%
+            - Login bypass attempts: {len(login_bypasses)}
+            - SQL injection successes: {len(sql_injections)}
+            
+            Specific Exploits Found:
+            """
+            
+            for step in trajectory:
+                if step.get('reward', 0) >= 1.0:
+                    rl_data_summary += f"\n            - Step {step.get('step', 0)}: {step.get('action', '')} on {step.get('target', {}).get('outerHTML', 'unknown element')[:60]}... (Reward: {step.get('reward', 0)})"
+                    
+    except Exception as e:
+        print(f"Could not analyze RL data: {e}")
+    
+    # Wait a bit to avoid quota issues
+    import time
+    print("⏳ Waiting 30 seconds to avoid API quota limits...")
+    time.sleep(30)
+    
     # Initialize Gemini
     model = ChatGoogleGenerativeAI(
         model="gemini-2.0-flash-exp",
@@ -72,11 +116,17 @@ def generate_executive_report(qa_report_path):
     QA Report:
     {qa_report}
     
-    Key findings from the test:
-    - The AI agent successfully bypassed login authentication using SQL injection
-    - The agent navigated to the Users page and found SQL injection vulnerability in search
-    - The vulnerability allows dumping the entire user database including passwords
-    - This is a CRITICAL security issue that exposes all customer data
+    {rl_data_summary}
+    
+    Analyze the above data to determine:
+    - What vulnerabilities were found (look for high reward actions)
+    - How easily they were exploited (number of attempts)
+    - The potential impact (what data could be accessed)
+    - The attack patterns used by the AI agent
+    
+    IMPORTANT: If the agent bypassed login authentication using SQL injection (e.g., ' OR '1'='1' --), 
+    this is a CRITICAL authentication bypass vulnerability that allows attackers to gain administrative 
+    access without valid credentials. Emphasize this in the report.
     
     Format the report professionally with clear sections and bullet points.
     Make it actionable and emphasize the business risks of data breach, GDPR violations, and reputation damage.
