@@ -1,5 +1,8 @@
 import os
+import sys
 import json
+import builtins
+import functools
 from datetime import datetime
 from typing import TypedDict, Annotated, List, Dict, Any
 from dotenv import load_dotenv
@@ -11,6 +14,17 @@ import asyncio
 import time
 
 load_dotenv()
+
+# Force unbuffered output for real-time log streaming
+sys.stdout.reconfigure(line_buffering=True)
+print = functools.partial(builtins.print, flush=True)
+
+# Demo mode - stops early after finding SQL injection for reliable demos
+DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() == "true"
+DEMO_MAX_STEPS = 12  # Enough to find SQLi, not enough to hit rate limits
+
+# Get target URL from environment or use default
+TARGET_URL = os.getenv("TARGET_URL", "http://localhost:5173")
 
 # API key rotation - Add 8+ keys to get 80+ RPM (10 RPM per key)
 API_KEYS = []
@@ -24,9 +38,31 @@ if len(API_KEYS) == 0:
     raise ValueError("No Google API keys found! Add GOOGLE_API_KEY to .env")
     
 print(f"🔑 Loaded {len(API_KEYS)} API keys (Effective RPM: {len(API_KEYS) * 10})")
+if DEMO_MODE:
+    print("🎬 DEMO MODE enabled - tight step limit for reliable demos")
 
 # Track API key usage to rotate intelligently
 API_KEY_INDEX = 0
+
+# Rate limit retry helper with exponential backoff
+async def call_model_with_retry(model, prompt, max_retries=3):
+    """Call the model with exponential backoff on rate limit errors."""
+    global API_KEY_INDEX
+    
+    for attempt in range(max_retries):
+        try:
+            return await model.ainvoke(prompt)
+        except Exception as e:
+            error_str = str(e).lower()
+            if "429" in str(e) or "quota" in error_str or "rate" in error_str:
+                wait_time = (2 ** attempt) + random.random()
+                print(f"⏳ Rate limited (attempt {attempt + 1}/{max_retries}), waiting {wait_time:.1f}s and rotating key...")
+                await asyncio.sleep(wait_time)
+                # Rotate to next API key
+                API_KEY_INDEX = (API_KEY_INDEX + 1) % len(API_KEYS)
+            else:
+                raise
+    raise Exception(f"Max retries ({max_retries}) exceeded due to rate limiting")
 
 # --- 1. STATE DEFINITION (RL INFRASTRUCTURE) ---
 class AgentState(TypedDict):
@@ -60,15 +96,18 @@ async def initialize_browser(state: AgentState) -> dict:
 
     playwright = await async_playwright().start()
     # Use incognito mode to ensure clean state
+    # Use headless mode for CI/Codespace environments (no display)
+    headless_mode = os.getenv("HEADLESS", "true").lower() == "true"
     browser = await playwright.chromium.launch(
-        headless=False,
-        args=['--incognito']
+        headless=headless_mode,
+        args=['--incognito', '--no-sandbox', '--disable-dev-shm-usage']
     )
     context = await browser.new_context()
     page = await context.new_page()
     
-    # CHANGE THIS TO YOUR TARGET URL
-    target_url = "http://localhost:5173" 
+    # Use TARGET_URL from environment variable
+    target_url = TARGET_URL
+    print(f"🎯 Target URL: {target_url}")
     try:
         await page.goto(target_url)
         # Ensure we're on the home page, not a cached page
@@ -504,16 +543,25 @@ def should_continue(state: AgentState) -> str:
     last_action = last_action_payload.get("action", "")
     
     # Check for termination
-    if last_action == "finish" or state.get("steps", 0) > 30:
+    if last_action == "finish":
         return "generateReport"
     
-    # Check if mission is complete
+    # Check if mission is complete (SQL injection found)
     if state.get("mission_complete", False):
+        print("🎯 MISSION COMPLETE: SQL injection successful!")
         return "generateReport"
     
-    # Stop if we've done too many steps to avoid quota issues
-    if state.get("steps", 0) > 15:
-        print("⚠️ Stopping early to avoid quota limits")
+    # Check trajectory for high-reward SQL injection success
+    trajectory = state.get("trajectory", [])
+    for step in trajectory:
+        if step.get("reward", 0) >= 2.0:  # Database dump achieved
+            print("🎯 MISSION COMPLETE: High-reward vulnerability found!")
+            return "generateReport"
+    
+    # DEMO MODE: Tight step limit for reliable demos
+    max_steps = DEMO_MAX_STEPS if DEMO_MODE else 15
+    if state.get("steps", 0) >= max_steps:
+        print(f"⚠️ Stopping at {max_steps} steps {'(DEMO MODE)' if DEMO_MODE else ''}")
         return "generateReport"
     
     return "executeAction"

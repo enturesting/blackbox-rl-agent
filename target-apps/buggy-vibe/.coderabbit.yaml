@@ -1,0 +1,105 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+tone_instructions: 'Focus on security vulnerabilities and provide actionable fixes. Be direct and thorough in security assessments.'
+early_access: false
+enable_free_tier: true
+reviews:
+  profile: assertive
+  request_changes_workflow: true
+  high_level_summary: true
+  high_level_summary_placeholder: '@coderabbitai summary'
+  auto_title_placeholder: '@coderabbitai'
+  review_status: true
+  commit_status: true
+  poem: false
+  collapse_walkthrough: false
+  sequence_diagrams: false
+  changed_files_summary: true
+  labeling_instructions:
+    - 'security: Files that address security vulnerabilities'
+    - 'xss-fix: Changes that fix XSS vulnerabilities'
+    - 'sql-injection-fix: Changes that fix SQL injection vulnerabilities'
+  path_filters:
+    - '**/*'
+    - '!**/node_modules/**'
+    - '!**/.git/**'
+    - '!**/dist/**'
+    - '!**/build/**'
+  path_instructions:
+    - path: '**/*.{js,jsx,ts,tsx}'
+      instructions: |
+        - Review all user input handling for XSS vulnerabilities
+        - Check if input sanitization is properly implemented
+        - Validate that dangerouslySetInnerHTML is never used with user input
+        - Ensure proper escaping of HTML entities
+        - Review for SQL injection vulnerabilities in any database queries
+        - Check for proper parameterized queries or ORM usage
+        - Validate input validation on all user-facing fields
+        - Reference @final_exploit_plan.json for specific vulnerabilities found
+        - Reference @rl_training_data.json for exploit patterns detected
+    - path: '**/App.{js,jsx,ts,tsx}'
+      instructions: |
+        - This is the main application component
+        - Ensure all user input is properly sanitized before rendering
+        - Check that form submissions use proper CSRF protection
+        - Validate that state management doesn't expose sensitive data
+        - Review component props for potential XSS vectors
+    - path: '**/*Component.{js,jsx,ts,tsx}'
+      instructions: |
+        - Review component for unsafe rendering of user input
+        - Check prop validation and sanitization
+        - Ensure no direct HTML injection from props
+        - Validate event handlers don't execute unsanitized user input
+    - path: '**/*.html'
+      instructions: |
+        - Review for inline script tags that might execute user input
+        - Check for missing Content-Security-Policy headers
+        - Validate that forms have proper input validation attributes
+        - Look for missing or weak XSS protection
+  abort_on_close: true
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    ignore_title_keywords: []
+    labels: []
+    drafts: false
+    base_branches:
+      - 'main'
+      - 'master'
+  tools:
+    shellcheck:
+      enabled: true
+    markdownlint:
+      enabled: true
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+    languagetool:
+      enabled: true
+      enabled_only: false
+      level: default
+    biome:
+      enabled: true
+    eslint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    semgrep:
+      enabled: true
+    actionlint:
+      enabled: true
+    ast-grep:
+      packages: []
+      rule_dirs: []
+      util_dirs: []
+      essential_rules: true
+chat:
+  auto_reply: true
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  pull_requests:
+    scope: auto

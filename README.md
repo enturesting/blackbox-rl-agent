@@ -1,22 +1,60 @@
-# AIE Hackathon - Security Testing Agent Suite
+# 🛡️ AI Security Testing Suite
 
-An AI-powered security testing framework that uses LangGraph and Google Gemini to automatically discover and exploit vulnerabilities in web applications.
+An AI-powered **blackbox penetration testing** framework that uses LangGraph, Google Gemini, and Reinforcement Learning to automatically discover and exploit vulnerabilities in web applications.
 
-## Features
+![Demo](https://img.shields.io/badge/Demo-Ready-brightgreen) ![Python](https://img.shields.io/badge/Python-3.8+-blue) ![React](https://img.shields.io/badge/React-18-61dafb)
 
-- **Autonomous Web Navigation**: Uses Playwright to interact with web applications like a real user
-- **Intelligent Vulnerability Discovery**: AI-driven approach to finding security issues
-- **SQL Injection Detection**: Automatically tests for and exploits SQL injection vulnerabilities
-- **Comprehensive Reporting**: Generates detailed reports with screenshots and executive summaries
-- **Reinforcement Learning**: Learns from successful exploits to improve future performance
+## ✨ Features
 
-## Prerequisites
+- **🤖 Autonomous Web Navigation**: Uses Playwright to interact with web applications like a real user
+- **🔍 Intelligent Vulnerability Discovery**: AI-driven approach to finding security issues
+- **💉 SQL Injection Detection**: Automatically tests for and exploits SQL injection vulnerabilities
+- **📊 Real-time Dashboard**: React-based UI showing pipeline progress, logs, and reports
+- **📝 Comprehensive Reporting**: Generates detailed reports with screenshots and executive summaries
+- **🧠 Reinforcement Learning**: Learns from successful exploits to improve future performance
+
+## 🚀 Quick Start (Demo)
+
+The fastest way to see everything in action:
+
+### 1. Set up your API key
+
+```bash
+echo 'GOOGLE_API_KEY=your-key-here' > .env
+```
+
+### 2. Run the demo
+
+```bash
+./run_demo.sh
+```
+
+This single command:
+- ✅ Installs all dependencies (npm + pip)
+- ✅ Starts the **buggy-vibe** vulnerable test app (ports 3001, 5173)
+- ✅ Starts the **API server** (port 8000)
+- ✅ Starts the **Dashboard** (port 3000)
+
+### 3. Open the Dashboard
+
+Navigate to **http://localhost:3000** and click **"🚀 Run Full Pipeline"**
+
+Watch the AI:
+1. Discover the application structure
+2. Find vulnerable endpoints
+3. Exploit SQL injection flaws
+4. Extract sensitive data
+5. Generate an executive report
+
+## 📋 Prerequisites
 
 - Python 3.8+
-- Node.js 16+ (for running the test target application)
+- Node.js 16+
 - Google API Key(s) for Gemini
 
-## Setup
+## 🔧 Manual Setup
+
+If you prefer manual setup over the demo script:
 
 ### 1. Clone the Repository
 
@@ -25,23 +63,21 @@ git clone <repository-url>
 cd aie-hackathon
 ```
 
-### 2. Create Virtual Environment
-
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### 3. Install Dependencies
+### 2. Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
 playwright install chromium
 ```
 
-### 4. Configure Environment Variables
+### 3. Install Frontend Dependencies
 
-Create a `.env` file in the project root:
+```bash
+cd frontend && npm install && cd ..
+cd target-apps/buggy-vibe && npm install && cd ../..
+```
+
+### 4. Configure Environment Variables
 
 ```bash
 cp .env.example .env
@@ -49,7 +85,7 @@ cp .env.example .env
 
 Edit `.env` and add your Google API key(s):
 
-```
+```bash
 GOOGLE_API_KEY=your-api-key-here
 # For higher rate limits, add multiple keys:
 GOOGLE_API_KEY_2=another-api-key
@@ -59,137 +95,124 @@ GOOGLE_API_KEY_3=yet-another-key
 
 **Note**: Each API key provides ~10 requests per minute. Multiple keys increase throughput.
 
-## Testing with Buggy-Vibe (Demo Target)
+## 🎯 Testing with Dashboard
 
-### 1. Start the Target Application
+### Using the Web Dashboard (Recommended)
 
-First, ensure the buggy-vibe application is running:
+1. Start everything: `./run_demo.sh`
+2. Open **http://localhost:3000**
+3. Set target URL (default: `http://localhost:5173`)
+4. Click **"🚀 Run Full Pipeline"** for automated scan
+5. Or run individual phases:
+   - **Recon** - Discover the application
+   - **Plan** - Generate attack strategy
+   - **Attack** - Execute exploits
+   - **Analyze** - Review findings
+   - **Report** - Generate executive summary
 
-```bash
-# Terminal 1 - Frontend
-cd ../buggy-vibe
-npm install
-npm run dev
-```
-
-```bash
-# Terminal 2 - Backend (vulnerable API)
-cd ../buggy-vibe
-node server-vulnerable.cjs
-```
-
-The application will be available at:
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:3001
-
-### 2. Run the QA Security Agent
+### Using the CLI
 
 ```bash
-# In the aie-hackathon directory
-source venv/bin/activate
-python qa_agent_v1.py
-```
-
-The agent will:
-1. Open a browser window (non-headless mode)
-2. Navigate through the application
-3. Discover the Users search page
-4. Attempt SQL injection attacks
-5. Extract sensitive data (passwords, API keys, sessions)
-6. Generate screenshots and logs
-7. Create an executive report
-
-### 3. View Results
-
-Results are saved in:
-- `qa_screenshots/` - Screenshots of each action
-- `qa_reports/` - Detailed markdown reports
-- `rl_training_data.json` - Reinforcement learning data
-- `executive_report_*.html` - Executive summary (auto-generated)
-
-## Running All Agents (Coming Soon)
-
-For a comprehensive security assessment with multiple specialized agents:
-
-```bash
+# Set target URL and run full pipeline
+export TARGET_URL=http://localhost:5173
 ./run_all_agents.sh
 ```
 
-This will run:
-- QA Agent (qa_agent_v1.py) - General vulnerability discovery
-- Gemini CodeRabbit Analyzer - Code analysis
-- Exploit Planner - Attack strategy generation
-- Attack Agent - Automated exploitation
+Or run individual agents:
 
-## Project Structure
+```bash
+python qa_agent_v1.py           # Reconnaissance
+python exploit_planner.py       # Attack planning
+python attack.py                # Exploitation
+python gemini_coderabbit_analyzer.py  # Analysis
+python executive_report_generator.py  # Reporting
+```
+
+## 📁 Project Structure
 
 ```
 aie-hackathon/
-├── qa_agent_v1.py              # Main QA security testing agent
-├── executive_report_generator.py # Report generation utility
-├── gemini_coderabbit_analyzer.py # Code analysis agent
-├── exploit_planner.py          # Attack planning agent
-├── attack.py                   # Exploitation agent
-├── run_all_agents.sh          # Orchestration script
+├── run_demo.sh                 # 🚀 One-command demo launcher
+├── run_all_agents.sh           # CLI pipeline runner
+├── server.py                   # FastAPI backend for dashboard
+│
+├── qa_agent_v1.py              # Phase 1: Reconnaissance agent
+├── exploit_planner.py          # Phase 2: Attack planning
+├── attack.py                   # Phase 3: Exploitation
+├── gemini_coderabbit_analyzer.py # Phase 4: Analysis
+├── executive_report_generator.py # Phase 5: Reporting
+│
+├── frontend/                   # React dashboard
+│   ├── src/App.jsx            # Main UI component
+│   └── package.json
+│
+├── target-apps/
+│   └── buggy-vibe/            # Vulnerable test application
+│       ├── src/               # React frontend
+│       ├── server-vulnerable.cjs # Intentionally vulnerable API
+│       └── pw_db.json         # Mock database
+│
 ├── requirements.txt           # Python dependencies
-├── .env                       # Environment variables (create from .env.example)
+├── .env                       # Environment variables
 ├── qa_screenshots/            # Screenshot outputs
 ├── qa_reports/               # Generated reports
-└── rl_training_data.json     # Learning data
-
-buggy-vibe/                    # Test target application
-├── src/                       # Frontend React code
-├── server-vulnerable.cjs      # Vulnerable backend
-├── pw_db.json                # Mock database with sensitive data
-└── package.json              # Node.js dependencies
+└── rl_training_data.json     # RL training data
 ```
 
-## Key Components
+## 🔄 Pipeline Phases
 
-### QA Agent (qa_agent_v1.py)
+| Phase | Agent | Description |
+|-------|-------|-------------|
+| 1. Recon | `qa_agent_v1.py` | Navigate app, discover endpoints, identify attack surfaces |
+| 2. Plan | `exploit_planner.py` | Generate attack strategies based on findings |
+| 3. Attack | `attack.py` | Execute planned exploits (SQL injection, XSS, etc.) |
+| 4. Analyze | `gemini_coderabbit_analyzer.py` | Review and categorize vulnerabilities |
+| 5. Report | `executive_report_generator.py` | Generate HTML executive summary |
 
-The main security testing agent that:
-- Uses LangGraph for state management
-- Implements reinforcement learning for improved exploitation
-- Captures screenshots of all actions
-- Generates detailed reports
+## 📊 Output Files
 
-### Executive Report Generator
+After running the pipeline:
 
-Automatically creates HTML reports summarizing:
-- Vulnerabilities discovered
-- Successful exploits
-- Extracted sensitive data
-- Recommendations
+- `qa_screenshots/` - Screenshots of each action taken
+- `qa_reports/` - Detailed markdown reports per phase
+- `executive_report_*.html` - Final executive summary
+- `rl_training_data.json` - RL training data for improvement
 
-## Troubleshooting
+## ⚠️ Troubleshooting
 
 ### "No Google API keys found"
-- Ensure `.env` file exists and contains valid API keys
+- Ensure `.env` file exists: `echo 'GOOGLE_API_KEY=your-key' > .env`
 - Check that python-dotenv is installed: `pip install python-dotenv`
 
-### "Target page, context or browser has been closed"
-- This can happen if the agent navigates too quickly
-- The agent has built-in retry logic
-- Ensure both frontend and backend servers are running
-
 ### Rate Limiting Issues
-- Add more Google API keys to increase rate limit
+- Add more Google API keys to increase rate limit (up to 9 keys)
 - The agent automatically rotates between available keys
-- Built-in safeguards stop after 15 steps to prevent quota exhaustion
 
-## Security Notice
+### Port Already in Use
+- The demo script automatically kills existing processes on required ports
+- Manual cleanup: `lsof -ti:3000,3001,5173,8000 | xargs kill`
 
-This tool is designed for authorized security testing only. Never use it against applications you don't own or have explicit permission to test.
+### Browser Issues
+- Ensure Playwright is installed: `playwright install chromium`
+- Check for headless mode issues: set `headless=True` in agent code
 
-## Contributing
+## 🔒 Security Notice
+
+This tool is designed for **authorized security testing only**. Never use it against applications you don't own or have explicit permission to test.
+
+Important: do NOT commit your local `.env` containing real API keys.
+- Use `.env.example` as a template and keep real keys local only.
+- Verify before committing: `git status --porcelain` and ensure `.env` is not listed.
+- If you accidentally added `.env` to the repo, remove it from the index: `git rm --cached .env && git commit -m "chore: remove local .env from repo"`.
+
+
+## 👥 Contributing
 
 1. Create a feature branch: `git checkout -b feature/your-feature`
 2. Make your changes
-3. Test thoroughly with the buggy-vibe application
+3. Test with the buggy-vibe application
 4. Submit a pull request
 
-## License
+## 📜 License
 
-[Your License Here]
-
+MIT License - See LICENSE file
