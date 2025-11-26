@@ -9,6 +9,7 @@ qa_reports/
 rl_training_data.json
 final_exploit_plan.json
 executive_report_*.html
+agent_logs.jsonl
 
 # Python
 __pycache__/
