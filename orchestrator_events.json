@@ -1,0 +1,650 @@
+[
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:09:12.695345",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:12.695308"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T03:09:21.753906",
+    "data": {
+      "buggy-vibe": false,
+      "frontend": false,
+      "backend": false
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": false,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:21.753895"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:09:21.754617",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": false,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:21.754606"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:09:21.755302",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": false,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:21.755291"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-11-28T03:09:29.160454",
+    "data": {
+      "findings_count": 0,
+      "findings": []
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": false,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:29.160441"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-11-28T03:09:29.161269",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": false,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:29.161258"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-11-28T03:09:29.162393",
+    "data": {
+      "score": 0,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 0/3 services healthy",
+        "No vulnerabilities found - demo lacks punch",
+        "Only one type of vulnerability - show breadth",
+        "No critical findings - less compelling",
+        "Run demo multiple times to prove stability"
+      ],
+      "summary": "No security findings to report yet."
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": false,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "Only 0/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:09:12.693271",
+      "last_updated": "2025-11-28T03:09:29.162383"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:10:12.258717",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:12.258705"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T03:10:21.348588",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": false,
+      "backend": false
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:21.348574"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:10:21.349968",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:21.349956"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:10:21.351460",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:21.351448"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-11-28T03:10:24.431524",
+    "data": {
+      "findings_count": 0,
+      "findings": []
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:24.431511"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-11-28T03:10:24.432698",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:24.432685"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-11-28T03:10:24.434163",
+    "data": {
+      "score": 6,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 1/3 services healthy",
+        "No vulnerabilities found - demo lacks punch",
+        "Only one type of vulnerability - show breadth",
+        "No critical findings - less compelling",
+        "Run demo multiple times to prove stability"
+      ],
+      "summary": "No security findings to report yet."
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": false,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 6,
+      "ceo_feedback": "Only 1/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:10:12.256139",
+      "last_updated": "2025-11-28T03:10:24.434154"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:11:55.099262",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:11:55.099251"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T03:12:06.329139",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": false
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:12:06.329119"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:12:06.333978",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:12:06.333965"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:12:06.342899",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:12:06.342884"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-11-28T03:13:31.933220",
+    "data": {
+      "findings_count": 0,
+      "findings": []
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:13:31.933207"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-11-28T03:13:31.936066",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:13:31.936054"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-11-28T03:13:31.938181",
+    "data": {
+      "score": 13,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 2/3 services healthy",
+        "No vulnerabilities found - demo lacks punch",
+        "Only one type of vulnerability - show breadth",
+        "No critical findings - less compelling",
+        "Run demo multiple times to prove stability"
+      ],
+      "summary": "No security findings to report yet."
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 13,
+      "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:13:31.938171"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:13:33.940583",
+    "data": {
+      "iteration": 2
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 13,
+      "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:13:33.940568"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:13:33.942106",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 13,
+      "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:11:55.097154",
+      "last_updated": "2025-11-28T03:13:33.942095"
+    }
+  }
+]

@@ -190,7 +190,9 @@ class Orchestrator:
                 stderr=subprocess.PIPE,
                 preexec_fn=os.setsid if os.name != 'nt' else None
             )
-            time.sleep(2)  # Give it time to start
+            # Give backend more time to start (uvicorn is slower)
+            wait_time = 4 if name == 'backend' else 2
+            time.sleep(wait_time)
             
             if process.poll() is not None:
                 # Process already exited - something went wrong
@@ -307,12 +309,12 @@ class Orchestrator:
             success = False
             
         # Wait for services to be ready
-        time.sleep(3)
+        time.sleep(5)
         
         # Health checks
         health_checks = [
             ("buggy-vibe", "http://localhost:5173"),
-            ("frontend", "http://localhost:5174"),  # Adjust port as needed
+            ("frontend", "http://localhost:3000"),
             ("backend", "http://localhost:8000"),
         ]
         
@@ -342,27 +344,76 @@ class Orchestrator:
                 cwd=self.root,
                 capture_output=True,
                 text=True,
-                timeout=120,  # 2 minute timeout
-                env={**os.environ, "DEMO_MODE": "true"}
+                timeout=180,  # 3 minute timeout for full run
+                env={**os.environ, "DEMO_MODE": "true", "HEADLESS": "true"}
             )
             
             self.log(AgentRole.QA, f"QA agent completed with code {result.returncode}")
             
-            # Parse findings from output or results file
-            results_file = self.root / "qa_results.json"
+            # Parse findings from rl_training_data.json
+            results_file = self.root / "rl_training_data.json"
             if results_file.exists():
                 with open(results_file, 'r') as f:
                     data = json.load(f)
-                    for i, vuln in enumerate(data.get('vulnerabilities', [])):
-                        finding = Finding(
-                            id=f"VULN-{i+1:03d}",
-                            type=vuln.get('type', 'unknown'),
-                            severity=vuln.get('severity', 'medium'),
-                            description=vuln.get('description', ''),
-                            evidence=vuln.get('evidence', '')[:500],
-                            timestamp=datetime.now().isoformat()
-                        )
-                        findings.append(finding)
+                    
+                    # Find high-reward actions OR actions with vulnerability indicators
+                    vuln_keywords = ['sql', 'injection', 'xss', 'script', 'alert', 'error', 'database', 'auth', 'bypass', 'admin', "'or'", "' or ", "1=1", "union select"]
+                    seen_vulns = set()
+                    
+                    for i, item in enumerate(data):
+                        reward = item.get('reward', 0)
+                        reason = item.get('reason', '').lower()
+                        log_msg = item.get('log', '').lower()
+                        action = item.get('action', '')
+                        target = item.get('target', {})
+                        target_html = str(target.get('outerHTML', '')).lower() if target else ''
+                        
+                        # Check for vulnerability indicators in logs or target
+                        combined_text = f"{reason} {log_msg} {target_html}"
+                        
+                        # High reward items OR keyword matches
+                        is_vuln = reward >= 0.5 or any(k in combined_text for k in vuln_keywords)
+                        
+                        if is_vuln:
+                            vuln_type = 'unknown'
+                            severity = 'medium'
+                            
+                            # Classify vulnerability type
+                            if any(k in combined_text for k in ['sql', 'injection', '1=1', 'union select', "' or "]):
+                                vuln_type = 'sqli'
+                                severity = 'critical'
+                            elif any(k in combined_text for k in ['xss', 'script', 'alert', '<script']):
+                                vuln_type = 'xss'
+                                severity = 'high'
+                            elif any(k in combined_text for k in ['auth', 'bypass', 'admin', 'login']):
+                                vuln_type = 'auth_bypass'
+                                severity = 'critical'
+                            elif any(k in combined_text for k in ['error', 'exception', 'stack', 'traceback']):
+                                vuln_type = 'info_disclosure'
+                                severity = 'medium'
+                            elif reward >= 1.0:
+                                vuln_type = 'high_impact'
+                                severity = 'high'
+                            else:
+                                continue  # Skip if no clear classification
+                                
+                            # Dedupe by type + truncated description
+                            vuln_key = f"{vuln_type}:{log_msg[:30]}"
+                            if vuln_key not in seen_vulns:
+                                seen_vulns.add(vuln_key)
+                                finding = Finding(
+                                    id=f"VULN-{len(findings)+1:03d}",
+                                    type=vuln_type,
+                                    severity=severity,
+                                    description=item.get('reason', '') or item.get('log', 'Vulnerability indicator detected'),
+                                    evidence=item.get('log', '')[:500],
+                                    timestamp=datetime.now().isoformat()
+                                )
+                                findings.append(finding)
+                                
+                                # Limit to prevent too many findings
+                                if len(findings) >= 20:
+                                    break
                         
             self.state.findings.extend(findings)
             self.state.qa_runs_completed += 1

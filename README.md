@@ -166,8 +166,6 @@ blackbox-rl-agent/
 ├── .github/agents/            # Custom GitHub Copilot agents
 │   ├── ceo.md                 # CEO agent (vision/narrative)
 │   ├── cto.md                 # CTO agent (technical validation)
-│   ├── branch-fusion-engineer.md
-│   └── repo-migration.md
 │
 ├── DEMO_CHECKLIST.md          # Shared CEO/CTO coordination checklist
 ├── requirements.txt           # Python dependencies

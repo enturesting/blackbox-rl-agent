@@ -1,0 +1,21 @@
+{
+  "status": "qa_running",
+  "iteration": 2,
+  "max_iterations": 2,
+  "cto_issues_found": [],
+  "cto_issues_fixed": [],
+  "services_healthy": {
+    "buggy-vibe": true,
+    "frontend": true,
+    "backend": false
+  },
+  "findings": [],
+  "qa_runs_completed": 1,
+  "demo_readiness_score": 13,
+  "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+  "pitch_ready": false,
+  "human_feedback": "",
+  "human_approved": false,
+  "started_at": "2025-11-28T03:11:55.097154",
+  "last_updated": "2025-11-28T03:14:51.385687"
+}
