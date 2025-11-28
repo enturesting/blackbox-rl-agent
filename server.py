@@ -464,6 +464,108 @@ async def health_check():
     return {"status": "healthy", "timestamp": time.time()}
 
 
+# =============================================================================
+# ORCHESTRATOR ENDPOINTS
+# =============================================================================
+
+@app.get("/api/orchestrator/state")
+async def get_orchestrator_state():
+    """Get the current orchestrator state (CEO/CTO coordination)"""
+    state_file = "orchestrator_state.json"
+    if os.path.exists(state_file):
+        with open(state_file, "r") as f:
+            return json.load(f)
+    return {"status": "not_started", "message": "Orchestrator not running"}
+
+
+@app.get("/api/orchestrator/events")
+async def get_orchestrator_events(since: int = 0):
+    """Get orchestrator events for live updates"""
+    events_file = "orchestrator_events.json"
+    if os.path.exists(events_file):
+        with open(events_file, "r") as f:
+            events = json.load(f)
+            # Filter to events after 'since' index
+            return {"events": events[since:], "total": len(events)}
+    return {"events": [], "total": 0}
+
+
+@app.post("/api/orchestrator/start")
+async def start_orchestrator(target_url: str = None, max_iterations: int = 10):
+    """Start the CEO/CTO orchestrator loop"""
+    global pipeline_state
+    
+    if pipeline_state["is_running"]:
+        return {"error": "Pipeline already running", "status": "busy"}
+    
+    # Update target URL if provided
+    if target_url:
+        pipeline_state["target_url"] = target_url
+        os.environ["TARGET_URL"] = target_url
+    
+    append_log("status", "🎭 Starting CEO/CTO Orchestrator", "orchestrator", "init")
+    
+    # Run orchestrator in background
+    env = os.environ.copy()
+    env["TARGET_URL"] = pipeline_state["target_url"]
+    env["PYTHONUNBUFFERED"] = "1"
+    
+    process = await asyncio.create_subprocess_exec(
+        "python", "-u", "orchestrator.py",
+        "--non-interactive",
+        f"--max-iterations={max_iterations}",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.STDOUT,
+        cwd=os.path.dirname(os.path.abspath(__file__)),
+        env=env
+    )
+    
+    # Stream output to logs
+    while True:
+        line = await process.stdout.readline()
+        if not line:
+            break
+        message = line.decode().strip()
+        if message:
+            append_log("orchestrator", message, "orchestrator", "running")
+    
+    await process.wait()
+    
+    return {"status": "completed", "returncode": process.returncode}
+
+
+@app.post("/api/orchestrator/feedback")
+async def submit_human_feedback(feedback: str):
+    """Submit human feedback to the orchestrator"""
+    state_file = "orchestrator_state.json"
+    if os.path.exists(state_file):
+        with open(state_file, "r") as f:
+            state = json.load(f)
+        state["human_feedback"] = feedback
+        state["last_updated"] = datetime.now().isoformat()
+        with open(state_file, "w") as f:
+            json.dump(state, f, indent=2)
+        return {"status": "success", "feedback": feedback}
+    return {"error": "Orchestrator not running"}
+
+
+@app.post("/api/orchestrator/approve")
+async def approve_demo():
+    """Human approves the demo as ready"""
+    state_file = "orchestrator_state.json"
+    if os.path.exists(state_file):
+        with open(state_file, "r") as f:
+            state = json.load(f)
+        state["human_approved"] = True
+        state["pitch_ready"] = True
+        state["status"] = "pitch_ready"
+        state["last_updated"] = datetime.now().isoformat()
+        with open(state_file, "w") as f:
+            json.dump(state, f, indent=2)
+        return {"status": "success", "message": "Demo approved!"}
+    return {"error": "Orchestrator not running"}
+
+
 if __name__ == "__main__":
     import uvicorn
     print("🚀 Starting AI Security Testing Suite API Server")
