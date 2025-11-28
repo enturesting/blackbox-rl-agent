@@ -271,4 +271,69 @@ If you're running the demo tomorrow: start `./run_demo.sh`, open `http://localho
 
 ---
 
-*Generated for context handoff on November 26, 2025*
+## 🚚 Migration Instructions (for Copilot in new repo)
+
+### Source Repository
+- **Repo**: `mfinch19/aie-hackathon`
+- **Branch**: `feature/qa-agentnick`
+- **Contains**: Full working codebase with rebranding already applied
+
+### Target Repository  
+- **Repo**: `enturesting/blackbox-rl-agent`
+- **Target Branch**: `feature/mvp`
+
+### Step-by-Step Migration (run in enturesting/blackbox-rl-agent Codespace)
+
+```bash
+# 1. Add the source repo as a remote
+git remote add source https://github.com/mfinch19/aie-hackathon.git
+
+# 2. Fetch the branch we want
+git fetch source feature/qa-agentnick
+
+# 3. Create feature/mvp from that branch
+git checkout -b feature/mvp source/feature/qa-agentnick
+
+# 4. Push to your repo (origin)
+git push -u origin feature/mvp
+
+# 5. Clean up - remove source remote
+git remote remove source
+```
+
+### After Migration - Environment Setup
+
+```bash
+# 1. Copy the example env file
+cp .env.example .env
+
+# 2. Add your API keys to .env
+# Edit .env and add:
+# GOOGLE_API_KEY=your-gemini-key-here
+
+# 3. Verify .gitignore protects .env
+grep "^\.env$" .gitignore  # Should show .env
+
+# 4. Install dependencies
+pip install -r requirements.txt
+playwright install chromium
+cd frontend && npm install && cd ..
+cd target-apps/buggy-vibe && npm install && cd ../..
+
+# 5. Run the demo
+./run_demo.sh
+```
+
+### Files Already Rebranded
+These files have been updated for `blackbox-rl-agent`:
+- `README.md` - New title, clone URL, directory names
+- `CONTEXT_HANDOFF.md` - Repo/branch references
+- `DEMO_SCRIPT.md` - Removed hardcoded paths
+
+### What You'll Need to Configure
+1. **`.env`** - Your Google API key(s)
+2. **Codespaces Secrets** (optional) - For secure key storage
+
+---
+
+*Generated for context handoff on November 28, 2025*
