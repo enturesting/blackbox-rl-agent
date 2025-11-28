@@ -1,14 +1,14 @@
-# 🛡️ AI Security Testing Suite - Context Handoff Document
+# 🛡️ BlackBox RL Agent - Context Handoff Document
 
-> **Date**: November 26, 2025  
-> **Branch**: `feature/qa-agentnick`  
-> **Repo**: `mfinch19/aie-hackathon`
+> **Date**: November 28, 2025  
+> **Branch**: `feature/mvp`  
+> **Repo**: `enturesting/blackbox-rl-agent`
 
 ---
 
 ## 📋 Executive Summary
 
-This is an **AI-powered blackbox penetration testing tool** for the AIE Hackathon. It uses:
+This is an **AI-powered blackbox penetration testing tool** (BlackBox RL Agent). It uses:
 - **LangGraph** for state machine orchestration
 - **Google Gemini** for AI decision-making
 - **Playwright** for browser automation
@@ -176,7 +176,7 @@ export TARGET_URL=http://localhost:5173
 ## 📁 Project Structure
 
 ```
-aie-hackathon/
+blackbox-rl-agent/
 ├── run_demo.sh              # 🚀 One-command launcher
 ├── run_all_agents.sh        # CLI pipeline runner
 ├── server.py                # FastAPI backend
@@ -241,7 +241,7 @@ HEADLESS=true                      # Playwright mode (default: true)
 
 ## 🎪 Demo Script
 
-For hackathon presentation:
+For presentation:
 
 1. Open Dashboard (port 3000)
 2. Show buggy-vibe target app (port 5173)
@@ -257,9 +257,9 @@ For hackathon presentation:
 
 ## 📞 Contact / Next Steps
 
-- **Current branch**: `feature/qa-agentnick`
+- **Current branch**: `feature/mvp`
 - **Next**: Test phases 2-5, fix dashboard status display
-- **Hackathon goal**: Live demo of AI finding SQL injection automatically
+- **Goal**: Live demo of AI finding SQL injection automatically
 
 ## 🧭 Demo Notes (quick)
 

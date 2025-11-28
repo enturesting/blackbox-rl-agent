@@ -1,4 +1,4 @@
-# 🛡️ AI Security Testing Suite
+# 🛡️ BlackBox RL Agent
 
 An AI-powered **blackbox penetration testing** framework that uses LangGraph, Google Gemini, and Reinforcement Learning to automatically discover and exploit vulnerabilities in web applications.
 
@@ -59,8 +59,8 @@ If you prefer manual setup over the demo script:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd aie-hackathon
+git clone https://github.com/enturesting/blackbox-rl-agent.git
+cd blackbox-rl-agent
 ```
 
 ### 2. Install Python Dependencies
@@ -131,7 +131,7 @@ python executive_report_generator.py  # Reporting
 ## 📁 Project Structure
 
 ```
-aie-hackathon/
+blackbox-rl-agent/
 ├── run_demo.sh                 # 🚀 One-command demo launcher
 ├── run_all_agents.sh           # CLI pipeline runner
 ├── server.py                   # FastAPI backend for dashboard

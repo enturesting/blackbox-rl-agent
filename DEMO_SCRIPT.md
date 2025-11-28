@@ -16,7 +16,7 @@ npm run dev
 ### 2. Verify Environment
 ```bash
 # Terminal 3: Navigate to QA agent
-cd /Users/a_nick/Documents/AI-Hack/aie-hackathon
+cd blackbox-rl-agent
 source venv/bin/activate
 
 # Check API keys loaded
@@ -133,13 +133,13 @@ A: "Reduces security testing time by 80%, finds vulnerabilities before hackers d
 # Quick copy-paste commands for demo:
 
 # 1. Start BuggyVibe backend
-cd /Users/a_nick/Documents/AI-Hack/buggy-vibe && npm run server:vulnerable
+cd target-apps/buggy-vibe && npm run server:vulnerable
 
 # 2. Start BuggyVibe frontend  
-cd /Users/a_nick/Documents/AI-Hack/buggy-vibe && npm run dev
+cd target-apps/buggy-vibe && npm run dev
 
-# 3. Run QA Agent
-cd /Users/a_nick/Documents/AI-Hack/aie-hackathon && source venv/bin/activate && python qa_agent_v1.py
+# 3. Run QA Agent (or use ./run_demo.sh)
+cd blackbox-rl-agent && source venv/bin/activate && python qa_agent_v1.py
 
 # 4. View results
 open qa_screenshots/
