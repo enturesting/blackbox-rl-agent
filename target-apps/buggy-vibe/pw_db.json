@@ -1,0 +1,77 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "admin",
+        "password": "admin123",
+        "email": "admin@buggysite.com",
+        "role": "administrator",
+        "created": "2024-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "username": "john_doe",
+        "password": "password123",
+        "email": "john@example.com",
+        "role": "user",
+        "created": "2024-01-15T10:30:00Z"
+      },
+      {
+        "id": 3,
+        "username": "jane_smith",
+        "password": "qwerty",
+        "email": "jane.smith@example.com",
+        "role": "user",
+        "created": "2024-02-01T14:20:00Z"
+      },
+      {
+        "id": 4,
+        "username": "test_user",
+        "password": "test123",
+        "email": "test@buggysite.com",
+        "role": "tester",
+        "created": "2024-02-10T09:00:00Z"
+      },
+      {
+        "id": 5,
+        "username": "developer",
+        "password": "dev@2024",
+        "email": "dev@buggysite.com",
+        "role": "developer",
+        "created": "2024-01-05T16:45:00Z"
+      },
+      {
+        "id": 6,
+        "username": "guest",
+        "password": "guest",
+        "email": "guest@example.com",
+        "role": "guest",
+        "created": "2024-03-01T12:00:00Z"
+      }
+    ],
+    "api_keys": [
+      {
+        "id": 1,
+        "key": "sk-1234567890abcdef",
+        "owner": "admin",
+        "permissions": ["read", "write", "delete"],
+        "created": "2024-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "key": "sk-fedcba0987654321",
+        "owner": "developer",
+        "permissions": ["read", "write"],
+        "created": "2024-01-05T16:45:00Z"
+      }
+    ],
+    "sessions": [
+      {
+        "id": "sess_abc123xyz",
+        "user_id": 1,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbWluIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+        "expires": "2024-12-31T23:59:59Z"
+      }
+    ]
+  }
+  

@@ -1,0 +1,47 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "price": 79.99,
+      "category": "Electronics",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "2",
+      "name": "Smart Watch",
+      "price": 199.99,
+      "category": "Electronics",
+      "description": "Feature-rich smartwatch with fitness tracking"
+    },
+    {
+      "id": "3",
+      "name": "Coffee Maker",
+      "price": 49.99,
+      "category": "Home",
+      "description": "Programmable coffee maker with thermal carafe"
+    },
+    {
+      "id": "4",
+      "name": "Running Shoes",
+      "price": 89.99,
+      "category": "Sports",
+      "description": "Lightweight running shoes with excellent cushioning"
+    },
+    {
+      "id": "5",
+      "name": "Desk Lamp",
+      "price": 29.99,
+      "category": "Home",
+      "description": "LED desk lamp with adjustable brightness"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "0512",
+      "name": "",
+      "email": "",
+      "message": ""
+    }
+  ]
+}
