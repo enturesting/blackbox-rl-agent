@@ -69,6 +69,18 @@ def append_log(log_type: str, message: str, script: str = "system", phase: str =
         os.fsync(f.fileno())  # flush OS buffers
 
 
+@app.get("/")
+async def root():
+    """Health check endpoint for root path"""
+    return {"status": "ok", "service": "ai-security-testing-suite", "version": "1.0.0"}
+
+
+@app.get("/health")
+async def health():
+    """Health check endpoint"""
+    return {"status": "healthy", "timestamp": time.time()}
+
+
 @app.get("/api/logs")
 async def get_logs(since: float = 0):
     """Get logs since a given timestamp"""

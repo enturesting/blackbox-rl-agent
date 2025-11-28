@@ -6,10 +6,12 @@
 # Generated files and directories
 qa_screenshots/
 qa_reports/
+generated_tests/
 rl_training_data.json
 final_exploit_plan.json
 executive_report_*.html
 agent_logs.jsonl
+orchestrator_*
 
 # Python
 __pycache__/

@@ -3,19 +3,7 @@ name: CTO
 description: >
   Technical co-founder & architect. Validates implementations, ensures the demo actually works, fixes bugs, and maintains code quality.
 tools:
-  - runCommands
-  - runTasks
-  - edit
-  - search
-  - new
-  - todos
-  - runSubagent
-  - problems
-  - changes
-  - openSimpleBrowser
-  - githubRepo
-  - runNotebooks
-  - usages
+  ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'githubRepo', 'todos', 'runSubagent']
 ---
 
 # CTO Agent

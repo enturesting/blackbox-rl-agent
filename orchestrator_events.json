@@ -1,403 +1,7 @@
 [
   {
     "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:09:12.695345",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:12.695308"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T03:09:21.753906",
-    "data": {
-      "buggy-vibe": false,
-      "frontend": false,
-      "backend": false
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": false,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:21.753895"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:09:21.754617",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": false,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:21.754606"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:09:21.755302",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": false,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:21.755291"
-    }
-  },
-  {
-    "type": "qa_completed",
-    "timestamp": "2025-11-28T03:09:29.160454",
-    "data": {
-      "findings_count": 0,
-      "findings": []
-    },
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": false,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:29.160441"
-    }
-  },
-  {
-    "type": "ceo_reviewing",
-    "timestamp": "2025-11-28T03:09:29.161269",
-    "data": {},
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": false,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:29.161258"
-    }
-  },
-  {
-    "type": "ceo_evaluation",
-    "timestamp": "2025-11-28T03:09:29.162393",
-    "data": {
-      "score": 0,
-      "pitch_ready": false,
-      "feedback": [
-        "Only 0/3 services healthy",
-        "No vulnerabilities found - demo lacks punch",
-        "Only one type of vulnerability - show breadth",
-        "No critical findings - less compelling",
-        "Run demo multiple times to prove stability"
-      ],
-      "summary": "No security findings to report yet."
-    },
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": false,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "Only 0/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:09:12.693271",
-      "last_updated": "2025-11-28T03:09:29.162383"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:10:12.258717",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:12.258705"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T03:10:21.348588",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": false,
-      "backend": false
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:21.348574"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:10:21.349968",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:21.349956"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:10:21.351460",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:21.351448"
-    }
-  },
-  {
-    "type": "qa_completed",
-    "timestamp": "2025-11-28T03:10:24.431524",
-    "data": {
-      "findings_count": 0,
-      "findings": []
-    },
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:24.431511"
-    }
-  },
-  {
-    "type": "ceo_reviewing",
-    "timestamp": "2025-11-28T03:10:24.432698",
-    "data": {},
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:24.432685"
-    }
-  },
-  {
-    "type": "ceo_evaluation",
-    "timestamp": "2025-11-28T03:10:24.434163",
-    "data": {
-      "score": 6,
-      "pitch_ready": false,
-      "feedback": [
-        "Only 1/3 services healthy",
-        "No vulnerabilities found - demo lacks punch",
-        "Only one type of vulnerability - show breadth",
-        "No critical findings - less compelling",
-        "Run demo multiple times to prove stability"
-      ],
-      "summary": "No security findings to report yet."
-    },
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": false,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 6,
-      "ceo_feedback": "Only 1/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:10:12.256139",
-      "last_updated": "2025-11-28T03:10:24.434154"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:11:55.099262",
+    "timestamp": "2025-11-28T03:50:21.129310",
     "data": {},
     "state": {
       "status": "cto_working",
@@ -413,13 +17,13 @@
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:11:55.099251"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:50:21.129300"
     }
   },
   {
     "type": "services_started",
-    "timestamp": "2025-11-28T03:12:06.329139",
+    "timestamp": "2025-11-28T03:50:34.263757",
     "data": {
       "buggy-vibe": true,
       "frontend": true,
@@ -443,13 +47,13 @@
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:12:06.329119"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:50:34.263744"
     }
   },
   {
     "type": "iteration_start",
-    "timestamp": "2025-11-28T03:12:06.333978",
+    "timestamp": "2025-11-28T03:50:34.266799",
     "data": {
       "iteration": 1
     },
@@ -471,13 +75,13 @@
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:12:06.333965"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:50:34.266787"
     }
   },
   {
     "type": "qa_started",
-    "timestamp": "2025-11-28T03:12:06.342899",
+    "timestamp": "2025-11-28T03:50:34.267712",
     "data": {},
     "state": {
       "status": "qa_running",
@@ -497,16 +101,41 @@
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:12:06.342884"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:50:34.267700"
     }
   },
   {
     "type": "qa_completed",
-    "timestamp": "2025-11-28T03:13:31.933220",
+    "timestamp": "2025-11-28T03:52:30.949763",
     "data": {
-      "findings_count": 0,
-      "findings": []
+      "findings_count": 3,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-11-28T03:52:30.940133"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Error parsing reward",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-11-28T03:52:30.940472"
+        },
+        {
+          "id": "VULN-003",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Clicked element index 8 (no-id)",
+          "timestamp": "2025-11-28T03:52:30.940763"
+        }
+      ]
     },
     "state": {
       "status": "qa_running",
@@ -519,20 +148,45 @@
         "frontend": true,
         "backend": false
       },
-      "findings": [],
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-11-28T03:52:30.940133"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Error parsing reward",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-11-28T03:52:30.940472"
+        },
+        {
+          "id": "VULN-003",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Clicked element index 8 (no-id)",
+          "timestamp": "2025-11-28T03:52:30.940763"
+        }
+      ],
       "qa_runs_completed": 1,
       "demo_readiness_score": 0,
       "ceo_feedback": "",
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:13:31.933207"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:52:30.949731"
     }
   },
   {
     "type": "ceo_reviewing",
-    "timestamp": "2025-11-28T03:13:31.936066",
+    "timestamp": "2025-11-28T03:52:30.952231",
     "data": {},
     "state": {
       "status": "ceo_reviewing",
@@ -545,31 +199,54 @@
         "frontend": true,
         "backend": false
       },
-      "findings": [],
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-11-28T03:52:30.940133"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Error parsing reward",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-11-28T03:52:30.940472"
+        },
+        {
+          "id": "VULN-003",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Clicked element index 8 (no-id)",
+          "timestamp": "2025-11-28T03:52:30.940763"
+        }
+      ],
       "qa_runs_completed": 1,
       "demo_readiness_score": 0,
       "ceo_feedback": "",
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:13:31.936054"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:52:30.952218"
     }
   },
   {
     "type": "ceo_evaluation",
-    "timestamp": "2025-11-28T03:13:31.938181",
+    "timestamp": "2025-11-28T03:52:30.953740",
     "data": {
-      "score": 13,
+      "score": 73,
       "pitch_ready": false,
       "feedback": [
         "Only 2/3 services healthy",
-        "No vulnerabilities found - demo lacks punch",
-        "Only one type of vulnerability - show breadth",
-        "No critical findings - less compelling",
+        "Need more variety in vulnerability types",
         "Run demo multiple times to prove stability"
       ],
-      "summary": "No security findings to report yet."
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **3 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **2 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **SQLI** (critical): Error parsing reward...\n- **INFO_DISCLOSURE** (medium): Error parsing reward...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n"
     },
     "state": {
       "status": "ceo_reviewing",
@@ -582,20 +259,45 @@
         "frontend": true,
         "backend": false
       },
-      "findings": [],
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-11-28T03:52:30.940133"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Error parsing reward",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-11-28T03:52:30.940472"
+        },
+        {
+          "id": "VULN-003",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Clicked element index 8 (no-id)",
+          "timestamp": "2025-11-28T03:52:30.940763"
+        }
+      ],
       "qa_runs_completed": 1,
-      "demo_readiness_score": 13,
-      "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "demo_readiness_score": 73,
+      "ceo_feedback": "Only 2/3 services healthy; Need more variety in vulnerability types; Run demo multiple times to prove stability",
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:13:31.938171"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:52:30.953730"
     }
   },
   {
     "type": "iteration_start",
-    "timestamp": "2025-11-28T03:13:33.940583",
+    "timestamp": "2025-11-28T03:52:32.955450",
     "data": {
       "iteration": 2
     },
@@ -610,20 +312,45 @@
         "frontend": true,
         "backend": false
       },
-      "findings": [],
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-11-28T03:52:30.940133"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Error parsing reward",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-11-28T03:52:30.940472"
+        },
+        {
+          "id": "VULN-003",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Clicked element index 8 (no-id)",
+          "timestamp": "2025-11-28T03:52:30.940763"
+        }
+      ],
       "qa_runs_completed": 1,
-      "demo_readiness_score": 13,
-      "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "demo_readiness_score": 73,
+      "ceo_feedback": "Only 2/3 services healthy; Need more variety in vulnerability types; Run demo multiple times to prove stability",
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:13:33.940568"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:52:32.955432"
     }
   },
   {
     "type": "qa_started",
-    "timestamp": "2025-11-28T03:13:33.942106",
+    "timestamp": "2025-11-28T03:52:32.956781",
     "data": {},
     "state": {
       "status": "qa_running",
@@ -636,15 +363,874 @@
         "frontend": true,
         "backend": false
       },
-      "findings": [],
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-11-28T03:52:30.940133"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Error parsing reward",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-11-28T03:52:30.940472"
+        },
+        {
+          "id": "VULN-003",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Clicked element index 8 (no-id)",
+          "timestamp": "2025-11-28T03:52:30.940763"
+        }
+      ],
       "qa_runs_completed": 1,
-      "demo_readiness_score": 13,
-      "ceo_feedback": "Only 2/3 services healthy; No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "demo_readiness_score": 73,
+      "ceo_feedback": "Only 2/3 services healthy; Need more variety in vulnerability types; Run demo multiple times to prove stability",
       "pitch_ready": false,
       "human_feedback": "",
       "human_approved": false,
-      "started_at": "2025-11-28T03:11:55.097154",
-      "last_updated": "2025-11-28T03:13:33.942095"
+      "started_at": "2025-11-28T03:50:21.126812",
+      "last_updated": "2025-11-28T03:52:32.956769"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:55:56.929575",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:55:56.927551",
+      "last_updated": "2025-11-28T03:55:56.929564"
+    }
+  },
+  {
+    "type": "backend_failure",
+    "timestamp": "2025-11-28T03:56:11.398051",
+    "data": {
+      "message": "Backend not responding"
+    },
+    "state": {
+      "status": "failed",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:55:56.927551",
+      "last_updated": "2025-11-28T03:56:10.127850"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:56:11.399677",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "failed",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": false
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:55:56.927551",
+      "last_updated": "2025-11-28T03:56:11.399666"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:56:54.881113",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:56:54.878803",
+      "last_updated": "2025-11-28T03:56:54.881101"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:57:06.957737",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:06.955421",
+      "last_updated": "2025-11-28T03:57:06.957726"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T03:57:20.080861",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:06.955421",
+      "last_updated": "2025-11-28T03:57:20.080847"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:57:20.086848",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:06.955421",
+      "last_updated": "2025-11-28T03:57:20.086835"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:57:20.095980",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:06.955421",
+      "last_updated": "2025-11-28T03:57:20.095966"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:57:46.277039",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:46.273236",
+      "last_updated": "2025-11-28T03:57:46.277028"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T03:58:04.410948",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:46.273236",
+      "last_updated": "2025-11-28T03:58:04.410935"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:58:04.420536",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:46.273236",
+      "last_updated": "2025-11-28T03:58:04.420516"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:58:04.429407",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:57:46.273236",
+      "last_updated": "2025-11-28T03:58:04.429393"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T03:58:33.714802",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:58:33.714791"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T03:58:51.875935",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:58:51.875923"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T03:58:51.882757",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:58:51.882747"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T03:58:51.890423",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:58:51.890410"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-11-28T03:59:57.932764",
+    "data": {
+      "findings_count": 0,
+      "findings": []
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:59:57.932742"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-11-28T03:59:57.941506",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:59:57.941491"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-11-28T03:59:57.945106",
+    "data": {
+      "score": 20,
+      "pitch_ready": false,
+      "feedback": [
+        "No vulnerabilities found - demo lacks punch",
+        "Only one type of vulnerability - show breadth",
+        "No critical findings - less compelling",
+        "Run demo multiple times to prove stability"
+      ],
+      "summary": "No security findings to report yet."
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 20,
+      "ceo_feedback": "No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T03:58:33.711792",
+      "last_updated": "2025-11-28T03:59:57.945096"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T04:06:37.668930",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:06:37.631439",
+      "last_updated": "2025-11-28T04:06:37.668917"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T04:06:56.054011",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:06:37.631439",
+      "last_updated": "2025-11-28T04:06:56.053995"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T04:06:56.073731",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:06:37.631439",
+      "last_updated": "2025-11-28T04:06:56.073683"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T04:06:56.107124",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:06:37.631439",
+      "last_updated": "2025-11-28T04:06:56.107108"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T04:08:16.940796",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:08:16.938813",
+      "last_updated": "2025-11-28T04:08:16.940785"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-11-28T04:09:08.862352",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:09:08.862341"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-11-28T04:09:26.989711",
+    "data": {
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:09:26.989697"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-11-28T04:09:26.998983",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:09:26.998972"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-11-28T04:09:27.007810",
+    "data": {},
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:09:27.007797"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-11-28T04:10:43.363079",
+    "data": {
+      "findings_count": 0,
+      "findings": []
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:10:43.363067"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-11-28T04:10:43.368852",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:10:43.368839"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-11-28T04:10:43.371637",
+    "data": {
+      "score": 20,
+      "pitch_ready": false,
+      "feedback": [
+        "No vulnerabilities found - demo lacks punch",
+        "Only one type of vulnerability - show breadth",
+        "No critical findings - less compelling",
+        "Run demo multiple times to prove stability"
+      ],
+      "summary": "No security findings to report yet."
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 20,
+      "ceo_feedback": "No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-11-28T04:09:08.860223",
+      "last_updated": "2025-11-28T04:10:43.371625"
     }
   }
 ]

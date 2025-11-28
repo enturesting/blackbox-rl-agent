@@ -14,7 +14,7 @@ An AI-powered **blackbox penetration testing** framework that uses LangGraph, Go
 - **🧠 Reinforcement Learning**: Learns from successful exploits to improve future performance
 - **🎭 CEO/CTO Agent Orchestration**: Dual-agent system for vision + technical validation
 
-## 🆕 What's New
+## 🆕 What's New (November 2025)
 
 ### CEO/CTO Agent Orchestrator
 A dual-agent coordination system that iterates toward a pitch-ready demo:
@@ -22,6 +22,12 @@ A dual-agent coordination system that iterates toward a pitch-ready demo:
 - **CTO Agent** (`@cto`): Validates technical implementation, fixes bugs, ensures stability
 - **Shared Checklist**: `DEMO_CHECKLIST.md` for coordinated progress tracking
 - **Orchestrator Script**: `orchestrator.py` automates the CEO/CTO loop with human checkpoints
+
+### Recent Improvements
+- **Loop Detection**: QA agent now detects when stuck in repetitive action loops
+- **Backend Health Gate**: Orchestrator validates backend health before running QA
+- **Timestamped Tests**: Generated Playwright tests include timestamps to prevent overwrites
+- **Health Endpoints**: Server.py now includes `/` and `/health` endpoints
 
 ## 🚀 Quick Start (Demo)
 
@@ -189,10 +195,12 @@ blackbox-rl-agent/
 
 After running the pipeline:
 
-- `qa_screenshots/` - Screenshots of each action taken
-- `qa_reports/` - Detailed markdown reports per phase
+- `qa_screenshots/` - Screenshots of each action taken (gitignored)
+- `qa_reports/` - Detailed markdown reports per phase (gitignored)
+- `generated_tests/` - Timestamped Playwright tests for discovered vulnerabilities
 - `executive_report_*.html` - Final executive summary
 - `rl_training_data.json` - RL training data for improvement
+- `qa_results.json` - JSON report of vulnerabilities found
 - `orchestrator_state.json` - CEO/CTO orchestrator state (if using orchestrator)
 - `orchestrator_events.json` - Live event log for frontend
 

@@ -191,7 +191,7 @@ class Orchestrator:
                 preexec_fn=os.setsid if os.name != 'nt' else None
             )
             # Give backend more time to start (uvicorn is slower)
-            wait_time = 4 if name == 'backend' else 2
+            wait_time = 6 if name == 'backend' else 2
             time.sleep(wait_time)
             
             if process.poll() is not None:
@@ -308,26 +308,72 @@ class Orchestrator:
         ):
             success = False
             
-        # Wait for services to be ready
-        time.sleep(5)
+        # Wait for services to be ready (backend needs more time)
+        time.sleep(8)
         
-        # Health checks
+        # Health checks with STRICT backend validation
         health_checks = [
             ("buggy-vibe", "http://localhost:5173"),
             ("frontend", "http://localhost:3000"),
             ("backend", "http://localhost:8000"),
         ]
         
+        backend_healthy = False
         for name, url in health_checks:
             healthy = self.check_service_health(name, url)
             self.state.services_healthy[name] = healthy
             if healthy:
                 self.log(AgentRole.CTO, f"✅ {name} responding at {url}")
+                if name == "backend":
+                    backend_healthy = True
             else:
                 self.log(AgentRole.CTO, f"⚠️ {name} not responding at {url}")
+        
+        # CRITICAL: Backend must be working before running QA agent
+        if not backend_healthy:
+            self.log(AgentRole.CTO, "❌ CRITICAL: Backend not responding! Cannot proceed with QA testing.")
+            self.log(AgentRole.CTO, "🔧 Attempting to diagnose backend issue...")
+            self._diagnose_backend_failure()
+            self.state.status = DemoStatus.FAILED
+            self.broadcast_update("backend_failure", {"message": "Backend not responding"})
+            return False
                 
         self.broadcast_update("services_started", self.state.services_healthy)
         return success
+    
+    def _diagnose_backend_failure(self):
+        """Diagnose why backend failed to start"""
+        import subprocess
+        
+        # Check if port 8000 is in use
+        try:
+            result = subprocess.run(["lsof", "-ti:8000"], capture_output=True, text=True)
+            if result.stdout.strip():
+                self.log(AgentRole.CTO, f"⚠️ Port 8000 already in use by PID: {result.stdout.strip()}")
+        except:
+            pass
+            
+        # Check for Python/dependency issues
+        try:
+            result = subprocess.run(
+                ["python", "-c", "import fastapi, uvicorn; print('deps ok')"],
+                capture_output=True, text=True, cwd=self.root
+            )
+            if result.returncode != 0:
+                self.log(AgentRole.CTO, f"⚠️ Missing dependencies: {result.stderr}")
+        except:
+            pass
+            
+        # Check server.py for syntax errors
+        try:
+            result = subprocess.run(
+                ["python", "-m", "py_compile", "server.py"],
+                capture_output=True, text=True, cwd=self.root
+            )
+            if result.returncode != 0:
+                self.log(AgentRole.CTO, f"⚠️ server.py has errors: {result.stderr}")
+        except:
+            pass
         
     def cto_run_qa_agent(self) -> List[Finding]:
         """CTO: Run the QA agent against the target app"""
@@ -338,13 +384,13 @@ class Orchestrator:
         findings = []
         
         try:
-            # Run QA agent with timeout
+            # Run QA agent with timeout (5 minutes for full run, DEMO_MODE limits steps)
             result = subprocess.run(
                 ["python", "qa_agent_v1.py"],
                 cwd=self.root,
                 capture_output=True,
                 text=True,
-                timeout=180,  # 3 minute timeout for full run
+                timeout=300,  # 5 minute timeout for full run
                 env={**os.environ, "DEMO_MODE": "true", "HEADLESS": "true"}
             )
             
@@ -614,6 +660,14 @@ Our AI agent found these issues in **under 2 minutes**, automatically.
                 self.state.iteration += 1
                 self.log(AgentRole.CTO, f"--- Iteration {self.state.iteration} ---")
                 self.broadcast_update("iteration_start", {"iteration": self.state.iteration})
+                
+                # GATE: Re-verify backend is healthy before each QA run
+                if not self.check_service_health("backend", "http://localhost:8000"):
+                    self.log(AgentRole.CTO, "❌ Backend is down! Cannot run QA agent.")
+                    self.state.services_healthy["backend"] = False
+                    self._diagnose_backend_failure()
+                    self.state.status = DemoStatus.FAILED
+                    break
                 
                 # CTO: Run QA agent
                 self.cto_run_qa_agent()
