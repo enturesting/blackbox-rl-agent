@@ -12,6 +12,16 @@ An AI-powered **blackbox penetration testing** framework that uses LangGraph, Go
 - **📊 Real-time Dashboard**: React-based UI showing pipeline progress, logs, and reports
 - **📝 Comprehensive Reporting**: Generates detailed reports with screenshots and executive summaries
 - **🧠 Reinforcement Learning**: Learns from successful exploits to improve future performance
+- **🎭 CEO/CTO Agent Orchestration**: Dual-agent system for vision + technical validation
+
+## 🆕 What's New
+
+### CEO/CTO Agent Orchestrator
+A dual-agent coordination system that iterates toward a pitch-ready demo:
+- **CEO Agent** (`@ceo`): Evaluates demo narrative, value proposition, and pitch-readiness
+- **CTO Agent** (`@cto`): Validates technical implementation, fixes bugs, ensures stability
+- **Shared Checklist**: `DEMO_CHECKLIST.md` for coordinated progress tracking
+- **Orchestrator Script**: `orchestrator.py` automates the CEO/CTO loop with human checkpoints
 
 ## 🚀 Quick Start (Demo)
 
@@ -135,6 +145,7 @@ blackbox-rl-agent/
 ├── run_demo.sh                 # 🚀 One-command demo launcher
 ├── run_all_agents.sh           # CLI pipeline runner
 ├── server.py                   # FastAPI backend for dashboard
+├── orchestrator.py             # 🎭 CEO/CTO coordination loop
 │
 ├── qa_agent_v1.py              # Phase 1: Reconnaissance agent
 ├── exploit_planner.py          # Phase 2: Attack planning
@@ -152,8 +163,15 @@ blackbox-rl-agent/
 │       ├── server-vulnerable.cjs # Intentionally vulnerable API
 │       └── pw_db.json         # Mock database
 │
+├── .github/agents/            # Custom GitHub Copilot agents
+│   ├── ceo.md                 # CEO agent (vision/narrative)
+│   ├── cto.md                 # CTO agent (technical validation)
+│   ├── branch-fusion-engineer.md
+│   └── repo-migration.md
+│
+├── DEMO_CHECKLIST.md          # Shared CEO/CTO coordination checklist
 ├── requirements.txt           # Python dependencies
-├── .env                       # Environment variables
+├── .env                       # Environment variables (local only)
 ├── qa_screenshots/            # Screenshot outputs
 ├── qa_reports/               # Generated reports
 └── rl_training_data.json     # RL training data
@@ -177,6 +195,40 @@ After running the pipeline:
 - `qa_reports/` - Detailed markdown reports per phase
 - `executive_report_*.html` - Final executive summary
 - `rl_training_data.json` - RL training data for improvement
+- `orchestrator_state.json` - CEO/CTO orchestrator state (if using orchestrator)
+- `orchestrator_events.json` - Live event log for frontend
+
+## 🎭 CEO/CTO Orchestrator
+
+For demo preparation and iteration, use the orchestrator:
+
+### Interactive Mode (with human checkpoints)
+```bash
+python orchestrator.py
+```
+
+### Non-interactive Mode (fully automated)
+```bash
+python orchestrator.py --non-interactive --max-iterations=5
+```
+
+### Via API
+```bash
+curl -X POST "http://localhost:8000/api/orchestrator/start?max_iterations=5"
+```
+
+### How It Works
+1. **CTO validates** environment (API keys, dependencies)
+2. **CTO starts** all services (buggy-vibe, frontend, backend)
+3. **CTO runs** QA agent against target app
+4. **CEO evaluates** demo readiness (0-100 score)
+5. **Human checkpoint** for feedback (interactive mode)
+6. **Loop** until pitch-ready (score ≥ 80) or max iterations
+
+### Custom Agents (GitHub Copilot)
+Use these agents in VS Code with GitHub Copilot:
+- `@ceo` - Vision, narrative, demo flow
+- `@cto` - Technical validation, bug fixes
 
 ## ⚠️ Troubleshooting
 
