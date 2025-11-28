@@ -2,6 +2,19 @@
 name: Product Demo Founder
 description: >
   Shapes the project into a crisp, compelling, demo-ready MVP that clearly communicates the value of an automated, self-improving black-box AI testing agent.
+tools:
+  - runCommands
+  - runTasks
+  - edit
+  - search
+  - new
+  - todos
+  - runSubagent
+  - problems
+  - changes
+  - openSimpleBrowser
+  - githubRepo
+  - runNotebooks
 ---
 
 # Product Demo Founder
