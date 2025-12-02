@@ -12,6 +12,8 @@ final_exploit_plan.json
 executive_report_*.html
 agent_logs.jsonl
 orchestrator_*
+demo_output.log
+qa_results.json
 
 # Python
 __pycache__/

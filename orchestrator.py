@@ -30,6 +30,31 @@ from enum import Enum
 from dotenv import load_dotenv
 load_dotenv()
 
+# Claude API for CEO/CTO intelligence
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+USE_CLAUDE = ANTHROPIC_API_KEY is not None
+
+# Load context file for Claude agents
+CLAUDE_CONTEXT = ""
+_context_file = Path(__file__).parent / "CLAUDE_CONTEXT.md"
+if _context_file.exists():
+    CLAUDE_CONTEXT = _context_file.read_text()
+
+if USE_CLAUDE:
+    try:
+        from anthropic import Anthropic
+        claude_client = Anthropic(api_key=ANTHROPIC_API_KEY)
+        print("🤖 Claude API enabled for CEO/CTO agents")
+        if CLAUDE_CONTEXT:
+            print("📄 Loaded CLAUDE_CONTEXT.md for context injection")
+    except ImportError:
+        print("⚠️ anthropic package not installed, falling back to heuristics")
+        USE_CLAUDE = False
+        claude_client = None
+else:
+    claude_client = None
+    print("ℹ️ No ANTHROPIC_API_KEY found, using heuristic CEO/CTO logic")
+
 
 class AgentRole(Enum):
     CEO = "ceo"
@@ -224,14 +249,18 @@ class Orchestrator:
                 pass
         self.processes.clear()
         
-    def check_service_health(self, name: str, url: str) -> bool:
-        """Check if a service is responding"""
+    def check_service_health(self, name: str, url: str, retries: int = 3) -> bool:
+        """Check if a service is responding with retries"""
         import urllib.request
-        try:
-            urllib.request.urlopen(url, timeout=5)
-            return True
-        except:
-            return False
+        for attempt in range(retries):
+            try:
+                urllib.request.urlopen(url, timeout=5)
+                return True
+            except Exception as e:
+                if attempt < retries - 1:
+                    time.sleep(2)  # Wait before retry
+                continue
+        return False
             
     # -------------------------------------------------------------------------
     # CTO Agent Functions
@@ -284,7 +313,17 @@ class Orchestrator:
         
         success = True
         
-        # 1. Start target app (buggy-vibe)
+        # 1. Start target app vulnerable backend (Express on port 3001)
+        # CRITICAL: This must start BEFORE the frontend, as frontend proxies to it
+        if not self.start_service(
+            "buggy-backend",
+            ["npm", "run", "server:vulnerable"],
+            self.target_app
+        ):
+            success = False
+            self.log(AgentRole.CTO, "⚠️ Vulnerable backend failed - SQLi endpoints won't work!")
+            
+        # 2. Start target app frontend (Vite on port 5173)
         if not self.start_service(
             "buggy-vibe",
             ["npm", "run", "dev"],
@@ -312,10 +351,12 @@ class Orchestrator:
         time.sleep(8)
         
         # Health checks with STRICT backend validation
+        # Note: buggy-backend uses /api/users/search endpoint as health check (no root endpoint)
         health_checks = [
-            ("buggy-vibe", "http://localhost:5173"),
-            ("frontend", "http://localhost:3000"),
-            ("backend", "http://localhost:8000"),
+            ("buggy-backend", "http://localhost:3001/api/users/search?username=test"),  # Vulnerable Express backend
+            ("buggy-vibe", "http://localhost:5173"),     # Vite frontend
+            ("frontend", "http://localhost:3000"),        # Dashboard
+            ("backend", "http://localhost:8000"),         # API server
         ]
         
         backend_healthy = False
@@ -374,12 +415,46 @@ class Orchestrator:
                 self.log(AgentRole.CTO, f"⚠️ server.py has errors: {result.stderr}")
         except:
             pass
+    
+    def cto_analyze_with_claude(self, context: str) -> Optional[str]:
+        """CTO: Use Claude to analyze technical issues and propose fixes"""
+        if not USE_CLAUDE:
+            return None
+            
+        prompt = f"""As CTO of BlackBox AI (LangGraph + Gemini + RL vulnerability discovery framework), analyze this situation:
+
+{context}
+
+**Our 5-Phase Pipeline:**
+1. RECON (qa_agent_v1.py) - Playwright browses target, finds interactive elements
+2. PLAN (exploit_planner.py) - Gemini decides attack strategy
+3. ATTACK (attack.py) - Execute SQLi/XSS payloads
+4. ANALYZE (gemini_coderabbit_analyzer.py) - Evaluate results
+5. REPORT (executive_report_generator.py) - Generate findings
+
+**Target: buggy-vibe**
+- Frontend: http://localhost:5173 (Vite React)
+- Backend: http://localhost:3001 (Express with SQLi vulnerabilities)
+- Known exploits: /api/users/search?q=' OR 1=1--, /api/login with admin' OR 1=1--
+
+**Provide:**
+1. Root cause (what's broken in the RL pipeline)
+2. Immediate fix (specific code or command)
+3. Pipeline phase affected (which of the 5 phases)
+4. Playwright verification (how to confirm fix works)
+
+Be specific. Focus on getting the RL agent to discover vulnerabilities."""
+
+        return self._call_claude("cto", prompt)
         
     def cto_run_qa_agent(self) -> List[Finding]:
-        """CTO: Run the QA agent against the target app"""
-        self.log(AgentRole.CTO, "Running QA agent against buggy-vibe...")
+        """CTO: Run the QA agent (Phase 1: RECON) using LangGraph + Gemini RL loop"""
+        self.log(AgentRole.CTO, "🚀 Starting RL Pipeline Phase 1: RECON")
+        self.log(AgentRole.CTO, "   - LangGraph StateGraph: initialize → analyze → execute → evaluateReward")
+        self.log(AgentRole.CTO, "   - Gemini 2.0 Flash: Making attack decisions")
+        self.log(AgentRole.CTO, "   - Playwright: Automated browser interaction with buggy-vibe")
         self.state.status = DemoStatus.QA_RUNNING
-        self.broadcast_update("qa_started", {})
+        self.broadcast_update("qa_started", {"pipeline_phase": "RECON", "engine": "LangGraph+Gemini+RL"})
         
         findings = []
         
@@ -417,6 +492,10 @@ class Orchestrator:
                         # Check for vulnerability indicators in logs or target
                         combined_text = f"{reason} {log_msg} {target_html}"
                         
+                        # Skip error entries
+                        if 'error parsing' in reason:
+                            continue
+                            
                         # High reward items OR keyword matches
                         is_vuln = reward >= 0.5 or any(k in combined_text for k in vuln_keywords)
                         
@@ -443,15 +522,19 @@ class Orchestrator:
                             else:
                                 continue  # Skip if no clear classification
                                 
-                            # Dedupe by type + truncated description
-                            vuln_key = f"{vuln_type}:{log_msg[:30]}"
+                            # Dedupe by type + target element (more robust)
+                            target_key = target.get('placeholder', target.get('outerHTML', ''))[:50] if target else ''
+                            vuln_key = f"{vuln_type}:{target_key}"
                             if vuln_key not in seen_vulns:
                                 seen_vulns.add(vuln_key)
+                                desc = item.get('reason', '') or item.get('log', 'Vulnerability indicator detected')
+                                # Clean up description - remove duplicates from reason
+                                desc = desc[:200] if len(desc) > 200 else desc
                                 finding = Finding(
                                     id=f"VULN-{len(findings)+1:03d}",
                                     type=vuln_type,
                                     severity=severity,
-                                    description=item.get('reason', '') or item.get('log', 'Vulnerability indicator detected'),
+                                    description=desc,
                                     evidence=item.get('log', '')[:500],
                                     timestamp=datetime.now().isoformat()
                                 )
@@ -464,15 +547,45 @@ class Orchestrator:
             self.state.findings.extend(findings)
             self.state.qa_runs_completed += 1
             
-            self.log(AgentRole.QA, f"Found {len(findings)} vulnerabilities")
+            self.log(AgentRole.CTO, f"📊 RL Pipeline Results: {len(findings)} vulnerabilities discovered")
             self.broadcast_update("qa_completed", {
                 "findings_count": len(findings),
-                "findings": [asdict(f) for f in findings]
+                "findings": [asdict(f) for f in findings],
+                "pipeline_phase": "RECON_COMPLETE"
             })
             
+            # CTO Claude analysis of findings
+            if USE_CLAUDE and findings:
+                vuln_summary = "\n".join([f"- {f.type.upper()} ({f.severity}): {f.description[:80]}" for f in findings[:5]])
+                analysis = self.cto_analyze_with_claude(f"""RL Agent completed RECON phase.
+
+**Findings:**
+{vuln_summary}
+
+**Questions:**
+1. Did the agent find the known SQLi vulnerabilities?
+2. Is the reward signal working (high rewards for critical findings)?
+3. What should the next iteration focus on?""")
+                if analysis:
+                    self.log(AgentRole.CTO, f"🤖 Claude Analysis:\n{analysis[:500]}")
+            
         except subprocess.TimeoutExpired:
-            self.log(AgentRole.QA, "⚠️ QA agent timed out")
-            self.broadcast_update("qa_timeout", {})
+            self.log(AgentRole.CTO, "⚠️ QA agent timed out - RL loop may be stuck")
+            self.broadcast_update("qa_timeout", {"pipeline_phase": "RECON_TIMEOUT"})
+            
+            # Claude analysis on timeout
+            if USE_CLAUDE:
+                analysis = self.cto_analyze_with_claude("""QA agent timed out during RECON phase.
+
+**Possible causes:**
+1. Playwright can't find interactive elements
+2. Gemini API rate limited
+3. LangGraph loop stuck in infinite cycle
+4. Target app not responding
+
+What should we check first?""")
+                if analysis:
+                    self.log(AgentRole.CTO, f"🤖 Timeout Analysis:\n{analysis[:500]}")
             
         except Exception as e:
             self.log(AgentRole.QA, f"❌ QA agent error: {e}")
@@ -481,16 +594,137 @@ class Orchestrator:
         return findings
         
     # -------------------------------------------------------------------------
-    # CEO Agent Functions
+    # CEO Agent Functions (Claude-powered when ANTHROPIC_API_KEY is set)
     # -------------------------------------------------------------------------
     
+    def _call_claude(self, role: str, prompt: str, include_context: bool = True) -> str:
+        """Call Claude API for CEO/CTO intelligence
+        
+        Args:
+            role: 'ceo' or 'cto'
+            prompt: The specific question/task
+            include_context: If True, prepends CLAUDE_CONTEXT.md content for project awareness
+        """
+        if not USE_CLAUDE or not claude_client:
+            return None
+        
+        try:
+            system_prompts = {
+                "ceo": """You are the CEO of a security AI startup. You evaluate demo readiness 
+with a founder's eye: Is this compelling? Would investors be impressed? 
+What's the story we're telling? Be concise and actionable.""",
+                "cto": """You are the CTO of BlackBox AI, a framework that uses LangGraph, Google Gemini, 
+and Reinforcement Learning to automatically discover and exploit vulnerabilities in web applications.
+
+Your core technical focus:
+1. **RL Pipeline Validation**: Verify the 5-phase pipeline works: Recon → Plan → Attack → Analyze → Report
+2. **LangGraph StateGraph**: Ensure qa_agent_v1.py's RL loop (initialize → analyze → execute → evaluateReward) runs correctly
+3. **Gemini Integration**: Confirm Gemini 2.0 Flash is making decisions (check API key rotation, rate limits)
+4. **Playwright Automation**: Validate browser automation finds and interacts with target elements (forms, inputs, buttons)
+5. **Vulnerability Discovery**: Ensure the agent finds SQLi on /api/users/search and /api/login in buggy-vibe
+
+Be pragmatic and specific about technical issues. Focus on "Does the RL agent actually discover vulnerabilities?"."""
+            }
+            
+            # Inject project context if available and requested
+            full_prompt = prompt
+            if include_context and CLAUDE_CONTEXT:
+                full_prompt = f"""## PROJECT CONTEXT (from CLAUDE_CONTEXT.md)
+{CLAUDE_CONTEXT[:2000]}
+
+---
+
+## CURRENT TASK
+{prompt}"""
+            
+            response = claude_client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=1024,
+                system=system_prompts.get(role, system_prompts["ceo"]),
+                messages=[{"role": "user", "content": full_prompt}]
+            )
+            return response.content[0].text
+        except Exception as e:
+            self.log(AgentRole.CEO if role == "ceo" else AgentRole.CTO, 
+                    f"⚠️ Claude API error: {e}, falling back to heuristics")
+            return None
+    
     def ceo_evaluate_demo(self) -> dict:
-        """CEO: Evaluate if the demo is pitch-ready"""
+        """CEO: Evaluate if the demo is pitch-ready (Claude-powered)"""
         self.log(AgentRole.CEO, "Evaluating demo readiness...")
         self.state.status = DemoStatus.CEO_REVIEWING
         self.broadcast_update("ceo_reviewing", {})
         
-        # Scoring rubric
+        # Try Claude-powered evaluation first
+        if USE_CLAUDE:
+            findings_summary = "\n".join([
+                f"- {f.type.upper()} ({f.severity}): {f.description[:100]}"
+                for f in self.state.findings[:10]
+            ]) or "No findings yet"
+            
+            services_status = "\n".join([
+                f"- {name}: {'✅ healthy' if healthy else '❌ down'}"
+                for name, healthy in self.state.services_healthy.items()
+            ])
+            
+            prompt = f"""Evaluate this security demo for investor pitch readiness.
+
+## Current State
+- Iteration: {self.state.iteration}
+- QA Runs Completed: {self.state.qa_runs_completed}
+
+## Services Status
+{services_status}
+
+## Vulnerabilities Found ({len(self.state.findings)} total)
+{findings_summary}
+
+## Human Feedback (if any)
+{self.state.human_feedback or 'None'}
+
+Rate the demo 0-100 and decide if it's pitch-ready (score >= 80).
+Consider: Does this tell a compelling story? Would VCs be impressed?
+
+Return JSON only:
+{{"score": <0-100>, "pitch_ready": <true/false>, "feedback": ["issue1", "issue2"], "wow_factor": "<what's impressive>", "missing": "<what would make it better>"}}"""
+
+            claude_response = self._call_claude("ceo", prompt)
+            if claude_response:
+                try:
+                    # Extract JSON from response
+                    import re
+                    json_match = re.search(r'\{.*\}', claude_response, re.DOTALL)
+                    if json_match:
+                        result = json.loads(json_match.group())
+                        score = result.get("score", 50)
+                        feedback = result.get("feedback", [])
+                        
+                        self.state.demo_readiness_score = score
+                        self.state.ceo_feedback = "; ".join(feedback) if feedback else result.get("wow_factor", "Looking good!")
+                        self.state.pitch_ready = result.get("pitch_ready", score >= 80)
+                        
+                        evaluation = {
+                            "score": score,
+                            "pitch_ready": self.state.pitch_ready,
+                            "feedback": feedback,
+                            "wow_factor": result.get("wow_factor", ""),
+                            "missing": result.get("missing", ""),
+                            "summary": self._ceo_generate_summary(),
+                            "powered_by": "claude"
+                        }
+                        
+                        self.log(AgentRole.CEO, f"🤖 Claude evaluation: {score}/100")
+                        if self.state.pitch_ready:
+                            self.log(AgentRole.CEO, "✅ PITCH READY!")
+                        else:
+                            self.log(AgentRole.CEO, f"❌ Not ready: {self.state.ceo_feedback}")
+                            
+                        self.broadcast_update("ceo_evaluation", evaluation)
+                        return evaluation
+                except (json.JSONDecodeError, KeyError) as e:
+                    self.log(AgentRole.CEO, f"⚠️ Could not parse Claude response, using heuristics")
+        
+        # Fallback: Heuristic scoring rubric
         score = 0
         feedback = []
         
@@ -547,7 +781,8 @@ class Orchestrator:
             "score": score,
             "pitch_ready": self.state.pitch_ready,
             "feedback": feedback,
-            "summary": self._ceo_generate_summary()
+            "summary": self._ceo_generate_summary(),
+            "powered_by": "heuristics"
         }
         
         self.log(AgentRole.CEO, f"Demo readiness: {score}/100")

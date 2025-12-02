@@ -99,17 +99,23 @@ cd target-apps/buggy-vibe && npm install && cd ../..
 cp .env.example .env
 ```
 
-Edit `.env` and add your Google API key(s):
+Edit `.env` and add your API keys:
 
 ```bash
+# Gemini (required for QA agent)
 GOOGLE_API_KEY=your-api-key-here
 # For higher rate limits, add multiple keys:
 GOOGLE_API_KEY_2=another-api-key
 GOOGLE_API_KEY_3=yet-another-key
+GOOGLE_API_KEY_4=fourth-key
+GOOGLE_API_KEY_5=fifth-key
 # ... up to GOOGLE_API_KEY_9
+
+# Claude (optional, for CEO/CTO intelligence)
+ANTHROPIC_API_KEY=your-anthropic-key
 ```
 
-**Note**: Each API key provides ~10 requests per minute. Multiple keys increase throughput.
+**Note**: Each Google API key provides ~10 requests per minute. Multiple keys increase throughput (5 keys = 50 RPM).
 
 ## 🎯 Testing with Dashboard
 
@@ -191,13 +197,37 @@ blackbox-rl-agent/
 | 4. Analyze | `gemini_coderabbit_analyzer.py` | Review and categorize vulnerabilities |
 | 5. Report | `executive_report_generator.py` | Generate HTML executive summary |
 
-## 📊 Output Files
+## 📊 Output Files & Logs
 
-After running the pipeline:
+After running the pipeline, these files contain valuable data:
 
+### Screenshots & Reports
 - `qa_screenshots/` - Screenshots of each action taken (gitignored)
 - `qa_reports/` - Detailed markdown reports per phase (gitignored)
 - `generated_tests/` - Timestamped Playwright tests for discovered vulnerabilities
+
+### RL Training Data
+- `rl_training_data.json` - Step-by-step rewards for RL learning
+  ```bash
+  # View recent rewards
+  cat rl_training_data.json | jq '.[-3:]'
+  ```
+
+### Orchestrator Logs
+- `orchestrator_state.json` - Current orchestrator state (findings, score, services)
+  ```bash
+  # Check current state
+  cat orchestrator_state.json | jq '{score: .demo_readiness_score, findings: .findings | length}'
+  ```
+- `orchestrator_events.json` - Full event history for debugging
+  ```bash
+  # Count events
+  cat orchestrator_events.json | jq 'length'
+  ```
+- `demo_output.log` - Raw terminal output from orchestrator runs
+
+### Scan Results
+- `qa_results.json` - Structured vulnerability data with Playwright test code
 - `executive_report_*.html` - Final executive summary
 - `rl_training_data.json` - RL training data for improvement
 - `qa_results.json` - JSON report of vulnerabilities found
@@ -227,14 +257,35 @@ curl -X POST "http://localhost:8000/api/orchestrator/start?max_iterations=5"
 1. **CTO validates** environment (API keys, dependencies)
 2. **CTO starts** all services (buggy-vibe, frontend, backend)
 3. **CTO runs** QA agent against target app
-4. **CEO evaluates** demo readiness (0-100 score)
+4. **CEO evaluates** demo readiness (0-100 score via Claude)
 5. **Human checkpoint** for feedback (interactive mode)
 6. **Loop** until pitch-ready (score ≥ 80) or max iterations
 
+### Claude-Powered Intelligence
+The CEO and CTO agents use Claude Sonnet for strategic decisions:
+- CEO provides demo narrative feedback, identifies missing "wow moments"
+- Context is injected from `CLAUDE_CONTEXT.md`
+- Requires `ANTHROPIC_API_KEY` in `.env`
+
 ### Custom Agents (GitHub Copilot)
 Use these agents in VS Code with GitHub Copilot:
-- `@ceo` - Vision, narrative, demo flow
-- `@cto` - Technical validation, bug fixes
+- `@ceo` - Vision, narrative, demo flow (`.github/agents/ceo.md`)
+- `@cto` - Technical validation, RL framework focus (`.github/agents/cto.md`)
+
+### CTO Log Review Workflow
+Before running multiple iterations, the CTO should review logs:
+```bash
+# Check if rewards are meaningful (not all 0.0)
+cat rl_training_data.json | jq '.[] | {step, reward}'
+
+# Check orchestrator state
+cat orchestrator_state.json | jq '{score: .demo_readiness_score, findings: .findings | length}'
+
+# Look for patterns in event history
+cat orchestrator_events.json | jq '.[-10:] | .[].type'
+```
+
+This prevents wasting API credits on broken runs.
 
 ## ⚠️ Troubleshooting
 

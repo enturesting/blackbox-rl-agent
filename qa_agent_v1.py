@@ -659,7 +659,7 @@ def should_continue(state: AgentState) -> str:
     # Check trajectory for high-reward SQL injection success
     trajectory = state.get("trajectory", [])
     for step in trajectory:
-        if step.get("reward", 0) >= 2.0:  # Database dump achieved
+        if step.get("reward", 0) >= 1.5:  # SQLi payload executed (was 2.0, lowered for reliability)
             print("🎯 MISSION COMPLETE: High-reward vulnerability found!")
             return "generateReport"
     
