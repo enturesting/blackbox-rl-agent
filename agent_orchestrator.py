@@ -459,14 +459,16 @@ Be specific. Focus on getting the RL agent to discover vulnerabilities."""
         findings = []
         
         try:
-            # Run QA agent with timeout (5 minutes for full run, DEMO_MODE limits steps)
+            # Run QA agent with timeout (5 minutes for full run)
+            # HEADLESS can be overridden by setting HEADLESS=false in environment
+            run_env = {**os.environ, "HEADLESS": os.getenv("HEADLESS", "true")}
             result = subprocess.run(
                 ["python", "qa_agent_v1.py"],
                 cwd=self.root,
                 capture_output=True,
                 text=True,
                 timeout=300,  # 5 minute timeout for full run
-                env={**os.environ, "DEMO_MODE": "true", "HEADLESS": "true"}
+                env=run_env
             )
             
             self.log(AgentRole.QA, f"QA agent completed with code {result.returncode}")
@@ -543,8 +545,28 @@ Be specific. Focus on getting the RL agent to discover vulnerabilities."""
                                 # Limit to prevent too many findings
                                 if len(findings) >= 20:
                                     break
+            
+            # CRITICAL: Dedupe against existing findings from previous iterations
+            existing_vuln_keys = set()
+            for existing in self.state.findings:
+                # Create key from type + evidence hash
+                key = f"{existing.type}:{hash(existing.evidence[:100])}"
+                existing_vuln_keys.add(key)
+            
+            # Only add truly new findings
+            new_findings = []
+            for f in findings:
+                key = f"{f.type}:{hash(f.evidence[:100])}"
+                if key not in existing_vuln_keys:
+                    new_findings.append(f)
+                    existing_vuln_keys.add(key)  # Prevent adding same finding twice in this batch
+                    
+            if new_findings:
+                self.state.findings.extend(new_findings)
+                self.log(AgentRole.CTO, f"📊 Added {len(new_findings)} NEW unique findings (total: {len(self.state.findings)})")
+            else:
+                self.log(AgentRole.CTO, f"📊 No new unique findings this iteration (total: {len(self.state.findings)})")
                         
-            self.state.findings.extend(findings)
             self.state.qa_runs_completed += 1
             
             self.log(AgentRole.CTO, f"📊 RL Pipeline Results: {len(findings)} vulnerabilities discovered")

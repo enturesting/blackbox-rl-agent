@@ -212,7 +212,7 @@ cat qa_reports/qa_report_*.md
 | `gemini_coderabbit_analyzer.py` | Phase 4: Analyze findings |
 | `executive_report_generator.py` | Phase 5: Generate report |
 | `server.py` | FastAPI backend for dashboard |
-| `orchestrator.py` | CEO/CTO coordination loop |
+| `agent_orchestrator.py` | CEO/CTO coordination loop |
 | `CLAUDE_CONTEXT.md` | Context file injected into Claude API calls |
 | `target-apps/buggy-vibe/` | Vulnerable test app |
 

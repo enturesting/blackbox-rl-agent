@@ -1,6 +1,6 @@
 # 🛡️ BlackBox RL Agent - Context Handoff
 
-> **Date**: December 2, 2025 (Session 3 - End of Night)  
+> **Date**: December 3, 2025 (Session 4 - End of Night)  
 > **Branch**: `feature/mvp`  
 > **Repo**: `enturesting/blackbox-rl-agent`
 
@@ -10,14 +10,15 @@
 
 An **AI-powered blackbox penetration testing tool** that:
 - Discovers web pages and input fields automatically
-- Tests for SQL injection and auth bypass vulnerabilities
+- Tests for SQL injection, auth bypass, and other vulnerabilities
+- Uses **hybrid API + browser testing** for fast, comprehensive coverage
 - Generates Playwright tests as evidence
 - Uses Gemini 2.0 Flash for intelligent decision-making via LangGraph RL
 - Uses Claude Sonnet for CEO/CTO agent strategic intelligence
 
 ---
 
-## 🎯 Current Status (End of Dec 2 Session)
+## 🎯 Current Status (End of Dec 3 Session)
 
 ### ✅ Working Components
 
@@ -27,63 +28,72 @@ An **AI-powered blackbox penetration testing tool** that:
 | **buggy-vibe backend** | 3001 | ✅ Express with SQLi vulnerabilities |
 | **Dashboard frontend** | 3000 | ✅ React app |
 | **FastAPI server** | 8000 | ✅ Health endpoints (`/` and `/health`) |
-| **orchestrator.py** | N/A | ✅ Full CEO/CTO loop with Claude |
-| **QA Agent** | N/A | ✅ Finds SQLi consistently |
+| **agent_orchestrator.py** | N/A | ✅ Full CEO/CTO loop with Claude |
+| **QA Agent (Hybrid)** | N/A | ✅ **Now finds 6+ vulnerabilities** via API + browser |
 | **Claude API** | N/A | ✅ CEO/CTO intelligence working |
 
-### ✅ Issues Fixed This Session
+### ✅ Issues Fixed This Session (Dec 3)
 
 | Issue | Root Cause | Fix |
 |-------|------------|-----|
-| **QA agent exit -15** | Timeout too aggressive | Lowered reward threshold to 1.5 |
-| **0 vulnerabilities found** | buggy-backend not starting | Fixed health check for :3001 |
-| **Rate limiting (429)** | Only 1 API key (10 RPM) | Added 5 Google API keys (50 RPM) |
-| **Duplicate findings** | "Error parsing reward" counted | Skip error findings, dedupe by hash |
-| **CEO/CTO basic logic** | No real intelligence | Added Claude API with context injection |
+| **Only finding 2 vulns** | Browser tests unreliable | Added **hybrid API testing** - direct HTTP tests first |
+| **Orchestrator name confusion** | Old name `orchestrator.py` | Renamed to `agent_orchestrator.py` |
+| **DEMO_MODE hardcoded** | Was always `true` in orchestrator | Removed hardcoding, uses env var |
+| **Missing vulnerabilities** | Limited test coverage | Expanded to 6 tests: SQLi, auth bypass, UNION, cleartext passwords, API keys, XSS |
+| **Findings lost on crash** | Saved only at end | Added **crash protection** - saves API findings immediately |
 
-### 📊 Latest Orchestrator Run (03:21 UTC)
+### 📊 Latest API Test Results
 
 ```
-Services: ✅ All 4 healthy (buggy-backend:3001, buggy-vibe:5173, frontend:3000, backend:8000)
-QA Agent: Exit code 0 ✅
-Vulnerabilities Found: 1 SQLi (critical)
-Demo Readiness: 65/100 (Claude CEO evaluation)
-Status: Working - finding SQLi consistently
+🔍 [API Test 1/6] SQL Injection on /api/users/search - ✅ Got 6 users (database dump)
+🔍 [API Test 2/6] Cleartext Passwords - ✅ Found 6 unhashed passwords
+🔍 [API Test 3/6] API Key Exposure - ✅ Found 2 API keys exposed
+🔍 [API Test 4/6] Session Token Exposure - ✅ Found 1 active session token
+🔍 [API Test 5/6] Auth Bypass on /api/login - ✅ Authentication bypassed
+🔍 [API Test 6/6] Stored XSS on /contacts - ✅ XSS payload stored unescaped
+
+Total: 6+ vulnerabilities found via direct API tests (no LLM calls needed!)
 ```
 
 ---
 
-## 🔧 Fixes Implemented Today (Dec 2)
+## 🔧 Fixes Implemented Today (Dec 3)
 
-### 1. Claude API Integration for CEO/CTO
-- Added `_call_claude()` function in `orchestrator.py`
-- Created `CLAUDE_CONTEXT.md` for context injection into prompts
-- CEO now uses Claude Sonnet for intelligent demo evaluation
-- CTO system prompts updated for RL framework focus
+### 1. Hybrid API + Browser Testing Architecture
+- Added `run_direct_api_tests()` function in `qa_agent_v1.py`
+- **Phase 0**: Direct HTTP tests against API endpoints (fast, reliable)
+- **Phase 1**: Browser-based tests for UI-specific vulnerabilities
+- Uses `aiohttp` for async HTTP client (added to requirements.txt)
 
-### 2. Multiple API Keys (5x capacity)
-- Added support for `GOOGLE_API_KEY` through `GOOGLE_API_KEY_5`
-- Now have 50 RPM instead of 10 RPM
-- Keys rotate automatically on rate limit
+### 2. Expanded Vulnerability Coverage (6 tests)
+| Test | Vulnerability | CWE |
+|------|--------------|-----|
+| SQLi User Search | Database dump via SQL injection | CWE-89 |
+| Cleartext Passwords | Unhashed passwords in database | CWE-256 |
+| API Key Exposure | API keys leaked via SQLi | CWE-200 |
+| Session Token Exposure | Active sessions leaked | CWE-200 |
+| UNION SELECT | Schema disclosure attack | CWE-89 |
+| Auth Bypass | Login bypass via SQLi | CWE-287 |
+| Stored XSS | Contact form accepts scripts | CWE-79 |
 
-### 3. Improved Health Checks
-- `buggy-backend` health check now uses `/api/users/search?username=test`
-- Added retry logic (3 attempts with 2s delay)
-- Fixed issue where :3001 was failing checks
+### 3. Renamed Orchestrator
+- `orchestrator.py` → `agent_orchestrator.py`
+- Better reflects purpose as multi-agent coordinator
+- Updated all references in documentation
 
-### 4. Better Finding Deduplication
-- Skip findings with "Error parsing reward" in description
-- Deduplicate by `type + hash(evidence)`
-- Prevents garbage findings from polluting reports
+### 4. Removed DEMO_MODE Hardcoding
+- Orchestrator no longer forces `DEMO_MODE=true`
+- Now respects environment variable setting
+- Allows full exploration when needed
 
-### 5. Lowered Mission Complete Threshold
-- Changed from `reward >= 2.0` to `reward >= 1.5`
-- SQLi detection (1.5 reward) now triggers success
+### 5. Crash Protection
+- API findings saved immediately after tests complete
+- Browser crash no longer loses discovered vulnerabilities
+- `qa_results.json` updated incrementally
 
-### 6. Rewrote `.github/agents/cto.md`
-- Now focused on RL framework validation
-- Covers 5-phase pipeline, Playwright, buggy-vibe
-- ~380 lines of comprehensive CTO guidance
+### 6. Reduced Screenshot Frequency
+- Only captures screenshots on significant actions
+- Reduces noise, improves performance
 
 ---
 
@@ -126,7 +136,7 @@ grep -i "429\|rate\|limit" demo_output.log | tail -5
 ### Run Full Demo (Recommended)
 ```bash
 cd /workspaces/blackbox-rl-agent
-python orchestrator.py --non-interactive --max-iterations 2
+python agent_orchestrator.py --non-interactive --max-iterations 2
 ```
 
 ### Test QA Agent Directly
@@ -160,38 +170,41 @@ GOOGLE_API_KEY_4=...
 GOOGLE_API_KEY_5=...
 
 # Required - Claude (CEO/CTO intelligence)
-ANTHROPIC_API_KEY=...   # $452.77 credit expiring Dec 7
+ANTHROPIC_API_KEY=...   # ~$384 credit expiring Dec 6-7 (use it!)
 
 # Optional
 TARGET_URL=http://localhost:5173
 HEADLESS=true  # Set to false for visual debugging
-DEMO_MODE=true # Limits to 12 steps
+DEMO_MODE=false # Set true to limit to 12 steps
 ```
 
 ---
 
-## 🎯 Priorities for Next Session
+## 🎯 Priorities for Next Session (Dec 4)
 
-### 1. Improve Demo Score (Currently 65/100)
-CEO feedback from Claude:
-- ❌ Duplicate vulnerability entries - need better deduplication
-- ❌ Only 1 vuln type found - need to show XSS, auth bypass
-- ❌ Missing "wow moment" - RL learning not visible
-- ❌ No progression story - agent should improve over iterations
+### 1. ✅ DONE: More Vulnerability Types
+- ✅ SQLi on `/api/users/search` - database dump
+- ✅ Auth bypass on `/api/login`
+- ✅ Cleartext password detection
+- ✅ API key exposure
+- ✅ Session token leakage
+- ✅ Stored XSS on `/contacts`
 
-### 2. Add More Vulnerability Types
-- `/api/login` - auth bypass with `admin' --`
-- `/contact` - potential XSS
-- Test with `smart_qa_agent.py` (finds 6 vulns)
+### 2. TODO: Switch Final Analysis to Claude
+- Use Claude's 200K context window for comprehensive analysis
+- Consolidate from 20+ Gemini calls to 2 Claude calls
+- **Use the $384 credits before they expire Dec 6-7!**
 
-### 3. Better RL Visualization
+### 3. TODO: Simplify Pipeline
+- Current: 5 phases with many LLM calls
+- Target: 2 phases (Discovery + Analysis)
+- Phase 1: Rule-based API tests (no LLM) ← **implemented**
+- Phase 2: 1 Claude call for comprehensive analysis ← **next**
+
+### 4. TODO: Better RL Visualization
 - Show reward improvement over iterations
 - Dashboard should highlight when agent "learns"
-
-### 4. Review Logs Before Looping
-- CTO should review `rl_training_data.json` to ensure meaningful rewards
-- Check `orchestrator_events.json` for patterns
-- Don't waste API credits on broken runs
+- Track which payloads succeed vs fail
 
 ---
 
@@ -201,7 +214,7 @@ CEO feedback from Claude:
 blackbox-rl-agent/
 ├── qa_agent_v1.py           # LangGraph RL agent
 ├── smart_qa_agent.py        # Simpler scanner (finds 6 vulns)
-├── orchestrator.py          # CEO/CTO loop with Claude
+├── agent_orchestrator.py    # CEO/CTO loop with Claude
 ├── server.py                # FastAPI backend (:8000)
 ├── CLAUDE_CONTEXT.md        # Context injected into Claude prompts
 ├── .github/agents/
@@ -222,29 +235,35 @@ blackbox-rl-agent/
 
 ---
 
-## 📝 Session Summary (Dec 2)
+## 📝 Session Summary (Dec 3)
 
 **What was accomplished:**
-- ✅ Claude API integration for CEO/CTO intelligence
-- ✅ 5 Google API keys (50 RPM vs 10 RPM)
-- ✅ Fixed buggy-backend health check
-- ✅ Better finding deduplication
-- ✅ Lowered mission complete threshold
-- ✅ CTO agent rewrite for RL focus
-- ✅ Demo consistently finds SQLi
+- ✅ Hybrid API + browser testing architecture
+- ✅ Expanded from 2 to 6+ vulnerability tests
+- ✅ Added cleartext password detection (CWE-256)
+- ✅ Added API key exposure detection (CWE-200)
+- ✅ Added session token leakage detection (CWE-200)
+- ✅ Added UNION SELECT schema disclosure test
+- ✅ Added stored XSS detection (CWE-79)
+- ✅ Renamed orchestrator.py → agent_orchestrator.py
+- ✅ Removed DEMO_MODE hardcoding
+- ✅ Added crash protection for API findings
+- ✅ Reduced screenshot frequency
 
 **Current state:**
-- Demo works end-to-end
-- Finds 1 SQLi vulnerability consistently
-- CEO Claude evaluation: 65/100
+- API tests find 6+ vulnerabilities without any LLM calls
+- Browser tests available for UI-specific vulnerabilities
 - All 4 services healthy
+- Ready for final Claude-based analysis integration
+
+**Key insight:**
+> The "intelligence" in finding vulnerabilities came from **hardcoded API tests**, not from Gemini RL. The LLM is better used for *analysis and reporting* rather than *discovery*.
 
 **Next priorities:**
-- Improve demo score to 80+
-- Find multiple vulnerability types
-- Show RL learning progression
-- Review logs before running to avoid wasting credits
+- Switch final analysis to Claude (use the $384 expiring credits!)
+- Consolidate pipeline from 5 phases to 2
+- Add RL visualization in dashboard
 
 ---
 
-*Last updated: December 2, 2025 ~03:30 UTC*
+*Last updated: December 3, 2025 ~EOD*

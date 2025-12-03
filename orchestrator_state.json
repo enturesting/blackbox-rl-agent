@@ -1,21 +1,31 @@
 {
   "status": "ceo_reviewing",
-  "iteration": 1,
-  "max_iterations": 1,
+  "iteration": 2,
+  "max_iterations": 2,
   "cto_issues_found": [],
   "cto_issues_fixed": [],
   "services_healthy": {
+    "buggy-backend": true,
     "buggy-vibe": true,
     "frontend": true,
     "backend": true
   },
-  "findings": [],
-  "qa_runs_completed": 1,
-  "demo_readiness_score": 20,
-  "ceo_feedback": "No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
+  "findings": [
+    {
+      "id": "VULN-001",
+      "type": "sqli",
+      "severity": "critical",
+      "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+      "evidence": "Action: Pressed Enter to submit search",
+      "timestamp": "2025-12-03T02:16:26.228568"
+    }
+  ],
+  "qa_runs_completed": 2,
+  "demo_readiness_score": 65,
+  "ceo_feedback": "Only 1 vulnerability found - not impressive scale for a demo; SQL injection is common/expected - lacks sophistication; No demonstration of RL learning/improvement over time; Missing variety of attack vectors (XSS, CSRF, auth bypass); No metrics showing speed vs traditional pentesting; Lacks 'wow moment' - this looks like basic automated scanning",
   "pitch_ready": false,
   "human_feedback": "",
   "human_approved": false,
-  "started_at": "2025-11-28T04:09:08.860223",
-  "last_updated": "2025-11-28T04:10:45.381421"
+  "started_at": "2025-12-03T02:15:03.568718",
+  "last_updated": "2025-12-03T02:18:25.214314"
 }

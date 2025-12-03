@@ -1,1203 +1,5 @@
 [
   {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:50:21.129310",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:50:21.129300"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T03:50:34.263757",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": true,
-      "backend": false
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:50:34.263744"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:50:34.266799",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:50:34.266787"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:50:34.267712",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:50:34.267700"
-    }
-  },
-  {
-    "type": "qa_completed",
-    "timestamp": "2025-11-28T03:52:30.949763",
-    "data": {
-      "findings_count": 3,
-      "findings": [
-        {
-          "id": "VULN-001",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
-          "evidence": "Action: Pressed Enter to submit search",
-          "timestamp": "2025-11-28T03:52:30.940133"
-        },
-        {
-          "id": "VULN-002",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Error parsing reward",
-          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
-          "timestamp": "2025-11-28T03:52:30.940472"
-        },
-        {
-          "id": "VULN-003",
-          "type": "info_disclosure",
-          "severity": "medium",
-          "description": "Error parsing reward",
-          "evidence": "Action: Clicked element index 8 (no-id)",
-          "timestamp": "2025-11-28T03:52:30.940763"
-        }
-      ]
-    },
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [
-        {
-          "id": "VULN-001",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
-          "evidence": "Action: Pressed Enter to submit search",
-          "timestamp": "2025-11-28T03:52:30.940133"
-        },
-        {
-          "id": "VULN-002",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Error parsing reward",
-          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
-          "timestamp": "2025-11-28T03:52:30.940472"
-        },
-        {
-          "id": "VULN-003",
-          "type": "info_disclosure",
-          "severity": "medium",
-          "description": "Error parsing reward",
-          "evidence": "Action: Clicked element index 8 (no-id)",
-          "timestamp": "2025-11-28T03:52:30.940763"
-        }
-      ],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:52:30.949731"
-    }
-  },
-  {
-    "type": "ceo_reviewing",
-    "timestamp": "2025-11-28T03:52:30.952231",
-    "data": {},
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [
-        {
-          "id": "VULN-001",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
-          "evidence": "Action: Pressed Enter to submit search",
-          "timestamp": "2025-11-28T03:52:30.940133"
-        },
-        {
-          "id": "VULN-002",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Error parsing reward",
-          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
-          "timestamp": "2025-11-28T03:52:30.940472"
-        },
-        {
-          "id": "VULN-003",
-          "type": "info_disclosure",
-          "severity": "medium",
-          "description": "Error parsing reward",
-          "evidence": "Action: Clicked element index 8 (no-id)",
-          "timestamp": "2025-11-28T03:52:30.940763"
-        }
-      ],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:52:30.952218"
-    }
-  },
-  {
-    "type": "ceo_evaluation",
-    "timestamp": "2025-11-28T03:52:30.953740",
-    "data": {
-      "score": 73,
-      "pitch_ready": false,
-      "feedback": [
-        "Only 2/3 services healthy",
-        "Need more variety in vulnerability types",
-        "Run demo multiple times to prove stability"
-      ],
-      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **3 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **2 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **SQLI** (critical): Error parsing reward...\n- **INFO_DISCLOSURE** (medium): Error parsing reward...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n"
-    },
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [
-        {
-          "id": "VULN-001",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
-          "evidence": "Action: Pressed Enter to submit search",
-          "timestamp": "2025-11-28T03:52:30.940133"
-        },
-        {
-          "id": "VULN-002",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Error parsing reward",
-          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
-          "timestamp": "2025-11-28T03:52:30.940472"
-        },
-        {
-          "id": "VULN-003",
-          "type": "info_disclosure",
-          "severity": "medium",
-          "description": "Error parsing reward",
-          "evidence": "Action: Clicked element index 8 (no-id)",
-          "timestamp": "2025-11-28T03:52:30.940763"
-        }
-      ],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 73,
-      "ceo_feedback": "Only 2/3 services healthy; Need more variety in vulnerability types; Run demo multiple times to prove stability",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:52:30.953730"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:52:32.955450",
-    "data": {
-      "iteration": 2
-    },
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 2,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [
-        {
-          "id": "VULN-001",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
-          "evidence": "Action: Pressed Enter to submit search",
-          "timestamp": "2025-11-28T03:52:30.940133"
-        },
-        {
-          "id": "VULN-002",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Error parsing reward",
-          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
-          "timestamp": "2025-11-28T03:52:30.940472"
-        },
-        {
-          "id": "VULN-003",
-          "type": "info_disclosure",
-          "severity": "medium",
-          "description": "Error parsing reward",
-          "evidence": "Action: Clicked element index 8 (no-id)",
-          "timestamp": "2025-11-28T03:52:30.940763"
-        }
-      ],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 73,
-      "ceo_feedback": "Only 2/3 services healthy; Need more variety in vulnerability types; Run demo multiple times to prove stability",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:52:32.955432"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:52:32.956781",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 2,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [
-        {
-          "id": "VULN-001",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
-          "evidence": "Action: Pressed Enter to submit search",
-          "timestamp": "2025-11-28T03:52:30.940133"
-        },
-        {
-          "id": "VULN-002",
-          "type": "sqli",
-          "severity": "critical",
-          "description": "Error parsing reward",
-          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
-          "timestamp": "2025-11-28T03:52:30.940472"
-        },
-        {
-          "id": "VULN-003",
-          "type": "info_disclosure",
-          "severity": "medium",
-          "description": "Error parsing reward",
-          "evidence": "Action: Clicked element index 8 (no-id)",
-          "timestamp": "2025-11-28T03:52:30.940763"
-        }
-      ],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 73,
-      "ceo_feedback": "Only 2/3 services healthy; Need more variety in vulnerability types; Run demo multiple times to prove stability",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:50:21.126812",
-      "last_updated": "2025-11-28T03:52:32.956769"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:55:56.929575",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:55:56.927551",
-      "last_updated": "2025-11-28T03:55:56.929564"
-    }
-  },
-  {
-    "type": "backend_failure",
-    "timestamp": "2025-11-28T03:56:11.398051",
-    "data": {
-      "message": "Backend not responding"
-    },
-    "state": {
-      "status": "failed",
-      "iteration": 0,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:55:56.927551",
-      "last_updated": "2025-11-28T03:56:10.127850"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:56:11.399677",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "failed",
-      "iteration": 1,
-      "max_iterations": 2,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": false
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:55:56.927551",
-      "last_updated": "2025-11-28T03:56:11.399666"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:56:54.881113",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:56:54.878803",
-      "last_updated": "2025-11-28T03:56:54.881101"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:57:06.957737",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:06.955421",
-      "last_updated": "2025-11-28T03:57:06.957726"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T03:57:20.080861",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": true,
-      "backend": true
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:06.955421",
-      "last_updated": "2025-11-28T03:57:20.080847"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:57:20.086848",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:06.955421",
-      "last_updated": "2025-11-28T03:57:20.086835"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:57:20.095980",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:06.955421",
-      "last_updated": "2025-11-28T03:57:20.095966"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:57:46.277039",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:46.273236",
-      "last_updated": "2025-11-28T03:57:46.277028"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T03:58:04.410948",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": true,
-      "backend": true
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:46.273236",
-      "last_updated": "2025-11-28T03:58:04.410935"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:58:04.420536",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:46.273236",
-      "last_updated": "2025-11-28T03:58:04.420516"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:58:04.429407",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:57:46.273236",
-      "last_updated": "2025-11-28T03:58:04.429393"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T03:58:33.714802",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:58:33.714791"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T03:58:51.875935",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": true,
-      "backend": true
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:58:51.875923"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T03:58:51.882757",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:58:51.882747"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T03:58:51.890423",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:58:51.890410"
-    }
-  },
-  {
-    "type": "qa_completed",
-    "timestamp": "2025-11-28T03:59:57.932764",
-    "data": {
-      "findings_count": 0,
-      "findings": []
-    },
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:59:57.932742"
-    }
-  },
-  {
-    "type": "ceo_reviewing",
-    "timestamp": "2025-11-28T03:59:57.941506",
-    "data": {},
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:59:57.941491"
-    }
-  },
-  {
-    "type": "ceo_evaluation",
-    "timestamp": "2025-11-28T03:59:57.945106",
-    "data": {
-      "score": 20,
-      "pitch_ready": false,
-      "feedback": [
-        "No vulnerabilities found - demo lacks punch",
-        "Only one type of vulnerability - show breadth",
-        "No critical findings - less compelling",
-        "Run demo multiple times to prove stability"
-      ],
-      "summary": "No security findings to report yet."
-    },
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 20,
-      "ceo_feedback": "No vulnerabilities found - demo lacks punch; Only one type of vulnerability - show breadth; No critical findings - less compelling; Run demo multiple times to prove stability",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T03:58:33.711792",
-      "last_updated": "2025-11-28T03:59:57.945096"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T04:06:37.668930",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:06:37.631439",
-      "last_updated": "2025-11-28T04:06:37.668917"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T04:06:56.054011",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": true,
-      "backend": true
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:06:37.631439",
-      "last_updated": "2025-11-28T04:06:56.053995"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T04:06:56.073731",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:06:37.631439",
-      "last_updated": "2025-11-28T04:06:56.073683"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T04:06:56.107124",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:06:37.631439",
-      "last_updated": "2025-11-28T04:06:56.107108"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T04:08:16.940796",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:08:16.938813",
-      "last_updated": "2025-11-28T04:08:16.940785"
-    }
-  },
-  {
-    "type": "cto_starting_services",
-    "timestamp": "2025-11-28T04:09:08.862352",
-    "data": {},
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {},
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:09:08.860223",
-      "last_updated": "2025-11-28T04:09:08.862341"
-    }
-  },
-  {
-    "type": "services_started",
-    "timestamp": "2025-11-28T04:09:26.989711",
-    "data": {
-      "buggy-vibe": true,
-      "frontend": true,
-      "backend": true
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 0,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:09:08.860223",
-      "last_updated": "2025-11-28T04:09:26.989697"
-    }
-  },
-  {
-    "type": "iteration_start",
-    "timestamp": "2025-11-28T04:09:26.998983",
-    "data": {
-      "iteration": 1
-    },
-    "state": {
-      "status": "cto_working",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:09:08.860223",
-      "last_updated": "2025-11-28T04:09:26.998972"
-    }
-  },
-  {
-    "type": "qa_started",
-    "timestamp": "2025-11-28T04:09:27.007810",
-    "data": {},
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 0,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:09:08.860223",
-      "last_updated": "2025-11-28T04:09:27.007797"
-    }
-  },
-  {
-    "type": "qa_completed",
-    "timestamp": "2025-11-28T04:10:43.363079",
-    "data": {
-      "findings_count": 0,
-      "findings": []
-    },
-    "state": {
-      "status": "qa_running",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:09:08.860223",
-      "last_updated": "2025-11-28T04:10:43.363067"
-    }
-  },
-  {
-    "type": "ceo_reviewing",
-    "timestamp": "2025-11-28T04:10:43.368852",
-    "data": {},
-    "state": {
-      "status": "ceo_reviewing",
-      "iteration": 1,
-      "max_iterations": 1,
-      "cto_issues_found": [],
-      "cto_issues_fixed": [],
-      "services_healthy": {
-        "buggy-vibe": true,
-        "frontend": true,
-        "backend": true
-      },
-      "findings": [],
-      "qa_runs_completed": 1,
-      "demo_readiness_score": 0,
-      "ceo_feedback": "",
-      "pitch_ready": false,
-      "human_feedback": "",
-      "human_approved": false,
-      "started_at": "2025-11-28T04:09:08.860223",
-      "last_updated": "2025-11-28T04:10:43.368839"
-    }
-  },
-  {
     "type": "ceo_evaluation",
     "timestamp": "2025-11-28T04:10:43.371637",
     "data": {
@@ -1231,6 +33,3704 @@
       "human_approved": false,
       "started_at": "2025-11-28T04:09:08.860223",
       "last_updated": "2025-11-28T04:10:43.371625"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T02:29:25.036037",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:29:25.033659",
+      "last_updated": "2025-12-02T02:29:25.036026"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T02:38:42.766203",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:38:42.763952",
+      "last_updated": "2025-12-02T02:38:42.766192"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T02:39:02.852976",
+    "data": {
+      "buggy-backend": false,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:38:42.763952",
+      "last_updated": "2025-12-02T02:39:02.852960"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T02:39:02.976175",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:38:42.763952",
+      "last_updated": "2025-12-02T02:39:02.976153"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T02:39:02.986046",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:38:42.763952",
+      "last_updated": "2025-12-02T02:39:02.986029"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T02:40:37.473164",
+    "data": {
+      "findings_count": 0,
+      "findings": [],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:38:42.763952",
+      "last_updated": "2025-12-02T02:40:37.473150"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T02:40:37.555653",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:38:42.763952",
+      "last_updated": "2025-12-02T02:40:37.555636"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T02:47:21.536674",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:47:21.536663"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T02:47:41.707867",
+    "data": {
+      "buggy-backend": false,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:47:41.707828"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T02:47:41.713137",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:47:41.713128"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T02:47:41.725705",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:47:41.725687"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T02:48:47.497705",
+    "data": {
+      "findings_count": 0,
+      "findings": [],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:48:47.497682"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T02:48:47.554370",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:48:47.554355"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T02:48:55.707663",
+    "data": {
+      "score": 25,
+      "pitch_ready": false,
+      "feedback": [
+        "Critical infrastructure failure - backend down kills the entire demo",
+        "Zero vulnerabilities found despite known SQLi endpoints - the core value prop isn't working",
+        "Only 1 QA run completed - insufficient to show RL learning capability",
+        "No compelling narrative arc - we're not demonstrating autonomous discovery",
+        "Missing the 'aha moment' where AI finds something humans missed"
+      ],
+      "wow_factor": "The 5-phase pipeline architecture shows sophisticated thinking, and the browser-based approach is genuinely differentiated from traditional scanners",
+      "missing": "We need: (1) Working end-to-end exploit discovery, (2) Multiple iterations showing RL improvement, (3) A 'holy shit' moment where the AI finds a non-obvious vulnerability, (4) Real-time dashboard showing the AI's thought process, (5) Quantified business impact (time saved, coverage vs traditional tools)",
+      "summary": "No security findings to report yet.",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": false,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 25,
+      "ceo_feedback": "Critical infrastructure failure - backend down kills the entire demo; Zero vulnerabilities found despite known SQLi endpoints - the core value prop isn't working; Only 1 QA run completed - insufficient to show RL learning capability; No compelling narrative arc - we're not demonstrating autonomous discovery; Missing the 'aha moment' where AI finds something humans missed",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:47:21.534612",
+      "last_updated": "2025-12-02T02:48:55.707652"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T02:51:25.126936",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:51:25.126925"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T02:51:45.259887",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:51:45.259870"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T02:51:45.265873",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:51:45.265862"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T02:51:45.316914",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:51:45.316862"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T02:52:52.911452",
+    "data": {
+      "findings_count": 0,
+      "findings": [],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:52:52.911439"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T02:52:52.914637",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:52:52.914626"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T02:52:58.726994",
+    "data": {
+      "score": 25,
+      "pitch_ready": false,
+      "feedback": [
+        "Zero vulnerabilities found after 1 QA run - this is a complete failure",
+        "Demo doesn't demonstrate core value prop of finding real vulnerabilities",
+        "No evidence of RL learning or improvement over time",
+        "Missing the 'wow moment' where AI discovers something unexpected",
+        "Documentation shows known vulns but agent can't find them - technical failure",
+        "No compelling narrative arc from problem to solution to impact"
+      ],
+      "wow_factor": "The tech stack is impressive and the 5-phase pipeline shows sophistication",
+      "missing": "Working demo that actually finds the documented SQLi vulns, evidence of RL improvement, metrics showing accuracy/false positive rates, comparison to traditional scanners, and a clear ROI story for enterprise buyers",
+      "summary": "No security findings to report yet.",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 25,
+      "ceo_feedback": "Zero vulnerabilities found after 1 QA run - this is a complete failure; Demo doesn't demonstrate core value prop of finding real vulnerabilities; No evidence of RL learning or improvement over time; Missing the 'wow moment' where AI discovers something unexpected; Documentation shows known vulns but agent can't find them - technical failure; No compelling narrative arc from problem to solution to impact",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T02:51:25.124863",
+      "last_updated": "2025-12-02T02:52:58.726983"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T03:05:52.111038",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:05:52.111026"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T03:06:12.265295",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:06:12.265279"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:06:12.276271",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:06:12.276257"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:06:12.293647",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:06:12.293629"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:07:36.929802",
+    "data": {
+      "findings_count": 3,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.928968"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "ElementHandle.fill error: Element is not an input, textarea, select, or contenteditable. Likely the target element was not the intended input field, or the input field was not ready for input (e.g., not visible or enabled).",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-12-02T03:07:36.929033"
+        },
+        {
+          "id": "VULN-003",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.929428"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.928968"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "ElementHandle.fill error: Element is not an input, textarea, select, or contenteditable. Likely the target element was not the intended input field, or the input field was not ready for input (e.g., not visible or enabled).",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-12-02T03:07:36.929033"
+        },
+        {
+          "id": "VULN-003",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.929428"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:07:36.929770"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:07:54.473590",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.928968"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "ElementHandle.fill error: Element is not an input, textarea, select, or contenteditable. Likely the target element was not the intended input field, or the input field was not ready for input (e.g., not visible or enabled).",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-12-02T03:07:36.929033"
+        },
+        {
+          "id": "VULN-003",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.929428"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:07:54.473577"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:08:02.907134",
+    "data": {
+      "score": 45,
+      "pitch_ready": false,
+      "feedback": [
+        "Technical errors overshadow the core value prop - 'ElementHandle.fill error' suggests broken automation",
+        "Only 1 QA run completed - not enough to demonstrate learning/improvement over time",
+        "Vulnerabilities found but descriptions are incomplete/garbled - looks unpolished",
+        "No clear story of ROI or competitive advantage - just finding SQLi isn't differentiated",
+        "Missing the 'aha moment' - where's the RL actually improving performance?",
+        "Demo feels like a proof-of-concept, not a product ready for enterprise customers"
+      ],
+      "wow_factor": "Autonomous discovery of critical SQL injection vulnerabilities without source code access",
+      "missing": "Need 10+ successful runs showing RL improvement over time, clean vulnerability reports with business impact scores, comparison to traditional scanners, and a clear path from 'cool demo' to '$10M ARR'. The story should be: 'Watch our AI get smarter and find more vulnerabilities than human pentesters in 1/10th the time.'",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **3 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **2 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): ElementHandle.fill error: Element is not an input, textarea, select, or contenteditable. Likely the ...\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **INFO_DISCLOSURE** (medium): Error parsing reward...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "info_disclosure",
+          "severity": "medium",
+          "description": "Error parsing reward",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.928968"
+        },
+        {
+          "id": "VULN-002",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "ElementHandle.fill error: Element is not an input, textarea, select, or contenteditable. Likely the target element was not the intended input field, or the input field was not ready for input (e.g., not visible or enabled).",
+          "evidence": "Error: ElementHandle.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n    - fill(\"' OR '1'='1' --\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n",
+          "timestamp": "2025-12-02T03:07:36.929033"
+        },
+        {
+          "id": "VULN-003",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:07:36.929428"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Technical errors overshadow the core value prop - 'ElementHandle.fill error' suggests broken automation; Only 1 QA run completed - not enough to demonstrate learning/improvement over time; Vulnerabilities found but descriptions are incomplete/garbled - looks unpolished; No clear story of ROI or competitive advantage - just finding SQLi isn't differentiated; Missing the 'aha moment' - where's the RL actually improving performance?; Demo feels like a proof-of-concept, not a product ready for enterprise customers",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:05:52.108115",
+      "last_updated": "2025-12-02T03:08:02.907123"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T03:08:39.631104",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:08:39.631092"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T03:08:59.820071",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:08:59.820053"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:08:59.832247",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:08:59.832235"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:08:59.849502",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:08:59.849484"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:09:59.930580",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:09:59.930559"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:10:17.310633",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:10:17.310621"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:10:25.315412",
+    "data": {
+      "score": 65,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 1 vulnerability found - needs to demonstrate breadth and depth",
+        "Demo shows basic SQL injection but lacks sophistication story",
+        "No clear learning/improvement narrative from RL component",
+        "Missing business impact metrics (CVSS scores, risk levels)",
+        "No comparison to traditional scanners to show differentiation",
+        "Incomplete demo flow - stopped mid-execution",
+        "Need executive dashboard showing ROI/time savings"
+      ],
+      "wow_factor": "Autonomous discovery and exploitation without source code access is genuinely impressive for VCs",
+      "missing": "Complete end-to-end demo showing: multiple vulnerability types found, RL learning in action, executive reporting with business impact, and clear differentiation from Burp/OWASP ZAP. Need the 'holy grail' moment where it finds something humans missed.",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - needs to demonstrate breadth and depth; Demo shows basic SQL injection but lacks sophistication story; No clear learning/improvement narrative from RL component; Missing business impact metrics (CVSS scores, risk levels); No comparison to traditional scanners to show differentiation; Incomplete demo flow - stopped mid-execution; Need executive dashboard showing ROI/time savings",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:10:25.315402"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:10:27.320268",
+    "data": {
+      "iteration": 2
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - needs to demonstrate breadth and depth; Demo shows basic SQL injection but lacks sophistication story; No clear learning/improvement narrative from RL component; Missing business impact metrics (CVSS scores, risk levels); No comparison to traditional scanners to show differentiation; Incomplete demo flow - stopped mid-execution; Need executive dashboard showing ROI/time savings",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:10:27.320250"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:10:27.328637",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - needs to demonstrate breadth and depth; Demo shows basic SQL injection but lacks sophistication story; No clear learning/improvement narrative from RL component; Missing business impact metrics (CVSS scores, risk levels); No comparison to traditional scanners to show differentiation; Incomplete demo flow - stopped mid-execution; Need executive dashboard showing ROI/time savings",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:10:27.328625"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:11:26.752078",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:11:26.751745"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:11:26.751745"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - needs to demonstrate breadth and depth; Demo shows basic SQL injection but lacks sophistication story; No clear learning/improvement narrative from RL component; Missing business impact metrics (CVSS scores, risk levels); No comparison to traditional scanners to show differentiation; Incomplete demo flow - stopped mid-execution; Need executive dashboard showing ROI/time savings",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:11:26.752056"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:11:48.221990",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:11:26.751745"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - needs to demonstrate breadth and depth; Demo shows basic SQL injection but lacks sophistication story; No clear learning/improvement narrative from RL component; Missing business impact metrics (CVSS scores, risk levels); No comparison to traditional scanners to show differentiation; Incomplete demo flow - stopped mid-execution; Need executive dashboard showing ROI/time savings",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:11:48.221978"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:11:55.490933",
+    "data": {
+      "score": 45,
+      "pitch_ready": false,
+      "feedback": [
+        "Duplicate vulnerability entries - shows poor data quality control",
+        "Only found 1 unique vulnerability despite claiming 2 - credibility issue",
+        "No evidence of actual exploitation - just detection isn't enough",
+        "Missing the 'learning' aspect - where's the RL improvement over iterations?",
+        "No comparison to traditional tools - what's our competitive edge?",
+        "Truncated vulnerability description suggests system instability"
+      ],
+      "wow_factor": "Automated SQL injection detection in a real browser environment shows technical capability",
+      "missing": "Need to show: (1) Actual data exfiltration/impact, (2) RL agent improving between runs, (3) Finding vulnerabilities other tools miss, (4) Clean reporting without duplicates, (5) Multiple attack vectors beyond just SQLi",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **2 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:09:59.930290"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:11:26.751745"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Duplicate vulnerability entries - shows poor data quality control; Only found 1 unique vulnerability despite claiming 2 - credibility issue; No evidence of actual exploitation - just detection isn't enough; Missing the 'learning' aspect - where's the RL improvement over iterations?; No comparison to traditional tools - what's our competitive edge?; Truncated vulnerability description suggests system instability",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:08:39.629158",
+      "last_updated": "2025-12-02T03:11:55.490923"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T03:12:32.447188",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:12:32.447177"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T03:12:52.570238",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:12:52.570219"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:12:52.605258",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:12:52.605243"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:12:52.637573",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:12:52.637558"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:13:52.593622",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:13:52.593600"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:14:11.268756",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:14:11.268743"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:14:18.954393",
+    "data": {
+      "score": 45,
+      "pitch_ready": false,
+      "feedback": [
+        "Demo incomplete - only found 1/2 vulnerabilities, truncated mid-execution",
+        "No clear business impact story - just technical findings without context",
+        "Missing the 'learning' narrative - where's the RL improvement over time?",
+        "No comparison to traditional tools - why is this better than Burp Suite?",
+        "Dashboard/reporting weak - investors need to see polished output",
+        "Target app too obviously vulnerable - looks like a toy demo"
+      ],
+      "wow_factor": "Automated discovery without source code access is genuinely impressive - that's the core value prop",
+      "missing": "Complete the full attack chain, show executive reporting, demonstrate learning capability, add real-world target, emphasize ROI story (replaces $200K+ pentest teams)",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo incomplete - only found 1/2 vulnerabilities, truncated mid-execution; No clear business impact story - just technical findings without context; Missing the 'learning' narrative - where's the RL improvement over time?; No comparison to traditional tools - why is this better than Burp Suite?; Dashboard/reporting weak - investors need to see polished output; Target app too obviously vulnerable - looks like a toy demo",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:14:18.954382"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:14:20.959608",
+    "data": {
+      "iteration": 2
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo incomplete - only found 1/2 vulnerabilities, truncated mid-execution; No clear business impact story - just technical findings without context; Missing the 'learning' narrative - where's the RL improvement over time?; No comparison to traditional tools - why is this better than Burp Suite?; Dashboard/reporting weak - investors need to see polished output; Target app too obviously vulnerable - looks like a toy demo",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:14:20.959590"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:14:20.966833",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo incomplete - only found 1/2 vulnerabilities, truncated mid-execution; No clear business impact story - just technical findings without context; Missing the 'learning' narrative - where's the RL improvement over time?; No comparison to traditional tools - why is this better than Burp Suite?; Dashboard/reporting weak - investors need to see polished output; Target app too obviously vulnerable - looks like a toy demo",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:14:20.966822"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:15:19.878129",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:15:19.877831"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:15:19.877831"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo incomplete - only found 1/2 vulnerabilities, truncated mid-execution; No clear business impact story - just technical findings without context; Missing the 'learning' narrative - where's the RL improvement over time?; No comparison to traditional tools - why is this better than Burp Suite?; Dashboard/reporting weak - investors need to see polished output; Target app too obviously vulnerable - looks like a toy demo",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:15:19.878107"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:15:41.164402",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:15:19.877831"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo incomplete - only found 1/2 vulnerabilities, truncated mid-execution; No clear business impact story - just technical findings without context; Missing the 'learning' narrative - where's the RL improvement over time?; No comparison to traditional tools - why is this better than Burp Suite?; Dashboard/reporting weak - investors need to see polished output; Target app too obviously vulnerable - looks like a toy demo",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:15:41.164391"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:15:48.497934",
+    "data": {
+      "score": 45,
+      "pitch_ready": false,
+      "feedback": [
+        "Duplicate vulnerability entries - looks like a bug, not thoroughness",
+        "Only finding the same SQLi vulnerability twice shows limited capability",
+        "No evidence of the auth bypass vulnerability being discovered",
+        "Truncated vulnerability description suggests incomplete analysis",
+        "Missing variety - real pentest would find multiple vulnerability types",
+        "No clear progression from recon to exploit to impact demonstration"
+      ],
+      "wow_factor": "Autonomous discovery of SQL injection without source code access is genuinely impressive for investors",
+      "missing": "Need to show: 1) Multiple vulnerability types found, 2) Clear exploit demonstration with actual data extraction, 3) Executive-level impact assessment, 4) Clean reporting without duplicates/bugs, 5) Progressive learning over iterations",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **2 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:13:52.593322"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:15:19.877831"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Duplicate vulnerability entries - looks like a bug, not thoroughness; Only finding the same SQLi vulnerability twice shows limited capability; No evidence of the auth bypass vulnerability being discovered; Truncated vulnerability description suggests incomplete analysis; Missing variety - real pentest would find multiple vulnerability types; No clear progression from recon to exploit to impact demonstration",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:12:32.445181",
+      "last_updated": "2025-12-02T03:15:48.497924"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T03:19:28.150189",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:19:28.145180",
+      "last_updated": "2025-12-02T03:19:28.150176"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T03:19:48.314885",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:19:28.145180",
+      "last_updated": "2025-12-02T03:19:48.314864"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:19:48.345248",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:19:28.145180",
+      "last_updated": "2025-12-02T03:19:48.345234"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:19:48.380206",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:19:28.145180",
+      "last_updated": "2025-12-02T03:19:48.380190"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-02T03:20:52.458261",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:20:52.458250"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-02T03:21:12.582834",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:21:12.582817"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:21:12.598706",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:21:12.598694"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:21:12.615267",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:21:12.615252"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:22:12.132129",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:22:12.132098"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:22:33.050217",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:22:33.050204"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:22:39.972313",
+    "data": {
+      "score": 45,
+      "pitch_ready": false,
+      "feedback": [
+        "Demo stops mid-execution - looks broken/incomplete",
+        "Only 1 vulnerability found - need multiple exploits for impact",
+        "No visual proof of exploitation (leaked data, admin access, etc.)",
+        "Missing the 'holy grail' moment - what damage was actually done?",
+        "No comparison to traditional pen testing tools",
+        "Backend vulnerability but no frontend impact shown"
+      ],
+      "wow_factor": "Autonomous SQL injection discovery and execution is solid - shows the AI can actually find and exploit real vulns",
+      "missing": "Complete the exploit chain! Show data exfiltration, demonstrate multiple attack vectors, add visual impact (admin panel access, user data dump), and contrast with manual pen testing speed/coverage",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo stops mid-execution - looks broken/incomplete; Only 1 vulnerability found - need multiple exploits for impact; No visual proof of exploitation (leaked data, admin access, etc.); Missing the 'holy grail' moment - what damage was actually done?; No comparison to traditional pen testing tools; Backend vulnerability but no frontend impact shown",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:22:39.972304"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-02T03:22:41.978256",
+    "data": {
+      "iteration": 2
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo stops mid-execution - looks broken/incomplete; Only 1 vulnerability found - need multiple exploits for impact; No visual proof of exploitation (leaked data, admin access, etc.); Missing the 'holy grail' moment - what damage was actually done?; No comparison to traditional pen testing tools; Backend vulnerability but no frontend impact shown",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:22:41.978238"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-02T03:22:41.986359",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo stops mid-execution - looks broken/incomplete; Only 1 vulnerability found - need multiple exploits for impact; No visual proof of exploitation (leaked data, admin access, etc.); Missing the 'holy grail' moment - what damage was actually done?; No comparison to traditional pen testing tools; Backend vulnerability but no frontend impact shown",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:22:41.986346"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-02T03:23:42.028925",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:23:42.028541"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:23:42.028541"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo stops mid-execution - looks broken/incomplete; Only 1 vulnerability found - need multiple exploits for impact; No visual proof of exploitation (leaked data, admin access, etc.); Missing the 'holy grail' moment - what damage was actually done?; No comparison to traditional pen testing tools; Backend vulnerability but no frontend impact shown",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:23:42.028905"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-02T03:24:03.254528",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:23:42.028541"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Demo stops mid-execution - looks broken/incomplete; Only 1 vulnerability found - need multiple exploits for impact; No visual proof of exploitation (leaked data, admin access, etc.); Missing the 'holy grail' moment - what damage was actually done?; No comparison to traditional pen testing tools; Backend vulnerability but no frontend impact shown",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:24:03.254517"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-02T03:24:10.829960",
+    "data": {
+      "score": 65,
+      "pitch_ready": false,
+      "feedback": [
+        "Duplicate vulnerability entries - looks like a bug in reporting",
+        "Only found 1 unique vuln type (SQL injection) - need to show breadth",
+        "Missing the 'wow moment' - where's the RL learning in action?",
+        "No progression story - agent should get better over iterations",
+        "Demo stops at detection - where's the exploitation?",
+        "Need executive dashboard showing business impact"
+      ],
+      "wow_factor": "Autonomous SQL injection discovery is solid - shows the agent can navigate and attack without human guidance",
+      "missing": "The RL story! Investors want to see learning. Show iteration 1 finding basic issues, iteration 2 finding more complex chains, iteration 3 exploiting business logic flaws. Add a live dashboard showing success rate improving over time.",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **2 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:22:12.131645"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-02T03:23:42.028541"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Duplicate vulnerability entries - looks like a bug in reporting; Only found 1 unique vuln type (SQL injection) - need to show breadth; Missing the 'wow moment' - where's the RL learning in action?; No progression story - agent should get better over iterations; Demo stops at detection - where's the exploitation?; Need executive dashboard showing business impact",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-02T03:20:52.456075",
+      "last_updated": "2025-12-02T03:24:10.829949"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-03T02:07:03.884889",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:07:03.884877"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-03T02:07:24.233847",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:07:24.233827"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-03T02:07:24.249579",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:07:24.249568"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-03T02:07:24.369339",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:07:24.369316"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-03T02:08:49.223609",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:08:49.223242"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:08:49.223242"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:08:49.223580"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-03T02:09:09.006998",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:08:49.223242"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:09:09.006987"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-03T02:09:15.273066",
+    "data": {
+      "score": 65,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 1 vulnerability found - need 3-5 different types to show breadth",
+        "No clear story arc - just 'found SQL injection' isn't compelling",
+        "Missing the RL learning aspect - where's the improvement over time?",
+        "No comparison to existing tools - why is this better than Burp Suite?",
+        "Lacks business impact metrics - what's the cost of these vulnerabilities?"
+      ],
+      "wow_factor": "Automated SQL injection discovery without source code access is solid, browser-based approach is differentiated",
+      "missing": "Need multi-vulnerability showcase, before/after RL improvement demo, and clear ROI story. Show it finding something a human pentester missed.",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 1,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:08:49.223242"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - need 3-5 different types to show breadth; No clear story arc - just 'found SQL injection' isn't compelling; Missing the RL learning aspect - where's the improvement over time?; No comparison to existing tools - why is this better than Burp Suite?; Lacks business impact metrics - what's the cost of these vulnerabilities?",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:07:03.881735",
+      "last_updated": "2025-12-03T02:09:15.273055"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-03T02:09:45.933404",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:09:45.933391"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-03T02:10:06.067082",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:10:06.067063"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-03T02:10:06.083851",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:10:06.083837"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-03T02:10:06.137593",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:10:06.137578"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-03T02:11:06.357602",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:11:06.357579"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-03T02:11:26.803993",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:11:26.803981"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-03T02:11:33.603707",
+    "data": {
+      "score": 65,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 1 vulnerability found - need more impressive scale for VC demo",
+        "No learning progression shown - where's the RL improvement story?",
+        "Missing before/after comparison - what does human pentester miss?",
+        "No quantified business impact - time saved, cost reduction, etc.",
+        "Demo feels like a proof of concept, not a scalable product"
+      ],
+      "wow_factor": "Found actual SQL injection autonomously without source code access - that's real vulnerability discovery",
+      "missing": "Scale demonstration (10+ vulns), learning curves showing AI improvement, competitive comparison vs manual testing, clear ROI metrics, and a narrative arc showing the AI getting smarter over time",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - need more impressive scale for VC demo; No learning progression shown - where's the RL improvement story?; Missing before/after comparison - what does human pentester miss?; No quantified business impact - time saved, cost reduction, etc.; Demo feels like a proof of concept, not a scalable product",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:11:33.603696"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-03T02:11:35.609741",
+    "data": {
+      "iteration": 2
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - need more impressive scale for VC demo; No learning progression shown - where's the RL improvement story?; Missing before/after comparison - what does human pentester miss?; No quantified business impact - time saved, cost reduction, etc.; Demo feels like a proof of concept, not a scalable product",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:11:35.609724"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-03T02:11:35.617682",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - need more impressive scale for VC demo; No learning progression shown - where's the RL improvement story?; Missing before/after comparison - what does human pentester miss?; No quantified business impact - time saved, cost reduction, etc.; Demo feels like a proof of concept, not a scalable product",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:11:35.617670"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-03T02:12:36.400236",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:12:36.399874"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:12:36.399874"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - need more impressive scale for VC demo; No learning progression shown - where's the RL improvement story?; Missing before/after comparison - what does human pentester miss?; No quantified business impact - time saved, cost reduction, etc.; Demo feels like a proof of concept, not a scalable product",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:12:36.400212"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-03T02:12:55.330142",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:12:36.399874"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - need more impressive scale for VC demo; No learning progression shown - where's the RL improvement story?; Missing before/after comparison - what does human pentester miss?; No quantified business impact - time saved, cost reduction, etc.; Demo feels like a proof of concept, not a scalable product",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:12:55.330125"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-03T02:13:01.690995",
+    "data": {
+      "score": 45,
+      "pitch_ready": false,
+      "feedback": [
+        "Duplicate vulnerability entries - shows system instability",
+        "Only 2 iterations completed - insufficient depth for demo",
+        "No diversity in attack vectors - only SQL injection found",
+        "Missing executive summary or business impact metrics",
+        "No comparison to traditional pentest tools",
+        "Lacks progression story - how does RL improve over time?",
+        "Technical jargon without business translation"
+      ],
+      "wow_factor": "Autonomous discovery of critical SQL injection vulnerabilities without source code access",
+      "missing": "Run 10+ iterations showing RL improvement, find 3+ different vulnerability types (XSS, CSRF, etc.), generate executive dashboard with business impact ($$ saved, time reduced vs manual pentest), add before/after comparison showing agent learning",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **2 vulnerabilities** discovered automatically\n- **2 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n- **SQLI** (critical): Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving ...\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:11:06.357281"
+        },
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter after SQL injection in search box on Users page. This is a key step towards achieving a database dump.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:12:36.399874"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 45,
+      "ceo_feedback": "Duplicate vulnerability entries - shows system instability; Only 2 iterations completed - insufficient depth for demo; No diversity in attack vectors - only SQL injection found; Missing executive summary or business impact metrics; No comparison to traditional pentest tools; Lacks progression story - how does RL improve over time?; Technical jargon without business translation",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:09:45.929665",
+      "last_updated": "2025-12-03T02:13:01.690983"
+    }
+  },
+  {
+    "type": "cto_starting_services",
+    "timestamp": "2025-12-03T02:15:03.574764",
+    "data": {},
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {},
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:15:03.574754"
+    }
+  },
+  {
+    "type": "services_started",
+    "timestamp": "2025-12-03T02:15:23.703603",
+    "data": {
+      "buggy-backend": true,
+      "buggy-vibe": true,
+      "frontend": true,
+      "backend": true
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 0,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:15:23.703586"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-03T02:15:23.731149",
+    "data": {
+      "iteration": 1
+    },
+    "state": {
+      "status": "cto_working",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:15:23.731135"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-03T02:15:23.814650",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [],
+      "qa_runs_completed": 0,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:15:23.814633"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-03T02:16:26.229228",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:16:26.229206"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-03T02:16:47.058753",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 0,
+      "ceo_feedback": "",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:16:47.058741"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-03T02:16:54.253481",
+    "data": {
+      "score": 65,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 1 vulnerability found - looks like a toy demo, not enterprise-ready",
+        "No evidence of RL learning/improvement over time - core differentiator missing",
+        "Single SQL injection is predictable - where's the 'blackbox intelligence'?",
+        "No comparison to traditional scanners - why not just use Burp Suite?",
+        "Missing business impact metrics - what's the ROI story?"
+      ],
+      "wow_factor": "Clean pipeline execution with real vulnerability discovery",
+      "missing": "Scale demonstration - run against 5+ apps, show learning curve improving, find 10+ diverse vulns (XSS, auth bypass, business logic flaws), demonstrate speed advantage over manual testing",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter/Submit after SQL injection payload in search box on /users page....\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 1,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - looks like a toy demo, not enterprise-ready; No evidence of RL learning/improvement over time - core differentiator missing; Single SQL injection is predictable - where's the 'blackbox intelligence'?; No comparison to traditional scanners - why not just use Burp Suite?; Missing business impact metrics - what's the ROI story?",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:16:54.253471"
+    }
+  },
+  {
+    "type": "iteration_start",
+    "timestamp": "2025-12-03T02:16:56.259825",
+    "data": {
+      "iteration": 2
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - looks like a toy demo, not enterprise-ready; No evidence of RL learning/improvement over time - core differentiator missing; Single SQL injection is predictable - where's the 'blackbox intelligence'?; No comparison to traditional scanners - why not just use Burp Suite?; Missing business impact metrics - what's the ROI story?",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:16:56.259809"
+    }
+  },
+  {
+    "type": "qa_started",
+    "timestamp": "2025-12-03T02:16:56.268269",
+    "data": {
+      "pipeline_phase": "RECON",
+      "engine": "LangGraph+Gemini+RL"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 1,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - looks like a toy demo, not enterprise-ready; No evidence of RL learning/improvement over time - core differentiator missing; Single SQL injection is predictable - where's the 'blackbox intelligence'?; No comparison to traditional scanners - why not just use Burp Suite?; Missing business impact metrics - what's the ROI story?",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:16:56.268258"
+    }
+  },
+  {
+    "type": "qa_completed",
+    "timestamp": "2025-12-03T02:17:57.417786",
+    "data": {
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:17:57.417170"
+        }
+      ],
+      "pipeline_phase": "RECON_COMPLETE"
+    },
+    "state": {
+      "status": "qa_running",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - looks like a toy demo, not enterprise-ready; No evidence of RL learning/improvement over time - core differentiator missing; Single SQL injection is predictable - where's the 'blackbox intelligence'?; No comparison to traditional scanners - why not just use Burp Suite?; Missing business impact metrics - what's the ROI story?",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:17:57.417763"
+    }
+  },
+  {
+    "type": "ceo_reviewing",
+    "timestamp": "2025-12-03T02:18:16.806259",
+    "data": {},
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - looks like a toy demo, not enterprise-ready; No evidence of RL learning/improvement over time - core differentiator missing; Single SQL injection is predictable - where's the 'blackbox intelligence'?; No comparison to traditional scanners - why not just use Burp Suite?; Missing business impact metrics - what's the ROI story?",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:18:16.806247"
+    }
+  },
+  {
+    "type": "ceo_evaluation",
+    "timestamp": "2025-12-03T02:18:23.200700",
+    "data": {
+      "score": 65,
+      "pitch_ready": false,
+      "feedback": [
+        "Only 1 vulnerability found - not impressive scale for a demo",
+        "SQL injection is common/expected - lacks sophistication",
+        "No demonstration of RL learning/improvement over time",
+        "Missing variety of attack vectors (XSS, CSRF, auth bypass)",
+        "No metrics showing speed vs traditional pentesting",
+        "Lacks 'wow moment' - this looks like basic automated scanning"
+      ],
+      "wow_factor": "Clean pipeline execution and real vulnerability discovery",
+      "missing": "Need 5-8 diverse vulns, before/after RL comparison, speed metrics (e.g. '10x faster than manual'), and demonstration of the AI actually learning from failures. Show the agent adapting its strategy mid-attack.",
+      "summary": "\n## BlackBox AI Security Assessment\n\n**Automated scan completed** against target application.\n\n### Key Findings\n- **1 vulnerabilities** discovered automatically\n- **1 critical/high** severity issues\n- **1 vulnerability types** detected\n\n### Top Issues\n- **SQLI** (critical): Pressed Enter/Submit after SQL injection payload in search box on /users page....\n\n### Why This Matters\nTraditional pen testing takes weeks and costs $50K+. \nOur AI agent found these issues in **under 2 minutes**, automatically.\n\n**Self-improving**: Each scan makes the agent smarter.\n",
+      "powered_by": "claude"
+    },
+    "state": {
+      "status": "ceo_reviewing",
+      "iteration": 2,
+      "max_iterations": 2,
+      "cto_issues_found": [],
+      "cto_issues_fixed": [],
+      "services_healthy": {
+        "buggy-backend": true,
+        "buggy-vibe": true,
+        "frontend": true,
+        "backend": true
+      },
+      "findings": [
+        {
+          "id": "VULN-001",
+          "type": "sqli",
+          "severity": "critical",
+          "description": "Pressed Enter/Submit after SQL injection payload in search box on /users page.",
+          "evidence": "Action: Pressed Enter to submit search",
+          "timestamp": "2025-12-03T02:16:26.228568"
+        }
+      ],
+      "qa_runs_completed": 2,
+      "demo_readiness_score": 65,
+      "ceo_feedback": "Only 1 vulnerability found - not impressive scale for a demo; SQL injection is common/expected - lacks sophistication; No demonstration of RL learning/improvement over time; Missing variety of attack vectors (XSS, CSRF, auth bypass); No metrics showing speed vs traditional pentesting; Lacks 'wow moment' - this looks like basic automated scanning",
+      "pitch_ready": false,
+      "human_feedback": "",
+      "human_approved": false,
+      "started_at": "2025-12-03T02:15:03.568718",
+      "last_updated": "2025-12-03T02:18:23.200689"
     }
   }
 ]

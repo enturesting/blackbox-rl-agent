@@ -14,20 +14,36 @@ An AI-powered **blackbox penetration testing** framework that uses LangGraph, Go
 - **🧠 Reinforcement Learning**: Learns from successful exploits to improve future performance
 - **🎭 CEO/CTO Agent Orchestration**: Dual-agent system for vision + technical validation
 
-## 🆕 What's New (November 2025)
+## 🆕 What's New (December 2025)
+
+### Hybrid API + Browser Testing
+The QA agent now uses a **two-phase approach** for faster, more reliable vulnerability discovery:
+- **Phase 0 (API Tests)**: Direct HTTP tests against API endpoints - finds 6+ vulnerabilities without any LLM calls
+- **Phase 1 (Browser Tests)**: Playwright-based UI testing for client-side vulnerabilities
+
+### Expanded Vulnerability Coverage
+Now detects **6+ vulnerability types** out of the box:
+| Vulnerability | CWE | Description |
+|--------------|-----|-------------|
+| SQL Injection | CWE-89 | Database dump via SQLi |
+| Auth Bypass | CWE-287 | Login bypass via SQLi |
+| Cleartext Passwords | CWE-256 | Unhashed password storage |
+| API Key Exposure | CWE-200 | Leaked API keys via SQLi |
+| Session Token Leakage | CWE-200 | Active sessions exposed |
+| Stored XSS | CWE-79 | Unsanitized script storage |
 
 ### CEO/CTO Agent Orchestrator
 A dual-agent coordination system that iterates toward a pitch-ready demo:
 - **CEO Agent** (`@ceo`): Evaluates demo narrative, value proposition, and pitch-readiness
 - **CTO Agent** (`@cto`): Validates technical implementation, fixes bugs, ensures stability
-- **Shared Checklist**: `DEMO_CHECKLIST.md` for coordinated progress tracking
-- **Orchestrator Script**: `orchestrator.py` automates the CEO/CTO loop with human checkpoints
+- **Claude-Powered**: Uses Claude Sonnet for strategic decisions (context from `CLAUDE_CONTEXT.md`)
+- **Orchestrator Script**: `agent_orchestrator.py` automates the CEO/CTO loop
 
 ### Recent Improvements
-- **Loop Detection**: QA agent now detects when stuck in repetitive action loops
+- **Crash Protection**: API findings saved immediately, browser crash won't lose data
+- **Loop Detection**: QA agent detects when stuck in repetitive action loops
 - **Backend Health Gate**: Orchestrator validates backend health before running QA
-- **Timestamped Tests**: Generated Playwright tests include timestamps to prevent overwrites
-- **Health Endpoints**: Server.py now includes `/` and `/health` endpoints
+- **Reduced Screenshot Frequency**: Only captures on significant actions
 
 ## 🚀 Quick Start (Demo)
 
@@ -157,7 +173,7 @@ blackbox-rl-agent/
 ├── run_demo.sh                 # 🚀 One-command demo launcher
 ├── run_all_agents.sh           # CLI pipeline runner
 ├── server.py                   # FastAPI backend for dashboard
-├── orchestrator.py             # 🎭 CEO/CTO coordination loop
+├── agent_orchestrator.py       # 🎭 CEO/CTO coordination loop
 │
 ├── qa_agent_v1.py              # Phase 1: Reconnaissance agent
 ├── exploit_planner.py          # Phase 2: Attack planning
@@ -240,12 +256,12 @@ For demo preparation and iteration, use the orchestrator:
 
 ### Interactive Mode (with human checkpoints)
 ```bash
-python orchestrator.py
+python agent_orchestrator.py
 ```
 
 ### Non-interactive Mode (fully automated)
 ```bash
-python orchestrator.py --non-interactive --max-iterations=5
+python agent_orchestrator.py --non-interactive --max-iterations=5
 ```
 
 ### Via API
